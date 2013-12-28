@@ -14,8 +14,14 @@ import static junit.framework.Assert.*;
  * Created by roberto on 12/26/13.
  */
 public class JStravaV3Test {
+
+    String accessToken;
     @Before
     public void setUp() throws Exception {
+
+        /*REMEMBER TO SETUP YOUR API ACCESS CODE HERE!!!*/
+
+        accessToken ="";
 
     }
 
@@ -37,7 +43,7 @@ public class JStravaV3Test {
     @Test
     public void testJStravaV3() throws Exception {
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
 
         Athlete athlete=strava.getCurrentAthlete();
         assertNotNull(athlete);
@@ -49,7 +55,7 @@ public class JStravaV3Test {
     @Test
     public void testFindAthlete() throws Exception {
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
 
         Athlete athlete=strava.findAthlete(5455);
         assertNotNull(athlete);
@@ -63,7 +69,7 @@ public class JStravaV3Test {
     @Test
     public void testFindActivity() throws Exception {
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
 
         Activity activity= strava.findActivity(101737199);
         assertNotNull(activity);
@@ -86,7 +92,7 @@ public class JStravaV3Test {
     @Test
     public void testFindActivityComments() throws Exception{
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
         List<Comment> comments= strava.findActivityComments(100349929);
         assertFalse(comments.isEmpty());
         for (Comment comment:comments)
@@ -100,7 +106,7 @@ public class JStravaV3Test {
     @Test
     public void testFindActivityKudos() throws Exception{
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
         List<Athlete> athletes= strava.findActivityKudos(100349929);
         assertFalse(athletes.isEmpty());
         for (Athlete athlete:athletes)
@@ -113,7 +119,7 @@ public class JStravaV3Test {
     @Test
     public void testFindAthleteFriends() throws Exception{
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
         List<Athlete> athletes= strava.findAthleteFriends(5455);
         assertFalse(athletes.isEmpty());
         for (Athlete athlete:athletes)
@@ -126,7 +132,7 @@ public class JStravaV3Test {
     @Test
     public void testFindAthleteFollowers() throws Exception{
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
         List<Athlete> athletes= strava.findAthleteFollowers(5455);
         assertFalse(athletes.isEmpty());
         for (Athlete athlete:athletes)
@@ -139,7 +145,7 @@ public class JStravaV3Test {
     @Test
     public void testFindAthleteBothFollowing() throws Exception{
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
         List<Athlete> athletes= strava.findAthleteBothFollowing(5455);
         assertFalse(athletes.isEmpty());
         for (Athlete athlete:athletes)
@@ -154,7 +160,7 @@ public class JStravaV3Test {
     @Test
     public void testFindGear() throws Exception {
 
-        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        JStravaV3 strava= new JStravaV3(accessToken);
 
         Gear gear= strava.findGear("b1069668");
         assertNotNull(gear);
