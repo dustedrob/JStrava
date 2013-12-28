@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.jstrava.entities.Activity;
 import org.jstrava.entities.Athlete;
 import org.jstrava.entities.Comment;
+import org.jstrava.entities.Gear;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -87,12 +88,23 @@ public class JStravaV3 implements JStrava {
         return athletes;
     }
 
+    @Override
+    public Gear findGear(String id) {
+        String URL="https://www.strava.com/api/v3/gear/"+id+"?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Gear gear= gson.fromJson(result,Gear.class);
+
+        return gear;
+    }
+
 
     public JStravaV3(String access_token){
         this.accessToken = access_token;
         String URL="https://www.strava.com/api/v3/athlete"+"?access_token="+accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
+        System.out.println(result);
         currentAthlete =gson.fromJson(result,Athlete.class);
 
     }

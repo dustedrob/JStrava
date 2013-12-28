@@ -3,6 +3,7 @@ package org.jstrava.connector;
 import org.jstrava.entities.Activity;
 import org.jstrava.entities.Athlete;
 import org.jstrava.entities.Comment;
+import org.jstrava.entities.Gear;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface JStrava {
     public Activity findActivity(Integer id);
     public List<Comment> findActivityComments(Integer activityId);
     public List<Athlete> findActivityKudos(Integer activityId);
+    public Gear findGear(String id);
 }

@@ -1,9 +1,6 @@
 package org.jstrava.connector;
 
-import org.jstrava.entities.Activity;
-import org.jstrava.entities.Athlete;
-import org.jstrava.entities.Comment;
-import org.jstrava.entities.SegmentEffort;
+import org.jstrava.entities.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -113,4 +110,16 @@ public class JStravaV3Test {
 
     }
 
+
+
+    @Test
+    public void testFindGear() throws Exception {
+
+        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+
+        Gear gear= strava.findGear("b1069668");
+        assertNotNull(gear);
+        System.out.println("Gear Name "+gear.toString());
+
+    }
 }
