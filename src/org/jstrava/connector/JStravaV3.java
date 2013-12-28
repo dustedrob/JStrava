@@ -59,7 +59,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Comment> findComments(Integer activityId) {
+    public List<Comment> findActivityComments(Integer activityId) {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/comments?access_token="+ accessToken;
         String result=getResult(URL);
@@ -71,6 +71,20 @@ public class JStravaV3 implements JStrava {
 
 
         return comments;
+    }
+
+    @Override
+    public List<Athlete> findActivityKudos(Integer activityId) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(commentsArray);
+
+
+        return athletes;
     }
 
 

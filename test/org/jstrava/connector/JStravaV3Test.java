@@ -87,14 +87,28 @@ public class JStravaV3Test {
     }
 
     @Test
-    public void testFindComments() throws Exception{
+    public void testFindActivityComments() throws Exception{
 
         JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
-        List<Comment> comments= strava.findComments(100349929);
+        List<Comment> comments= strava.findActivityComments(100349929);
         assertFalse(comments.isEmpty());
         for (Comment comment:comments)
         {
             System.out.println(comment.getText());
+        }
+
+    }
+
+
+    @Test
+    public void testFindActivityKudos() throws Exception{
+
+        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        List<Athlete> athletes= strava.findActivityKudos(100349929);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println(athlete.toString());
         }
 
     }

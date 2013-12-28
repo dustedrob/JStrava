@@ -15,5 +15,6 @@ public interface JStrava {
 
     public Athlete findAthlete(Integer id);
     public Activity findActivity(Integer id);
-    public List<Comment> findComments(Integer activityId);
+    public List<Comment> findActivityComments(Integer activityId);
+    public List<Athlete> findActivityKudos(Integer activityId);
 }
