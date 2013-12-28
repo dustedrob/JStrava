@@ -110,6 +110,45 @@ public class JStravaV3Test {
 
     }
 
+    @Test
+    public void testFindAthleteFriends() throws Exception{
+
+        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        List<Athlete> athletes= strava.findAthleteFriends(5455);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Friends "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteFollowers() throws Exception{
+
+        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        List<Athlete> athletes= strava.findAthleteFollowers(5455);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Followers "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteBothFollowing() throws Exception{
+
+        JStravaV3 strava= new JStravaV3("f1680106c792fac952c650441ed80ff697a7b24d");
+        List<Athlete> athletes= strava.findAthleteBothFollowing(5455);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athletes Both Following "+athlete.toString());
+        }
+
+    }
+
 
 
     @Test
@@ -119,7 +158,7 @@ public class JStravaV3Test {
 
         Gear gear= strava.findGear("b1069668");
         assertNotNull(gear);
-        System.out.println("Gear Name "+gear.toString());
+        System.out.println("Gear Name " + gear.toString());
 
     }
 }

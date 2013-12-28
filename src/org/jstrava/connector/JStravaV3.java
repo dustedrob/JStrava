@@ -89,6 +89,49 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
+    public List<Athlete> findAthleteFriends(Integer id) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(commentsArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public List<Athlete> findAthleteFollowers(Integer id) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(commentsArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public List<Athlete> findAthleteBothFollowing(Integer id) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(commentsArray);
+
+
+        return athletes;
+    }
+
+
+    @Override
     public Gear findGear(String id) {
         String URL="https://www.strava.com/api/v3/gear/"+id+"?access_token="+ accessToken;
         String result=getResult(URL);
@@ -104,7 +147,6 @@ public class JStravaV3 implements JStrava {
         String URL="https://www.strava.com/api/v3/athlete"+"?access_token="+accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        System.out.println(result);
         currentAthlete =gson.fromJson(result,Athlete.class);
 
     }
