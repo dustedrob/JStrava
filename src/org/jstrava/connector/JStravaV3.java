@@ -223,6 +223,17 @@ public class JStravaV3 implements JStrava {
     }
 
 
+    @Override
+    public List<Activity> findClubActivities(Integer clubId) {
+        String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/activities"+"?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>clubActivities= Arrays.asList(activitiesArray);
+        return clubActivities;
+    }
+
+
     public JStravaV3(String access_token){
         this.accessToken = access_token;
         String URL="https://www.strava.com/api/v3/athlete"+"?access_token="+accessToken;

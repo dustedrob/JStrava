@@ -21,4 +21,5 @@ public interface JStrava {
     public Gear findGear(String id);
     public Club findClub(Integer id);
     public List<Athlete> findClubMembers(Integer clubId);
+    public List<Activity> findClubActivities(Integer clubId);
 }
