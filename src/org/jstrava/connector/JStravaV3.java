@@ -73,17 +73,17 @@ public class JStravaV3 implements JStrava {
         return athletes;
     }
 
-    public List<Athlete> getCurrentAthleteClubs() {
+    public List<Club> getCurrentAthleteClubs() {
         String URL="https://www.strava.com/api/v3/athlete/clubs?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+        Club[] clubsArray= gson.fromJson(result,Club[].class);
 
 
-        List<Athlete>athletes= Arrays.asList(commentsArray);
+        List<Club>clubs= Arrays.asList(clubsArray);
 
 
-        return athletes;
+        return clubs;
     }
 
     public String getAccessToken() {
@@ -136,10 +136,10 @@ public class JStravaV3 implements JStrava {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
-        List<Athlete>athletes= Arrays.asList(commentsArray);
+        List<Athlete>athletes= Arrays.asList(athletesArray);
 
 
         return athletes;
