@@ -2,10 +2,7 @@ package org.jstrava.connector;
 
 
 import com.google.gson.Gson;
-import org.jstrava.entities.Activity;
-import org.jstrava.entities.Athlete;
-import org.jstrava.entities.Comment;
-import org.jstrava.entities.Gear;
+import org.jstrava.entities.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,17 +51,30 @@ public class JStravaV3 implements JStrava {
         String URL="https://www.strava.com/api/v3/athlete/followers?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
-        List<Athlete>athletes= Arrays.asList(commentsArray);
+        List<Athlete>athletes= Arrays.asList(athletesArray);
 
 
         return athletes;
     }
 
     public List<Athlete> getCurrentAthleteFriends() {
-        String URL="https://www.strava.com/api/v3/athlete/friends?access_token="+ accessToken;
+        String URL="https://www.strava.com/api/v3/athlete/clubs?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    public List<Athlete> getCurrentAthleteClubs() {
+        String URL="https://www.strava.com/api/v3/athlete/clubs?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
         Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
@@ -186,6 +196,16 @@ public class JStravaV3 implements JStrava {
         Gear gear= gson.fromJson(result,Gear.class);
 
         return gear;
+    }
+
+    @Override
+    public Club findClub(Integer id) {
+        String URL="https://www.strava.com/api/v3/clubs/"+id+"?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Club club= gson.fromJson(result,Club.class);
+
+        return club;
     }
 
 
