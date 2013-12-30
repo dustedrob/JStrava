@@ -19,15 +19,62 @@ public class JStravaV3 implements JStrava {
 
     private String accessToken;
 
-    public Athlete getCurrentAthlete() {
-        return currentAthlete;
-    }
 
     public void setCurrentAthlete(Athlete currentAthlete) {
         this.currentAthlete = currentAthlete;
     }
 
     private Athlete currentAthlete;
+
+
+    public Athlete getCurrentAthlete() {
+        return currentAthlete;
+    }
+
+    public List<Activity> getCurrentActivities() {
+        String URL="https://www.strava.com/api/v3/athlete/activities"+"?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentActivities= Arrays.asList(activitiesArray);
+        return currentActivities;
+    }
+
+    public List<Activity> getCurrentFriendsActivities() {
+        String URL="https://www.strava.com/api/v3/activities/following"+"?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentFriendsActivities= Arrays.asList(activitiesArray);
+        return currentFriendsActivities;
+    }
+
+
+    public List<Athlete> getCurrentAthleteFollowers() {
+        String URL="https://www.strava.com/api/v3/athlete/followers?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(commentsArray);
+
+
+        return athletes;
+    }
+
+    public List<Athlete> getCurrentAthleteFriends() {
+        String URL="https://www.strava.com/api/v3/athlete/friends?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(commentsArray);
+
+
+        return athletes;
+    }
 
     public String getAccessToken() {
         return accessToken;
