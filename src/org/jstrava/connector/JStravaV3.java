@@ -150,10 +150,10 @@ public class JStravaV3 implements JStrava {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
-        List<Athlete>athletes= Arrays.asList(commentsArray);
+        List<Athlete>athletes= Arrays.asList(athletesArray);
 
 
         return athletes;
@@ -164,10 +164,10 @@ public class JStravaV3 implements JStrava {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
-        List<Athlete>athletes= Arrays.asList(commentsArray);
+        List<Athlete>athletes= Arrays.asList(athletesArray);
 
 
         return athletes;
@@ -178,10 +178,10 @@ public class JStravaV3 implements JStrava {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Athlete[] commentsArray= gson.fromJson(result,Athlete[].class);
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
-        List<Athlete>athletes= Arrays.asList(commentsArray);
+        List<Athlete>athletes= Arrays.asList(athletesArray);
 
 
         return athletes;
@@ -206,6 +206,20 @@ public class JStravaV3 implements JStrava {
         Club club= gson.fromJson(result,Club.class);
 
         return club;
+    }
+
+    @Override
+    public List<Athlete> findClubMembers(Integer clubId) {
+        String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/members?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
     }
 
 
