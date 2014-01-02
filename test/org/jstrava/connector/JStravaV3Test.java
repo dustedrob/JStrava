@@ -167,4 +167,62 @@ public class JStravaV3Test {
         System.out.println("Gear Name " + gear.toString());
 
     }
+
+
+    @Test
+    public void testFindClub() throws Exception {
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+
+        Club club= strava.findClub(4111);
+        assertNotNull(club);
+        System.out.println("Club Name " + club.toString());
+
+    }
+
+
+    @Test
+    public void testFindClubMembers() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findClubMembers(4111);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Club Member "+athlete.toString());
+        }
+
+    }
+
+    ////////Remove EXPECTED annotation if you point to a club you are member of.
+    @Test(expected=RuntimeException.class)
+    public void testFindClubActivities(){
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Activity> activities= strava.findClubActivities(4111);
+        assertFalse(activities.isEmpty());
+        for (Activity activity:activities)
+        {
+            System.out.println("Club Activity Name "+activity.toString());
+        }
+
+    }
+
+
+
+    ////////Change assert if you do have clubs
+    @Test
+    public void testGetCurrentAthleteClubs(){
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Club> clubs= strava.getCurrentAthleteClubs();
+        assertTrue(clubs.isEmpty());
+        for (Club club:clubs)
+        {
+            System.out.println("Club Name " + club.toString());
+        }
+
+    }
+    
+
 }

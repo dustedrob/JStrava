@@ -22,4 +22,5 @@ public interface JStrava {
     public Club findClub(Integer id);
     public List<Athlete> findClubMembers(Integer clubId);
     public List<Activity> findClubActivities(Integer clubId);
+    public SegmentEffort findSegmentEffort(Integer id);
 }

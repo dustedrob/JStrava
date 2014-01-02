@@ -233,6 +233,15 @@ public class JStravaV3 implements JStrava {
         return clubActivities;
     }
 
+    @Override
+    public SegmentEffort findSegmentEffort(Integer id) {
+        String URL="https://www.strava.com/api/v3/segment_efforts/"+id+"?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        SegmentEffort segmentEffort= gson.fromJson(result,SegmentEffort.class);
+        return segmentEffort;
+    }
+
 
     public JStravaV3(String access_token){
         this.accessToken = access_token;
