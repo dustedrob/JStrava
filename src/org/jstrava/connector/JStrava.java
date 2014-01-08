@@ -2,6 +2,7 @@ package org.jstrava.connector;
 
 import org.jstrava.entities.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ public interface JStrava {
     public Athlete findAthlete(Integer id);
     public List<Athlete> findActivityKudos(Integer activityId);
     public List<Athlete> findAthleteFriends(Integer id);
+    public List<Athlete> findAthleteFriends(Integer id, HashMap optionalParameters);
     public List<Athlete> findAthleteFollowers(Integer id);
     public List<Athlete> findAthleteBothFollowing(Integer id);
     public Activity findActivity(Integer id);
@@ -23,4 +25,5 @@ public interface JStrava {
     public List<Athlete> findClubMembers(Integer clubId);
     public List<Activity> findClubActivities(Integer clubId);
     public SegmentEffort findSegmentEffort(Integer id);
+    public List<SegmentEffort> findAthleteKOMs(Integer athleteId);
 }

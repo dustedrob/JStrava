@@ -41,8 +41,8 @@ public class Activity {
     private Integer average_temp;
     private Float average_watts;
     private Float kilojoules;
-    private Integer average_heartrate;
-    private Integer max_heartrate;
+    private Float average_heartrate;
+    private Float max_heartrate;
     private Float calories;
     private Integer truncated;
     private Boolean has_kudoed;
@@ -336,19 +336,19 @@ public class Activity {
         this.kilojoules = kilojoules;
     }
 
-    public Integer getAverage_heartrate() {
+    public Float getAverage_heartrate() {
         return average_heartrate;
     }
 
-    public void setAverage_heartrate(Integer average_heartrate) {
+    public void setAverage_heartrate(Float average_heartrate) {
         this.average_heartrate = average_heartrate;
     }
 
-    public Integer getMax_heartrate() {
+    public Float getMax_heartrate() {
         return max_heartrate;
     }
 
-    public void setMax_heartrate(Integer max_heartrate) {
+    public void setMax_heartrate(Float max_heartrate) {
         this.max_heartrate = max_heartrate;
     }
 
