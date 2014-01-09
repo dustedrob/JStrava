@@ -5,7 +5,7 @@ package org.jstrava.entities;
  */
 public class Segment {
 
-    private Integer id;
+    private Long id;
     private Integer resource_state;
     private String name;
     private String activity_type;
@@ -32,7 +32,7 @@ public class Segment {
     private Boolean starred;
 
 
-    public Segment(Integer id) {
+    public Segment(Long id) {
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class Segment {
         return name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

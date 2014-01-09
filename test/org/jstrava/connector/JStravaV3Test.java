@@ -21,6 +21,7 @@ public class JStravaV3Test {
     Integer activityId;
     Integer clubId;
     String gearId;
+    Long segmentId;
 
     @Before
     public void setUp() throws Exception {
@@ -32,6 +33,7 @@ public class JStravaV3Test {
         activityId=0;
         clubId=0;
         gearId="";
+        segmentId=0L;
     }
 
     @After
@@ -146,7 +148,6 @@ public class JStravaV3Test {
         optionalParameters.put("per_page",1);
         List<Athlete> athletes= strava.findAthleteFriends(athleteId,optionalParameters);
         assertFalse(athletes.isEmpty());
-        System.out.println("TESTING OPTIONAL PARAMETERS");
 
         for (Athlete athlete:athletes)
         {
@@ -273,7 +274,9 @@ public class JStravaV3Test {
     }
 
 
-    @Test
+
+    /*Expect exception if you dont have an activity with photos*/
+    @Test(expected = RuntimeException.class)
     public void testFindActivityPhotos(){
 
         JStravaV3 strava= new JStravaV3(accessToken);
@@ -287,6 +290,39 @@ public class JStravaV3Test {
         }
 
     }
+
+    @Test
+    public void testFindSegmentLeaderBoard() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        SegmentLeaderBoard board= strava.findSegmentLeaderBoard(segmentId);
+        assertNotNull(board);
+        for (LeaderBoardEntry entry:board.getEntries())
+        {
+            System.out.println("Segment LeaderBoard "+entry.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindSegmentLeaderBoardWithParameters() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        HashMap optionalParameters= new HashMap();
+        optionalParameters.put("page",1);
+        optionalParameters.put("per_page",1);
+        SegmentLeaderBoard board= strava.findSegmentLeaderBoard(segmentId,optionalParameters);
+        assertNotNull(board);
+
+        for (LeaderBoardEntry entry:board.getEntries())
+        {
+            System.out.println("Segment LeaderBoard "+entry.toString());
+        }
+
+    }
+
+
+
 
 
 }

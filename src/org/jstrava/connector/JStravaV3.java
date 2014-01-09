@@ -282,6 +282,24 @@ public class JStravaV3 implements JStrava {
         return photos;
     }
 
+    @Override
+    public SegmentLeaderBoard findSegmentLeaderBoard(Long segmentId) {
+        String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
+        return segmentLeaderBoard;
+    }
+
+    @Override
+    public SegmentLeaderBoard findSegmentLeaderBoard(Long segmentId, HashMap optionalParameters) {
+        String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard?access_token="+ accessToken;
+        String result=getResult(URL,optionalParameters);
+        Gson gson= new Gson();
+        SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
+        return segmentLeaderBoard;
+    }
+
 
     public JStravaV3(String access_token){
         this.accessToken = access_token;
