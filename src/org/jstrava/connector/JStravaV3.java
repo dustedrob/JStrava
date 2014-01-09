@@ -31,7 +31,7 @@ public class JStravaV3 implements JStrava {
     }
 
     public List<Activity> getCurrentActivities() {
-        String URL="https://www.strava.com/api/v3/athlete/activities"+"?access_token="+accessToken;
+        String URL="https://www.strava.com/api/v3/athlete/activities?access_token="+accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
@@ -40,7 +40,7 @@ public class JStravaV3 implements JStrava {
     }
 
     public List<Activity> getCurrentFriendsActivities() {
-        String URL="https://www.strava.com/api/v3/activities/following"+"?access_token="+accessToken;
+        String URL="https://www.strava.com/api/v3/activities/following?access_token="+accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
@@ -269,6 +269,17 @@ public class JStravaV3 implements JStrava {
         SegmentEffort[] segmentEffortArray=gson.fromJson(result,SegmentEffort[].class);
         List<SegmentEffort>segmentEfforts= Arrays.asList(segmentEffortArray);
         return segmentEfforts;
+    }
+
+    @Override
+    public List<Photo> findActivityPhotos(Integer activityId) {
+
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/photos?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Photo[] photosArray =gson.fromJson(result,Photo[].class);
+        List<Photo>photos= Arrays.asList(photosArray);
+        return photos;
     }
 
 

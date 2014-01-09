@@ -273,4 +273,20 @@ public class JStravaV3Test {
     }
 
 
+    @Test
+    public void testFindActivityPhotos(){
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Photo> photos= strava.findActivityPhotos(activityId);
+
+        assertFalse(photos.isEmpty());
+        for (Photo photo: photos)
+        {
+            System.out.println("Photo " + photo.toString());
+
+        }
+
+    }
+
+
 }

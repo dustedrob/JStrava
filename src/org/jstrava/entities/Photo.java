@@ -15,4 +15,97 @@ public class Photo {
     private String uploaded_at;
     private String created_at;
     private String[] location;
+
+
+    @Override
+    public String toString() {
+        return ref;
+    }
+
+    public Photo() {
+    }
+
+    public Photo(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getActivity_id() {
+        return activity_id;
+    }
+
+    public void setActivity_id(Integer activity_id) {
+        this.activity_id = activity_id;
+    }
+
+    public Integer getResource_state() {
+        return resource_state;
+    }
+
+    public void setResource_state(Integer resource_state) {
+        this.resource_state = resource_state;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUploaded_at() {
+        return uploaded_at;
+    }
+
+    public void setUploaded_at(String uploaded_at) {
+        this.uploaded_at = uploaded_at;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String[] getLocation() {
+        return location;
+    }
+
+    public void setLocation(String[] location) {
+        this.location = location;
+    }
 }

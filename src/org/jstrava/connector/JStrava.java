@@ -26,4 +26,5 @@ public interface JStrava {
     public List<Activity> findClubActivities(Integer clubId);
     public SegmentEffort findSegmentEffort(Integer id);
     public List<SegmentEffort> findAthleteKOMs(Integer athleteId);
+    public List<Photo>findActivityPhotos(Integer activityId);
 }
