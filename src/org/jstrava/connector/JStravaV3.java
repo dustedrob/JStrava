@@ -88,6 +88,22 @@ public class JStravaV3 implements JStrava {
         return clubs;
     }
 
+
+    public List<Segment> getCurrentStarredSegment() {
+        String URL="https://www.strava.com/api/v3/segments/starred?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Segment[] segmentsArray= gson.fromJson(result,Segment[].class);
+
+
+        List<Segment>segments= Arrays.asList(segmentsArray);
+
+
+        return segments;
+    }
+
+
+
     public String getAccessToken() {
         return accessToken;
     }

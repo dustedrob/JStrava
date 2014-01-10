@@ -322,7 +322,6 @@ public class JStravaV3Test {
     }
 
     @Test
-
     public void testFindSegment() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
@@ -330,6 +329,21 @@ public class JStravaV3Test {
         assertNotNull(segment);
 
         System.out.println("SEGMENT "+segment.toString());
+    }
+
+
+    @Test
+    public void testFindCurrentStarredSegments() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Segment>segments=strava.getCurrentStarredSegment();
+
+        assertFalse(segments.isEmpty());
+
+        for (Segment segment:segments)
+        {
+            System.out.println("Starred Segment "+ segment);
+        }
     }
 
 
