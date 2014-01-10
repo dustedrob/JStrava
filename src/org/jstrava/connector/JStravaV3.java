@@ -262,6 +262,15 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
+    public Segment findSegment(Long segmentId) {
+        String URL="https://www.strava.com/api/v3/segments/"+segmentId+"?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Segment segment= gson.fromJson(result,Segment.class);
+        return segment;
+    }
+
+    @Override
     public List<SegmentEffort> findAthleteKOMs(Integer athleteId) {
         String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/koms?access_token="+accessToken;
         String result=getResult(URL);

@@ -321,6 +321,17 @@ public class JStravaV3Test {
 
     }
 
+    @Test
+
+    public void testFindSegment() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        Segment segment= strava.findSegment(segmentId);
+        assertNotNull(segment);
+
+        System.out.println("SEGMENT "+segment.toString());
+    }
+
 
 
 
