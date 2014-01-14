@@ -269,6 +269,17 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
+    public List<LapEffort> findActivityLaps(Integer activityId) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/laps"+"?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        LapEffort[] lapEffortsArray =gson.fromJson(result,LapEffort[].class);
+        List<LapEffort>lapEfforts= Arrays.asList(lapEffortsArray);
+        return lapEfforts;
+    }
+
+
+    @Override
     public SegmentEffort findSegmentEffort(Integer id) {
         String URL="https://www.strava.com/api/v3/segment_efforts/"+id+"?access_token="+accessToken;
         String result=getResult(URL);

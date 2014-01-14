@@ -347,6 +347,21 @@ public class JStravaV3Test {
     }
 
 
+    @Test
+    public void testFindActivityLaps() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<LapEffort>laps=strava.findActivityLaps(activityId);
+
+        assertFalse(laps.isEmpty());
+
+        for (LapEffort lap:laps)
+        {
+            System.out.println("Lap "+ lap.toString());
+        }
+    }
+
+
 
 
 
