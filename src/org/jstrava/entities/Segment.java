@@ -23,7 +23,7 @@ public class Segment {
     private String created_at;
     private String updated_at;
     private Float total_elevation_gain;
-    private StravaMap map;
+    private Polyline map;
     private Integer effort_count;
     private Integer athlete_count;
     private Boolean hazardous;
@@ -188,11 +188,11 @@ public class Segment {
         this.total_elevation_gain = total_elevation_gain;
     }
 
-    public StravaMap getMap() {
+    public Polyline getMap() {
         return map;
     }
 
-    public void setMap(StravaMap map) {
+    public void setMap(Polyline map) {
         this.map = map;
     }
 

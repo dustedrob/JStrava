@@ -3,7 +3,7 @@ package org.jstrava.entities;
 /**
  * Created by roberto on 12/26/13.
  */
-public class StravaMap {
+public class Polyline {
 
     private String id;
     private String polyline;
@@ -16,11 +16,11 @@ public class StravaMap {
         return id;
     }
 
-    public StravaMap(String id) {
+    public Polyline(String id) {
         this.id = id;
     }
 
-    public StravaMap() {
+    public Polyline() {
     }
 
 

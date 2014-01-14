@@ -28,7 +28,7 @@ public class Activity {
     private Integer comment_count;
     private Integer athlete_count;
     private Integer photo_count;
-    private StravaMap map;
+    private Polyline map;
     private Boolean trainer;
     private Boolean commute;
     private Boolean manual;
@@ -232,11 +232,11 @@ public class Activity {
         this.photo_count = photo_count;
     }
 
-    public StravaMap getMap() {
+    public Polyline getMap() {
         return map;
     }
 
-    public void setMap(StravaMap map) {
+    public void setMap(Polyline map) {
         this.map = map;
     }
 
