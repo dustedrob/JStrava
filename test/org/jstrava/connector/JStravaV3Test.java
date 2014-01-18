@@ -32,12 +32,12 @@ public class JStravaV3Test {
 
         /*REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!*/
 
-        accessToken ="f1680106c792fac952c650441ed80ff697a7b24d";
-        athleteId=5455;
-        activityId=100349929;
-        clubId=4111;
-        gearId="b1069668";
-        segmentId=229781L;
+        accessToken ="";
+        athleteId=0;
+        activityId=0;
+        clubId=0;
+        gearId="";
+        segmentId=0L;
     }
 
     @After
