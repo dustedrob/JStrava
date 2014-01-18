@@ -5,6 +5,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,18 +26,18 @@ public class JStravaV3Test {
     Integer clubId;
     String gearId;
     Long segmentId;
-
+    SimpleDateFormat dateFormat= new SimpleDateFormat("YYYY-MM-DD'T'hh:mm:ss'Z'");
     @Before
     public void setUp() throws Exception {
 
         /*REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!*/
 
-        accessToken ="";
-        athleteId=0;
-        activityId=0;
-        clubId=0;
-        gearId="";
-        segmentId=0L;
+        accessToken ="f1680106c792fac952c650441ed80ff697a7b24d";
+        athleteId=5455;
+        activityId=100349929;
+        clubId=4111;
+        gearId="b1069668";
+        segmentId=229781L;
     }
 
     @After
@@ -76,6 +80,125 @@ public class JStravaV3Test {
     }
 
 
+
+
+
+
+    @Test
+    public void testFindAthleteKOMs(){
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<SegmentEffort> efforts= strava.findAthleteKOMs(athleteId);
+
+        assertFalse(efforts.isEmpty());
+        for (SegmentEffort effort:efforts)
+        {
+            System.out.println("Segment Effort KOM " + effort.toString());
+
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteKOMsWithPagination(){
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<SegmentEffort> efforts= strava.findAthleteKOMs(athleteId,2,1);
+
+        assertFalse(efforts.isEmpty());
+        assertTrue(efforts.size()==1);
+        for (SegmentEffort effort:efforts)
+        {
+            System.out.println("Segment Effort KOM " + effort.toString());
+
+        }
+
+    }
+
+
+    @Test
+    public void testFindAthleteFriends() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findAthleteFriends(athleteId);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Friends "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteFriendsWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findAthleteFriends(athleteId,2,1);
+        assertFalse(athletes.isEmpty());
+        assertTrue(athletes.size()==1);
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Friends with pagination "+athlete.toString());
+        }
+
+    }
+
+
+    @Test
+    public void testFindAthleteFollowers() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findAthleteFollowers(athleteId);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Followers "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteFollowersWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findAthleteFollowers(athleteId,2,1);
+        assertTrue(athletes.size()==1);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Followers "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteBothFollowing() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findAthleteBothFollowing(athleteId);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athletes Both Following "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindAthleteBothFollowingWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findAthleteBothFollowing(athleteId,2,1);
+        assertTrue(athletes.size()==1);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athletes Both Following "+athlete.toString());
+        }
+
+    }
+
+
     @Test
     public void testFindActivity() throws Exception {
 
@@ -98,6 +221,97 @@ public class JStravaV3Test {
         }
 
     }
+
+
+
+    @Test
+    public void testGetCurrentAthleteActivities()
+    {
+    JStravaV3 strava= new JStravaV3(accessToken);
+    List<Activity> activities= strava.getCurrentAthleteActivities();
+    assertFalse(activities.isEmpty());
+    for (Activity activity:activities)
+    {
+        System.out.println("Current Athlete Activity "+activity.toString());
+    }
+
+    }
+
+
+    @Test
+    public void testGetCurrentAthleteActivitiesWithPagination()
+    {
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Activity> activities= strava.getCurrentAthleteActivities(2,1);
+        assertTrue(activities.size()==1);
+        assertFalse(activities.isEmpty());
+        for (Activity activity:activities)
+        {
+            System.out.println("Current Athlete Activity With Pagination "+activity.toString());
+        }
+
+    }
+
+
+    @Test
+    public void testGetCurrentAthleteActivitiesBeforeDate()
+    {
+
+        Calendar cal= Calendar.getInstance();
+        cal.set(2014,00,01);
+        JStravaV3 strava= new JStravaV3(accessToken);
+        Date beforeDate=cal.getTime();
+        List<Activity> activities= strava.getCurrentAthleteActivitiesBeforeDate(beforeDate.getTime()/1000);
+        assertFalse(activities.isEmpty());
+        System.out.println("BEFORE DATE"+beforeDate);
+        for (Activity activity:activities)
+        {
+            try{
+            Date activityDate=dateFormat.parse(activity.getStart_date_local());
+                System.out.println("Activity Date "+activityDate+" Activity "+activity.toString());
+                assertTrue(activityDate.before(beforeDate));
+            }
+            catch(ParseException ex)
+            {
+                System.out.println("PARSING EXCEPTION"+ex);
+            }
+
+        }
+
+    }
+
+
+    @Test
+    public void testGetCurrentAthleteActivitiesAfterDate()
+    {
+
+        Calendar cal= Calendar.getInstance();
+        cal.set(2014,00,01);
+        Date afterDate=cal.getTime();
+        JStravaV3 strava= new JStravaV3(accessToken);
+        System.out.println("DIVISION"+ afterDate.getTime()/1000);
+        List<Activity> activities= strava.getCurrentAthleteActivitiesAfterDate(afterDate.getTime()/1000);
+        assertFalse(activities.isEmpty());
+        System.out.println("AFTER DATE"+afterDate);
+        for (Activity activity:activities)
+        {
+            try{
+                Date activityDate=dateFormat.parse(activity.getStart_date_local());
+                System.out.println("Activity Date "+activityDate+" Activity "+activity.toString());
+
+                assertTrue(activityDate.after(afterDate));
+            }
+            catch(ParseException ex)
+            {
+                System.out.println("PARSING EXCEPTION"+ex);
+            }
+
+        }
+
+    }
+
+
+
 
     @Test
     public void testFindActivityComments() throws Exception{
@@ -126,63 +340,13 @@ public class JStravaV3Test {
 
     }
 
-    @Test
-    public void testFindAthleteFriends() throws Exception{
-
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<Athlete> athletes= strava.findAthleteFriends(athleteId);
-        assertFalse(athletes.isEmpty());
-        for (Athlete athlete:athletes)
-        {
-            System.out.println("Athlete Friends "+athlete.toString());
-        }
-
-    }
-
-    @Test
-    public void testFindAthleteFriendsWithParameters() throws Exception{
-
-        JStravaV3 strava= new JStravaV3(accessToken);
-        HashMap optionalParameters= new HashMap();
-        optionalParameters.put("page",3);
-        optionalParameters.put("per_page",1);
-        List<Athlete> athletes= strava.findAthleteFriends(athleteId,optionalParameters);
-        assertFalse(athletes.isEmpty());
-
-        for (Athlete athlete:athletes)
-        {
-            System.out.println("OPTIONAL PARAMETER Athlete Friends "+athlete.toString());
-        }
-
-    }
 
 
 
-    @Test
-    public void testFindAthleteFollowers() throws Exception{
 
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<Athlete> athletes= strava.findAthleteFollowers(athleteId);
-        assertFalse(athletes.isEmpty());
-        for (Athlete athlete:athletes)
-        {
-            System.out.println("Athlete Followers "+athlete.toString());
-        }
 
-    }
 
-    @Test
-    public void testFindAthleteBothFollowing() throws Exception{
 
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<Athlete> athletes= strava.findAthleteBothFollowing(athleteId);
-        assertFalse(athletes.isEmpty());
-        for (Athlete athlete:athletes)
-        {
-            System.out.println("Athletes Both Following "+athlete.toString());
-        }
-
-    }
 
 
 
@@ -257,24 +421,6 @@ public class JStravaV3Test {
 
 
 
-
-    @Test
-    public void testFindAthleteKOMs(){
-
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<SegmentEffort> efforts= strava.findAthleteKOMs(athleteId);
-
-        assertFalse(efforts.isEmpty());
-        for (SegmentEffort effort:efforts)
-        {
-            System.out.println("Segment Effort KOM " + effort.toString());
-
-        }
-
-    }
-
-
-
     /*Expect exception if you dont have an activity with photos*/
     @Test(expected = RuntimeException.class)
     public void testFindActivityPhotos(){
@@ -305,7 +451,7 @@ public class JStravaV3Test {
     }
 
     @Test
-    public void testFindSegmentLeaderBoardWithParameters() throws Exception{
+    public void testFindSegmentLeaderBoardWithPagination() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
         HashMap optionalParameters= new HashMap();

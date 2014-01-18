@@ -17,38 +17,90 @@ import java.util.List;
 public class JStravaV3 implements JStrava {
 
     private String accessToken;
-
-
-    public void setCurrentAthlete(Athlete currentAthlete) {
-        this.currentAthlete = currentAthlete;
-    }
-
     private Athlete currentAthlete;
 
 
+    @Override
     public Athlete getCurrentAthlete() {
         return currentAthlete;
     }
 
-    public List<Activity> getCurrentActivities() {
-        String URL="https://www.strava.com/api/v3/athlete/activities?access_token="+accessToken;
+
+    @Override
+    public Athlete findAthlete(Integer id) {
+
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
-        List<Activity>currentActivities= Arrays.asList(activitiesArray);
-        return currentActivities;
+        Athlete athlete= gson.fromJson(result,Athlete.class);
+
+        return athlete;
+
     }
 
-    public List<Activity> getCurrentFriendsActivities() {
-        String URL="https://www.strava.com/api/v3/activities/following?access_token="+accessToken;
+    @Override
+    public List<SegmentEffort> findAthleteKOMs(Integer athleteId) {
+        String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/koms?access_token="+accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
-        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
-        List<Activity>currentFriendsActivities= Arrays.asList(activitiesArray);
-        return currentFriendsActivities;
+        SegmentEffort[] segmentEffortArray=gson.fromJson(result,SegmentEffort[].class);
+        List<SegmentEffort>segmentEfforts= Arrays.asList(segmentEffortArray);
+        return segmentEfforts;
     }
 
+    @Override
+    public List<SegmentEffort> findAthleteKOMs(Integer athleteId,Integer page,Integer per_page) {
+        String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/koms?access_token="+accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        SegmentEffort[] segmentEffortArray=gson.fromJson(result,SegmentEffort[].class);
+        List<SegmentEffort>segmentEfforts= Arrays.asList(segmentEffortArray);
+        return segmentEfforts;
+    }
 
+    @Override
+    public List<Athlete> getCurrentAthleteFriends() {
+        String URL="https://www.strava.com/api/v3/athlete/clubs?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public List<Athlete> findAthleteFriends(Integer id) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public List<Athlete> findAthleteFriends(Integer id,Integer page, Integer per_page) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?access_token="+accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    @Override
     public List<Athlete> getCurrentAthleteFollowers() {
         String URL="https://www.strava.com/api/v3/athlete/followers?access_token="+ accessToken;
         String result=getResult(URL);
@@ -62,8 +114,10 @@ public class JStravaV3 implements JStrava {
         return athletes;
     }
 
-    public List<Athlete> getCurrentAthleteFriends() {
-        String URL="https://www.strava.com/api/v3/athlete/clubs?access_token="+ accessToken;
+
+    @Override
+    public List<Athlete> findAthleteFollowers(Integer id) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers?access_token="+ accessToken;
         String result=getResult(URL);
         Gson gson= new Gson();
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
@@ -74,6 +128,161 @@ public class JStravaV3 implements JStrava {
 
         return athletes;
     }
+
+    @Override
+    public List<Athlete> findAthleteFollowers(Integer id,Integer page, Integer per_page) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers?access_token="+ accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+
+    @Override
+    public List<Athlete> findAthleteBothFollowing(Integer id) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public List<Athlete> findAthleteBothFollowing(Integer id,Integer page, Integer per_page) {
+        String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following?access_token="+ accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public Activity findActivity(Integer id) {
+        String URL="https://www.strava.com/api/v3/activities/"+id+"?access_token="+ accessToken;
+        String result=getResult(URL);
+        System.out.println(result);
+        Gson gson= new Gson();
+        Activity activity= gson.fromJson(result,Activity.class);
+
+        return activity;
+    }
+
+    @Override
+    public Activity findActivity(Integer id,boolean include_all_efforts) {
+        String URL="https://www.strava.com/api/v3/activities/"+id+"?access_token="+ accessToken+"&include_all_efforts="+include_all_efforts;
+        String result=getResult(URL);
+        System.out.println(result);
+        Gson gson= new Gson();
+        Activity activity= gson.fromJson(result,Activity.class);
+
+        return activity;
+    }
+
+    @Override
+    public List<Activity> getCurrentAthleteActivities() {
+        String URL="https://www.strava.com/api/v3/athlete/activities?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentActivities= Arrays.asList(activitiesArray);
+        return currentActivities;
+    }
+
+    @Override
+    public List<Activity> getCurrentAthleteActivities(Integer page,Integer per_page) {
+        String URL="https://www.strava.com/api/v3/athlete/activities?access_token="+accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentActivities= Arrays.asList(activitiesArray);
+        return currentActivities;
+    }
+
+    @Override
+    public List<Activity> getCurrentAthleteActivitiesBeforeDate(Long before) {
+        String URL="https://www.strava.com/api/v3/athlete/activities?access_token="+accessToken+"&before="+before;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentActivities= Arrays.asList(activitiesArray);
+        return currentActivities;
+    }
+
+    @Override
+    public List<Activity> getCurrentAthleteActivitiesAfterDate(Long after) {
+        String URL="https://www.strava.com/api/v3/athlete/activities?access_token="+accessToken+"&after="+after;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentActivities= Arrays.asList(activitiesArray);
+        return currentActivities;
+    }
+
+
+
+    @Override
+    public List<Athlete> findActivityKudos(Integer activityId) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?access_token="+ accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+    @Override
+    public List<Athlete> findActivityKudos(Integer activityId, Integer page, Integer per_page) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?access_token="+ accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
+
+
+        List<Athlete>athletes= Arrays.asList(athletesArray);
+
+
+        return athletes;
+    }
+
+
+
+
+
+
+
+    public List<Activity> getCurrentFriendsActivities() {
+        String URL="https://www.strava.com/api/v3/activities/following?access_token="+accessToken;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
+        List<Activity>currentFriendsActivities= Arrays.asList(activitiesArray);
+        return currentFriendsActivities;
+    }
+
+
+
+
+
 
     public List<Club> getCurrentAthleteClubs() {
         String URL="https://www.strava.com/api/v3/athlete/clubs?access_token="+ accessToken;
@@ -112,28 +321,8 @@ public class JStravaV3 implements JStrava {
         this.accessToken = accessToken;
     }
 
-    @Override
-    public Athlete findAthlete(Integer id) {
 
-        String URL="https://www.strava.com/api/v3/athletes/"+id+"?access_token="+ accessToken;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Athlete athlete= gson.fromJson(result,Athlete.class);
 
-        return athlete;
-
-    }
-
-    @Override
-    public Activity findActivity(Integer id) {
-        String URL="https://www.strava.com/api/v3/activities/"+id+"?access_token="+ accessToken;
-        String result=getResult(URL);
-        System.out.println(result);
-        Gson gson= new Gson();
-        Activity activity= gson.fromJson(result,Activity.class);
-
-        return activity;
-    }
 
     @Override
     public List<Comment> findActivityComments(Integer activityId) {
@@ -150,77 +339,7 @@ public class JStravaV3 implements JStrava {
         return comments;
     }
 
-    @Override
-    public List<Athlete> findActivityKudos(Integer activityId) {
-        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?access_token="+ accessToken;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
-
-        List<Athlete>athletes= Arrays.asList(athletesArray);
-
-
-        return athletes;
-    }
-
-    @Override
-    public List<Athlete> findAthleteFriends(Integer id) {
-        String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?access_token="+ accessToken;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
-
-
-        List<Athlete>athletes= Arrays.asList(athletesArray);
-
-
-        return athletes;
-    }
-
-    @Override
-    public List<Athlete> findAthleteFriends(Integer id,HashMap optionalParameters) {
-        String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?access_token="+accessToken;
-        String result=getResult(URL,optionalParameters);
-        Gson gson= new Gson();
-        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
-
-
-        List<Athlete>athletes= Arrays.asList(athletesArray);
-
-
-        return athletes;
-    }
-
-
-
-    @Override
-    public List<Athlete> findAthleteFollowers(Integer id) {
-        String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers?access_token="+ accessToken;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
-
-
-        List<Athlete>athletes= Arrays.asList(athletesArray);
-
-
-        return athletes;
-    }
-
-    @Override
-    public List<Athlete> findAthleteBothFollowing(Integer id) {
-        String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following?access_token="+ accessToken;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
-
-
-        List<Athlete>athletes= Arrays.asList(athletesArray);
-
-
-        return athletes;
-    }
 
 
     @Override
@@ -298,14 +417,16 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<SegmentEffort> findAthleteKOMs(Integer athleteId) {
-        String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/koms?access_token="+accessToken;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        SegmentEffort[] segmentEffortArray=gson.fromJson(result,SegmentEffort[].class);
-        List<SegmentEffort>segmentEfforts= Arrays.asList(segmentEffortArray);
-        return segmentEfforts;
+    public List<Segment> findSegments(Bound bound) {
+        return null;
     }
+
+    @Override
+    public List<Segment> findSegments(Bound bound, String activityType, String minCat, String maxCat) {
+        return null;
+    }
+
+
 
     @Override
     public List<Photo> findActivityPhotos(Integer activityId) {
