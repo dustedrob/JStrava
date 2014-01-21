@@ -31,23 +31,27 @@ public interface JStrava {
     public List<Activity> getCurrentAthleteActivities( Integer page, Integer per_page);
     public List<Activity> getCurrentAthleteActivitiesBeforeDate( Long before);
     public List<Activity> getCurrentAthleteActivitiesAfterDate( Long after);
-
-
+    public List<Activity> getCurrentFriendsActivities();
+    public List<Activity> getCurrentFriendsActivities( Integer page, Integer per_page);
+    /*Retrieve Activity Zones Missing*/
+    public List<LapEffort> findActivityLaps(Integer activityId);
+    public List<Comment> findActivityComments(Integer activityId);
+    public List<Comment> findActivityComments(Integer activityId,boolean markdown, Integer page, Integer per_page);
     public List<Athlete> findActivityKudos(Integer activityId);
     public List<Athlete> findActivityKudos(Integer activityId,Integer page, Integer per_page);
-
-    public List<Comment> findActivityComments(Integer activityId);
-    public Gear findGear(String id);
-    public Club findClub(Integer id);
-    public List<Athlete> findClubMembers(Integer clubId);
-    public List<Activity> findClubActivities(Integer clubId);
-    public List<LapEffort> findActivityLaps(Integer activityId);
-    public SegmentEffort findSegmentEffort(Integer id);
-    public Segment findSegment(Long segmentId);
-    public List<Segment>findSegments(Bound bound);
-    public List<Segment>findSegments(Bound bound,String activityType,String minCat,String maxCat);
-
     public List<Photo>findActivityPhotos(Integer activityId);
+    public List<Athlete> findClubMembers(Integer clubId);
+    public List<Athlete> findClubMembers(Integer clubId,Integer page, Integer per_page);
+    public List<Activity> findClubActivities(Integer clubId);
+    public List<Activity> findClubActivities(Integer clubId, Integer page, Integer per_page);
+    public Club findClub(Integer id);
+    public List<Club> getCurrentAthleteClubs();
+    public Gear findGear(String id);
+    public Segment findSegment(Long segmentId);
+    public List<Segment> getCurrentStarredSegment();
     public SegmentLeaderBoard findSegmentLeaderBoard (Long segmentId);
     public SegmentLeaderBoard findSegmentLeaderBoard (Long segmentId, HashMap optionalParameters);
+    public SegmentEffort findSegmentEffort(Integer id);
+    public List<Segment>findSegments(Bound bound);
+    public List<Segment>findSegments(Bound bound,String activityType,String minCat,String maxCat);
 }

@@ -286,7 +286,7 @@ public class JStravaV3Test {
     {
 
         Calendar cal= Calendar.getInstance();
-        cal.set(2014,00,01);
+        cal.set(2014,00,10);
         Date afterDate=cal.getTime();
         JStravaV3 strava= new JStravaV3(accessToken);
         System.out.println("DIVISION"+ afterDate.getTime()/1000);
@@ -311,6 +311,47 @@ public class JStravaV3Test {
     }
 
 
+    @Test
+    public void testGetCurrentFriendsActivities()
+    {
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Activity> activities= strava.getCurrentFriendsActivities();
+        assertFalse(activities.isEmpty());
+        for (Activity activity:activities)
+        {
+            System.out.println("Friend Activity "+activity.toString());
+        }
+
+    }
+
+
+    @Test
+    public void testGetCurrentFriendsActivitiesWithPagination()
+    {
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Activity> activities= strava.getCurrentFriendsActivities(2, 1);
+        assertTrue(activities.size()==1);
+        assertFalse(activities.isEmpty());
+        for (Activity activity:activities)
+        {
+            System.out.println("Friend Activity "+activity.toString());
+        }
+    }
+
+    @Test
+    public void testFindActivityLaps() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<LapEffort>laps=strava.findActivityLaps(activityId);
+
+        assertFalse(laps.isEmpty());
+
+        for (LapEffort lap:laps)
+        {
+            System.out.println("Lap "+ lap.toString());
+        }
+    }
+
 
 
     @Test
@@ -318,6 +359,21 @@ public class JStravaV3Test {
 
         JStravaV3 strava= new JStravaV3(accessToken);
         List<Comment> comments= strava.findActivityComments(activityId);
+        assertFalse(comments.isEmpty());
+        for (Comment comment:comments)
+        {
+            System.out.println(comment.getText());
+        }
+
+    }
+
+
+    @Test
+    public void testFindActivityCommentsWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Comment> comments= strava.findActivityComments(activityId,false,2,1);
+        assertTrue(comments.size()==1);
         assertFalse(comments.isEmpty());
         for (Comment comment:comments)
         {
@@ -340,36 +396,33 @@ public class JStravaV3Test {
 
     }
 
-
-
-
-
-
-
-
-
-
-
     @Test
-    public void testFindGear() throws Exception {
+    public void testFindActivityKudosWithPagination() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
-
-        Gear gear= strava.findGear(gearId);
-        assertNotNull(gear);
-        System.out.println("Gear Name " + gear.toString());
+        List<Athlete> athletes= strava.findActivityKudos(activityId,2,1);
+        assertTrue(athletes.size()==1);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println(athlete.toString());
+        }
 
     }
 
-
-    @Test
-    public void testFindClub() throws Exception {
+    /*Expect exception if you dont have an activity with photos*/
+    @Test(expected = RuntimeException.class)
+    public void testFindActivityPhotos(){
 
         JStravaV3 strava= new JStravaV3(accessToken);
+        List<Photo> photos= strava.findActivityPhotos(activityId);
 
-        Club club= strava.findClub(clubId);
-        assertNotNull(club);
-        System.out.println("Club Name " + club.toString());
+        assertFalse(photos.isEmpty());
+        for (Photo photo: photos)
+        {
+            System.out.println("Photo " + photo.toString());
+
+        }
 
     }
 
@@ -379,6 +432,20 @@ public class JStravaV3Test {
 
         JStravaV3 strava= new JStravaV3(accessToken);
         List<Athlete> athletes= strava.findClubMembers(clubId);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Club Member "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindClubMembersWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.findClubMembers(clubId,2,1);
+        assertTrue(athletes.size()==1);
         assertFalse(athletes.isEmpty());
         for (Athlete athlete:athletes)
         {
@@ -401,6 +468,31 @@ public class JStravaV3Test {
 
     }
 
+    ////////Remove EXPECTED annotation if you point to a club you are member of.
+    @Test(expected=RuntimeException.class)
+    public void testFindClubActivitiesWithPagination(){
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Activity> activities= strava.findClubActivities(clubId,2,1);
+        assertTrue(activities.size()==1);
+        assertFalse(activities.isEmpty());
+        for (Activity activity:activities)
+        {
+            System.out.println("Club Activity Name "+activity.toString());
+        }
+
+    }
+
+    @Test
+    public void testFindClub() throws Exception {
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+
+        Club club= strava.findClub(clubId);
+        assertNotNull(club);
+        System.out.println("Club Name " + club.toString());
+
+    }
 
 
     ////////Change assert if you do have clubs
@@ -420,21 +512,39 @@ public class JStravaV3Test {
 
 
 
-
-    /*Expect exception if you dont have an activity with photos*/
-    @Test(expected = RuntimeException.class)
-    public void testFindActivityPhotos(){
+    @Test
+    public void testFindGear() throws Exception {
 
         JStravaV3 strava= new JStravaV3(accessToken);
-        List<Photo> photos= strava.findActivityPhotos(activityId);
 
-        assertFalse(photos.isEmpty());
-        for (Photo photo: photos)
+        Gear gear= strava.findGear(gearId);
+        assertNotNull(gear);
+        System.out.println("Gear Name " + gear.toString());
+
+    }
+
+    @Test
+    public void testFindSegment() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        Segment segment= strava.findSegment(segmentId);
+        assertNotNull(segment);
+
+        System.out.println("SEGMENT "+segment.toString());
+    }
+
+    @Test
+    public void testFindCurrentStarredSegments() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Segment>segments=strava.getCurrentStarredSegment();
+
+        assertFalse(segments.isEmpty());
+
+        for (Segment segment:segments)
         {
-            System.out.println("Photo " + photo.toString());
-
+            System.out.println("Starred Segment "+ segment);
         }
-
     }
 
     @Test
@@ -451,12 +561,11 @@ public class JStravaV3Test {
     }
 
     @Test
-    public void testFindSegmentLeaderBoardWithPagination() throws Exception{
+    public void testFindSegmentLeaderBoardWithParameters() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
         HashMap optionalParameters= new HashMap();
-        optionalParameters.put("page",1);
-        optionalParameters.put("per_page",1);
+        optionalParameters.put("per_page",3);
         SegmentLeaderBoard board= strava.findSegmentLeaderBoard(segmentId,optionalParameters);
         assertNotNull(board);
 
@@ -467,45 +576,6 @@ public class JStravaV3Test {
 
     }
 
-    @Test
-    public void testFindSegment() throws Exception{
-
-        JStravaV3 strava= new JStravaV3(accessToken);
-        Segment segment= strava.findSegment(segmentId);
-        assertNotNull(segment);
-
-        System.out.println("SEGMENT "+segment.toString());
-    }
-
-
-    @Test
-    public void testFindCurrentStarredSegments() throws Exception{
-
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<Segment>segments=strava.getCurrentStarredSegment();
-
-        assertFalse(segments.isEmpty());
-
-        for (Segment segment:segments)
-        {
-            System.out.println("Starred Segment "+ segment);
-        }
-    }
-
-
-    @Test
-    public void testFindActivityLaps() throws Exception{
-
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<LapEffort>laps=strava.findActivityLaps(activityId);
-
-        assertFalse(laps.isEmpty());
-
-        for (LapEffort lap:laps)
-        {
-            System.out.println("Lap "+ lap.toString());
-        }
-    }
 
 
 
