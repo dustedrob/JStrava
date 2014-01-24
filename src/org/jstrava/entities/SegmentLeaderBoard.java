@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class SegmentLeaderBoard {
 
-    private Integer effort_count;
-    private Integer entry_count;
+    private int effort_count;
+    private int entry_count;
     private List<LeaderBoardEntry> entries;
 
     public SegmentLeaderBoard() {
@@ -16,19 +16,19 @@ public class SegmentLeaderBoard {
 
 
 
-    public Integer getEffort_count() {
+    public int getEffort_count() {
         return effort_count;
     }
 
-    public void setEffort_count(Integer effort_count) {
+    public void setEffort_count(int effort_count) {
         this.effort_count = effort_count;
     }
 
-    public Integer getEntry_count() {
+    public int getEntry_count() {
         return entry_count;
     }
 
-    public void setEntry_count(Integer entry_count) {
+    public void setEntry_count(int entry_count) {
         this.entry_count = entry_count;
     }
 

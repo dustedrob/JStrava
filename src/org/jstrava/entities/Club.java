@@ -5,8 +5,8 @@ package org.jstrava.entities;
  */
 public class Club {
 
-    private Integer id;	
-    private Integer resource_state;
+    private int id;
+    private int resource_state;
     private String name;
 
 
@@ -15,18 +15,18 @@ public class Club {
         return name;
     }
 
-    public Club(Integer id) {
+    public Club(int id) {
         this.id = id;
     }
 
     public Club() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,11 +38,11 @@ public class Club {
         this.name = name;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 }

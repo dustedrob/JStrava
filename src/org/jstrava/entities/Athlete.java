@@ -8,7 +8,7 @@ import java.util.List;
 public class Athlete {
 
 
-    private Integer id;
+    private int id;
     private String resource_state;
     private String firstname;
     private String lastname;
@@ -19,17 +19,17 @@ public class Athlete {
     private String sex;
     private String friend;
     private String follower;
-    private Boolean premium;
+    private boolean premium;
     private String created_at;
     private String updated_at;
-    private Boolean approve_followers;
-    private Integer follower_count;
-    private Integer friend_count;
-    private Integer mutual_friend_count;
+    private boolean approve_followers;
+    private int follower_count;
+    private int friend_count;
+    private int mutual_friend_count;
     private String date_preference;
     private String measurement_preference;
     private String email;
-    private Integer ftp;
+    private int ftp;
     private List<Club> clubs;
     private List<Gear> bikes;
     private List<Gear> shoes;
@@ -39,18 +39,18 @@ public class Athlete {
         return firstname +" "+ lastname;
     }
 
-    public Athlete(Integer id) {
+    public Athlete(int id) {
         this.id = id;
     }
 
     public Athlete() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -134,11 +134,11 @@ public class Athlete {
         this.follower = follower;
     }
 
-    public Boolean getPremium() {
+    public boolean getPremium() {
         return premium;
     }
 
-    public void setPremium(Boolean premium) {
+    public void setPremium(boolean premium) {
         this.premium = premium;
     }
 
@@ -158,35 +158,35 @@ public class Athlete {
         this.updated_at = updated_at;
     }
 
-    public Boolean getApprove_followers() {
+    public boolean getApprove_followers() {
         return approve_followers;
     }
 
-    public void setApprove_followers(Boolean approve_followers) {
+    public void setApprove_followers(boolean approve_followers) {
         this.approve_followers = approve_followers;
     }
 
-    public Integer getFollower_count() {
+    public int getFollower_count() {
         return follower_count;
     }
 
-    public void setFollower_count(Integer follower_count) {
+    public void setFollower_count(int follower_count) {
         this.follower_count = follower_count;
     }
 
-    public Integer getFriend_count() {
+    public int getFriend_count() {
         return friend_count;
     }
 
-    public void setFriend_count(Integer friend_count) {
+    public void setFriend_count(int friend_count) {
         this.friend_count = friend_count;
     }
 
-    public Integer getMutual_friend_count() {
+    public int getMutual_friend_count() {
         return mutual_friend_count;
     }
 
-    public void setMutual_friend_count(Integer mutual_friend_count) {
+    public void setMutual_friend_count(int mutual_friend_count) {
         this.mutual_friend_count = mutual_friend_count;
     }
 
@@ -214,11 +214,11 @@ public class Athlete {
         this.email = email;
     }
 
-    public Integer getFtp() {
+    public int getFtp() {
         return ftp;
     }
 
-    public void setFtp(Integer ftp) {
+    public void setFtp(int ftp) {
         this.ftp = ftp;
     }
 

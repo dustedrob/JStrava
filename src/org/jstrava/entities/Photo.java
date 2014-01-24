@@ -5,9 +5,9 @@ package org.jstrava.entities;
  */
 public class Photo {
 
-    private Integer id;
-    private Integer activity_id;
-    private Integer resource_state;
+    private int id;
+    private int activity_id;
+    private int resource_state;
     private String ref;
     private String uid;
     private String caption;
@@ -25,31 +25,31 @@ public class Photo {
     public Photo() {
     }
 
-    public Photo(Integer id) {
+    public Photo(int id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getActivity_id() {
+    public int getActivity_id() {
         return activity_id;
     }
 
-    public void setActivity_id(Integer activity_id) {
+    public void setActivity_id(int activity_id) {
         this.activity_id = activity_id;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 

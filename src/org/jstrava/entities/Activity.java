@@ -6,16 +6,16 @@ import java.util.List;
  */
 public class Activity {
 
-    private Integer id;
-    private Integer resource_state;
+    private int id;
+    private int resource_state;
     private String external_id;
-    private Integer upload_id;
+    private int upload_id;
     private Athlete athlete;/*Simple Athlete representation with just id*/
     private String name;
-    private Float distance;
-    private Integer moving_time;
-    private Integer elapsed_time;
-    private Float total_elevation_gain;
+    private float distance;
+    private int moving_time;
+    private int elapsed_time;
+    private float total_elevation_gain;
     private String type;
     private String start_date_local;
     private String time_zone;
@@ -23,29 +23,29 @@ public class Activity {
     private String[] end_latlng;
     private String location_city;
     private String location_state;
-    private Integer achievement_count;
-    private Integer kudos_count;
-    private Integer comment_count;
-    private Integer athlete_count;
-    private Integer photo_count;
+    private int achievement_count;
+    private int kudos_count;
+    private int comment_count;
+    private int athlete_count;
+    private int photo_count;
     private Polyline map;
-    private Boolean trainer;
-    private Boolean commute;
-    private Boolean manual;
-    private Boolean PRIVATE;
-    private Boolean flagged;
+    private boolean trainer;
+    private boolean commute;
+    private boolean manual;
+    private boolean PRIVATE;
+    private boolean flagged;
     private String gear_id;
-    private Float average_speed;
-    private Float max_speed;
-    private Float average_cadence;
-    private Integer average_temp;
-    private Float average_watts;
-    private Float kilojoules;
-    private Float average_heartrate;
-    private Float max_heartrate;
-    private Float calories;
-    private Integer truncated;
-    private Boolean has_kudoed;
+    private float average_speed;
+    private float max_speed;
+    private float average_cadence;
+    private int average_temp;
+    private float average_watts;
+    private float kilojoules;
+    private float average_heartrate;
+    private float max_heartrate;
+    private float calories;
+    private int truncated;
+    private boolean has_kudoed;
     private List<SegmentEffort> segment_efforts;
     private List<SplitsMetric> splits_metric;
     private List<SplitsStandard> splits_standard;
@@ -60,23 +60,23 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(Integer id) {
+    public Activity(int id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 
@@ -104,35 +104,35 @@ public class Activity {
         this.name = name;
     }
 
-    public Float getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
-    public Integer getMoving_time() {
+    public int getMoving_time() {
         return moving_time;
     }
 
-    public void setMoving_time(Integer moving_time) {
+    public void setMoving_time(int moving_time) {
         this.moving_time = moving_time;
     }
 
-    public Integer getElapsed_time() {
+    public int getElapsed_time() {
         return elapsed_time;
     }
 
-    public void setElapsed_time(Integer elapsed_time) {
+    public void setElapsed_time(int elapsed_time) {
         this.elapsed_time = elapsed_time;
     }
 
-    public Float getTotal_elevation_gain() {
+    public float getTotal_elevation_gain() {
         return total_elevation_gain;
     }
 
-    public void setTotal_elevation_gain(Float total_elevation_gain) {
+    public void setTotal_elevation_gain(float total_elevation_gain) {
         this.total_elevation_gain = total_elevation_gain;
     }
 
@@ -192,43 +192,43 @@ public class Activity {
         this.location_state = location_state;
     }
 
-    public Integer getAchievement_count() {
+    public int getAchievement_count() {
         return achievement_count;
     }
 
-    public void setAchievement_count(Integer achievement_count) {
+    public void setAchievement_count(int achievement_count) {
         this.achievement_count = achievement_count;
     }
 
-    public Integer getKudos_count() {
+    public int getKudos_count() {
         return kudos_count;
     }
 
-    public void setKudos_count(Integer kudos_count) {
+    public void setKudos_count(int kudos_count) {
         this.kudos_count = kudos_count;
     }
 
-    public Integer getComment_count() {
+    public int getComment_count() {
         return comment_count;
     }
 
-    public void setComment_count(Integer comment_count) {
+    public void setComment_count(int comment_count) {
         this.comment_count = comment_count;
     }
 
-    public Integer getAthlete_count() {
+    public int getAthlete_count() {
         return athlete_count;
     }
 
-    public void setAthlete_count(Integer athlete_count) {
+    public void setAthlete_count(int athlete_count) {
         this.athlete_count = athlete_count;
     }
 
-    public Integer getPhoto_count() {
+    public int getPhoto_count() {
         return photo_count;
     }
 
-    public void setPhoto_count(Integer photo_count) {
+    public void setPhoto_count(int photo_count) {
         this.photo_count = photo_count;
     }
 
@@ -240,43 +240,43 @@ public class Activity {
         this.map = map;
     }
 
-    public Boolean getTrainer() {
+    public boolean getTrainer() {
         return trainer;
     }
 
-    public void setTrainer(Boolean trainer) {
+    public void setTrainer(boolean trainer) {
         this.trainer = trainer;
     }
 
-    public Boolean getCommute() {
+    public boolean getCommute() {
         return commute;
     }
 
-    public void setCommute(Boolean commute) {
+    public void setCommute(boolean commute) {
         this.commute = commute;
     }
 
-    public Boolean getManual() {
+    public boolean getManual() {
         return manual;
     }
 
-    public void setManual(Boolean manual) {
+    public void setManual(boolean manual) {
         this.manual = manual;
     }
 
-    public Boolean getPRIVATE() {
+    public boolean getPRIVATE() {
         return PRIVATE;
     }
 
-    public void setPRIVATE(Boolean PRIVATE) {
+    public void setPRIVATE(boolean PRIVATE) {
         this.PRIVATE = PRIVATE;
     }
 
-    public Boolean getFlagged() {
+    public boolean getFlagged() {
         return flagged;
     }
 
-    public void setFlagged(Boolean flagged) {
+    public void setFlagged(boolean flagged) {
         this.flagged = flagged;
     }
 
@@ -288,91 +288,91 @@ public class Activity {
         this.gear_id = gear_id;
     }
 
-    public Float getAverage_speed() {
+    public float getAverage_speed() {
         return average_speed;
     }
 
-    public void setAverage_speed(Float average_speed) {
+    public void setAverage_speed(float average_speed) {
         this.average_speed = average_speed;
     }
 
-    public Float getMax_speed() {
+    public float getMax_speed() {
         return max_speed;
     }
 
-    public void setMax_speed(Float max_speed) {
+    public void setMax_speed(float max_speed) {
         this.max_speed = max_speed;
     }
 
-    public Float getAverage_cadence() {
+    public float getAverage_cadence() {
         return average_cadence;
     }
 
-    public void setAverage_cadence(Float average_cadence) {
+    public void setAverage_cadence(float average_cadence) {
         this.average_cadence = average_cadence;
     }
 
-    public Integer getAverage_temp() {
+    public int getAverage_temp() {
         return average_temp;
     }
 
-    public void setAverage_temp(Integer average_temp) {
+    public void setAverage_temp(int average_temp) {
         this.average_temp = average_temp;
     }
 
-    public Float getAverage_watts() {
+    public float getAverage_watts() {
         return average_watts;
     }
 
-    public void setAverage_watts(Float average_watts) {
+    public void setAverage_watts(float average_watts) {
         this.average_watts = average_watts;
     }
 
-    public Float getKilojoules() {
+    public float getKilojoules() {
         return kilojoules;
     }
 
-    public void setKilojoules(Float kilojoules) {
+    public void setKilojoules(float kilojoules) {
         this.kilojoules = kilojoules;
     }
 
-    public Float getAverage_heartrate() {
+    public float getAverage_heartrate() {
         return average_heartrate;
     }
 
-    public void setAverage_heartrate(Float average_heartrate) {
+    public void setAverage_heartrate(float average_heartrate) {
         this.average_heartrate = average_heartrate;
     }
 
-    public Float getMax_heartrate() {
+    public float getMax_heartrate() {
         return max_heartrate;
     }
 
-    public void setMax_heartrate(Float max_heartrate) {
+    public void setMax_heartrate(float max_heartrate) {
         this.max_heartrate = max_heartrate;
     }
 
-    public Float getCalories() {
+    public float getCalories() {
         return calories;
     }
 
-    public void setCalories(Float calories) {
+    public void setCalories(float calories) {
         this.calories = calories;
     }
 
-    public Integer getTruncated() {
+    public int getTruncated() {
         return truncated;
     }
 
-    public void setTruncated(Integer truncated) {
+    public void setTruncated(int truncated) {
         this.truncated = truncated;
     }
 
-    public Boolean getHas_kudoed() {
+    public boolean getHas_kudoed() {
         return has_kudoed;
     }
 
-    public void setHas_kudoed(Boolean has_kudoed) {
+    public void setHas_kudoed(boolean has_kudoed) {
         this.has_kudoed = has_kudoed;
     }
 
@@ -408,11 +408,11 @@ public class Activity {
         this.best_efforts = best_efforts;
     }
 
-    public Integer getUpload_id() {
+    public int getUpload_id() {
         return upload_id;
     }
 
-    public void setUpload_id(Integer upload_id) {
+    public void setUpload_id(int upload_id) {
         this.upload_id = upload_id;
     }
 }

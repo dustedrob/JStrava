@@ -5,24 +5,24 @@ package org.jstrava.entities;
  */
 public class SegmentEffort {
 
-    private Long id;
-    private Integer resource_state;
+    private long id;
+    private int resource_state;
     private String name;
     private Segment segment;
     private Activity activity;
     private Athlete athlete;
-    private Integer kom_rank;
-    private Integer pr_rank;
-    private Integer elapsed_time;
-    private Integer moving_time;
+    private int kom_rank;
+    private int pr_rank;
+    private int elapsed_time;
+    private int moving_time;
     private String start_date;
     private String start_date_local;
-    private Float distance;
-    private Integer start_index;
-    private Integer end_index;
+    private float distance;
+    private int start_index;
+    private int end_index;
 
 
-    public SegmentEffort(Long id) {
+    public SegmentEffort(long id) {
         this.id = id;
     }
 
@@ -34,19 +34,19 @@ public class SegmentEffort {
         return name ;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 
@@ -82,35 +82,35 @@ public class SegmentEffort {
         this.athlete = athlete;
     }
 
-    public Integer getKom_rank() {
+    public int getKom_rank() {
         return kom_rank;
     }
 
-    public void setKom_rank(Integer kom_rank) {
+    public void setKom_rank(int kom_rank) {
         this.kom_rank = kom_rank;
     }
 
-    public Integer getPr_rank() {
+    public int getPr_rank() {
         return pr_rank;
     }
 
-    public void setPr_rank(Integer pr_rank) {
+    public void setPr_rank(int pr_rank) {
         this.pr_rank = pr_rank;
     }
 
-    public Integer getMoving_time() {
+    public int getMoving_time() {
         return moving_time;
     }
 
-    public void setMoving_time(Integer moving_time) {
+    public void setMoving_time(int moving_time) {
         this.moving_time = moving_time;
     }
 
-    public Integer getElapsed_time() {
+    public int getElapsed_time() {
         return elapsed_time;
     }
 
-    public void setElapsed_time(Integer elapsed_time) {
+    public void setElapsed_time(int elapsed_time) {
         this.elapsed_time = elapsed_time;
     }
 
@@ -130,27 +130,27 @@ public class SegmentEffort {
         this.start_date_local = start_date_local;
     }
 
-    public Float getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
-    public Integer getStart_index() {
+    public int getStart_index() {
         return start_index;
     }
 
-    public void setStart_index(Integer start_index) {
+    public void setStart_index(int start_index) {
         this.start_index = start_index;
     }
 
-    public Integer getEnd_index() {
+    public int getEnd_index() {
         return end_index;
     }
 
-    public void setEnd_index(Integer end_index) {
+    public void setEnd_index(int end_index) {
         this.end_index = end_index;
     }
 }

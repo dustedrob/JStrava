@@ -21,11 +21,11 @@ import static junit.framework.Assert.*;
 public class JStravaV3Test {
 
     String accessToken;
-    Integer athleteId;
-    Integer activityId;
-    Integer clubId;
+    int athleteId;
+    int activityId;
+    int clubId;
     String gearId;
-    Long segmentId;
+    long segmentId;
     SimpleDateFormat dateFormat= new SimpleDateFormat("YYYY-MM-DD'T'hh:mm:ss'Z'");
     @Before
     public void setUp() throws Exception {
@@ -116,6 +116,36 @@ public class JStravaV3Test {
     }
 
 
+
+    @Test
+    public void testGetCurrentAthleteFriends() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.getCurrentAthleteFriends();
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Current Athlete Friends "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testGetCurrentAthleteFriendsWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.getCurrentAthleteFriends(2,1);
+        assertFalse(athletes.isEmpty());
+        assertTrue(athletes.size()==1);
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Current Athlete Friends "+athlete.toString());
+        }
+
+    }
+
+
+
     @Test
     public void testFindAthleteFriends() throws Exception{
 
@@ -142,6 +172,37 @@ public class JStravaV3Test {
         }
 
     }
+
+
+
+    @Test
+    public void testGetCurrentAthleteFollowers() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.getCurrentAthleteFollowers();
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Followers "+athlete.toString());
+        }
+
+    }
+
+    @Test
+    public void testGetCurrentAthleteFollowersWithPagination() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Athlete> athletes= strava.getCurrentAthleteFollowers(2,1);
+        assertTrue(athletes.size()==1);
+        assertFalse(athletes.isEmpty());
+        for (Athlete athlete:athletes)
+        {
+            System.out.println("Athlete Followers "+athlete.toString());
+        }
+
+    }
+
+
 
 
     @Test
@@ -289,7 +350,6 @@ public class JStravaV3Test {
         cal.set(2014,00,10);
         Date afterDate=cal.getTime();
         JStravaV3 strava= new JStravaV3(accessToken);
-        System.out.println("DIVISION"+ afterDate.getTime()/1000);
         List<Activity> activities= strava.getCurrentAthleteActivitiesAfterDate(afterDate.getTime()/1000);
         assertFalse(activities.isEmpty());
         System.out.println("AFTER DATE"+afterDate);
@@ -531,6 +591,7 @@ public class JStravaV3Test {
         assertNotNull(segment);
 
         System.out.println("SEGMENT "+segment.toString());
+        System.out.println("climb category "+segment.getClimb_category_desc());
     }
 
     @Test
@@ -572,6 +633,23 @@ public class JStravaV3Test {
         for (LeaderBoardEntry entry:board.getEntries())
         {
             System.out.println("Segment LeaderBoard "+entry.toString());
+        }
+
+    }
+
+
+    @Test
+    public void testFindSegmentExplorer() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        Bound bound= new Bound(37.821362,-122.505373,37.842038,-122.465977);
+        List<Segment> segments= strava.findSegments(bound);
+        assertNotNull(segments);
+
+        for (Segment segment:segments)
+        {
+            System.out.println("Segment Explorer "+segment.toString());
+            System.out.println("CLIMB CATEGORY DESCRIPTION"+segment.getClimb_category_desc());
         }
 
     }

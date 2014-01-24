@@ -7,14 +7,14 @@ public class Gear {
 
 
     private String id;
-    private Boolean primary;
+    private boolean primary;
     private String name;
-    private Float distance;
+    private float distance;
     private String brand_name;
     private String model_name;
     private String frame_type;
     private String description;
-    private Integer resource_state;
+    private int resource_state;
 
     @Override
     public String toString() {
@@ -37,11 +37,11 @@ public class Gear {
         this.id = id;
     }
 
-    public Boolean getPrimary() {
+    public boolean getPrimary() {
         return primary;
     }
 
-    public void setPrimary(Boolean primary) {
+    public void setPrimary(boolean primary) {
         this.primary = primary;
     }
 
@@ -53,11 +53,11 @@ public class Gear {
         this.name = name;
     }
 
-    public Float getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
@@ -93,11 +93,11 @@ public class Gear {
         this.description = description;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 }

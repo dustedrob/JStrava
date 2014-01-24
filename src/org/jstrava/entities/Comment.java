@@ -5,8 +5,8 @@ package org.jstrava.entities;
  */
 public class Comment {
 
-    private Integer id;
-    private Integer resource_state;
+    private int id;
+    private int resource_state;
     private String text;
     private Athlete athlete;
     private String created_at;
@@ -17,26 +17,26 @@ public class Comment {
         return text;
     }
 
-    public Comment(Integer id) {
+    public Comment(int id) {
         this.id = id;
     }
 
     public Comment() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 

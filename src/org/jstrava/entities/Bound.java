@@ -6,58 +6,56 @@ package org.jstrava.entities;
 public class Bound {
 
 
-    private Float southwestLatitude;
-    private Float southwestLongitude;
-    private Float northeastLatitude;
-    private Float northeastLongitude;
+    private double southwestLatitude;
+    private double southwestlongitude;
+    private double northeastLatitude;
+    private double northeastlongitude;
 
-    public Bound() {
-    }
 
-    public Bound(Float southwestLatitude, Float southwestLongitude, Float northeastLatitude, Float northeastLongitude) {
+    public Bound(double southwestLatitude, double southwestlongitude, double northeastLatitude, double northeastlongitude) {
         this.southwestLatitude = southwestLatitude;
-        this.southwestLongitude = southwestLongitude;
+        this.southwestlongitude = southwestlongitude;
         this.northeastLatitude = northeastLatitude;
-        this.northeastLongitude = northeastLongitude;
+        this.northeastlongitude = northeastlongitude;
     }
 
-    public Float getSouthwestLatitude() {
+    public double getSouthwestLatitude() {
         return southwestLatitude;
     }
 
-    public void setSouthwestLatitude(Float southwestLatitude) {
+    public void setSouthwestLatitude(double southwestLatitude) {
         this.southwestLatitude = southwestLatitude;
     }
 
-    public Float getSouthwestLongitude() {
-        return southwestLongitude;
+    public double getSouthwestlongitude() {
+        return southwestlongitude;
     }
 
-    public void setSouthwestLongitude(Float southwestLongitude) {
-        this.southwestLongitude = southwestLongitude;
+    public void setSouthwestlongitude(double southwestlongitude) {
+        this.southwestlongitude = southwestlongitude;
     }
 
-    public Float getNortheastLatitude() {
+    public double getNortheastLatitude() {
         return northeastLatitude;
     }
 
-    public void setNortheastLatitude(Float northeastLatitude) {
+    public void setNortheastLatitude(double northeastLatitude) {
         this.northeastLatitude = northeastLatitude;
     }
 
-    public Float getNortheastLongitude() {
-        return northeastLongitude;
+    public double getNortheastlongitude() {
+        return northeastlongitude;
     }
 
-    public void setNortheastLongitude(Float northeastLongitude) {
-        this.northeastLongitude = northeastLongitude;
+    public void setNortheastlongitude(double northeastlongitude) {
+        this.northeastlongitude = northeastlongitude;
     }
 
     @Override
     public String toString() {
         return southwestLatitude +
-                "," + southwestLongitude +
+                "," + southwestlongitude +
                 "," + northeastLatitude +
-                "," + northeastLongitude;
+                "," + northeastlongitude;
     }
 }

@@ -5,34 +5,35 @@ package org.jstrava.entities;
  */
 public class Segment {
 
-    private Long id;
-    private Integer resource_state;
+    private long id;
+    private int resource_state;
     private String name;
     private String activity_type;
-    private Float distance;
-    private Float average_grade;
-    private Float maximum_grade;
-    private Float elevation_high;
-    private Float elevation_low;
+    private float distance;
+    private float average_grade;
+    private float maximum_grade;
+    private float elevation_high;
+    private float elevation_low;
     private String[] start_latlng;
     private String[] end_latlng;
-    private Integer climb_category;
+    private int climb_category;
     private String city;
     private String state;
-    private Boolean PRIVATE;
+    private boolean PRIVATE;
     private String created_at;
     private String updated_at;
-    private Float total_elevation_gain;
+    private float total_elevation_gain;
     private Polyline map;
-    private Integer effort_count;
-    private Integer athlete_count;
-    private Boolean hazardous;
-    private Integer pr_time;
-    private Float pr_distance;
-    private Boolean starred;
+    private int effort_count;
+    private int athlete_count;
+    private boolean hazardous;
+    private int pr_time;
+    private float pr_distance;
+    private boolean starred;
+    private String climb_category_desc;
 
 
-    public Segment(Long id) {
+    public Segment(long id) {
         this.id = id;
     }
 
@@ -44,19 +45,19 @@ public class Segment {
         return name;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getResource_state() {
+    public int getResource_state() {
         return resource_state;
     }
 
-    public void setResource_state(Integer resource_state) {
+    public void setResource_state(int resource_state) {
         this.resource_state = resource_state;
     }
 
@@ -76,43 +77,43 @@ public class Segment {
         this.activity_type = activity_type;
     }
 
-    public Float getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
-    public Float getAverage_grade() {
+    public float getAverage_grade() {
         return average_grade;
     }
 
-    public void setAverage_grade(Float average_grade) {
+    public void setAverage_grade(float average_grade) {
         this.average_grade = average_grade;
     }
 
-    public Float getMaximum_grade() {
+    public float getMaximum_grade() {
         return maximum_grade;
     }
 
-    public void setMaximum_grade(Float maximum_grade) {
+    public void setMaximum_grade(float maximum_grade) {
         this.maximum_grade = maximum_grade;
     }
 
-    public Float getElevation_high() {
+    public float getElevation_high() {
         return elevation_high;
     }
 
-    public void setElevation_high(Float elevation_high) {
+    public void setElevation_high(float elevation_high) {
         this.elevation_high = elevation_high;
     }
 
-    public Float getElevation_low() {
+    public float getElevation_low() {
         return elevation_low;
     }
 
-    public void setElevation_low(Float elevation_low) {
+    public void setElevation_low(float elevation_low) {
         this.elevation_low = elevation_low;
     }
 
@@ -132,11 +133,11 @@ public class Segment {
         this.end_latlng = end_latlng;
     }
 
-    public Integer getClimb_category() {
+    public int getClimb_category() {
         return climb_category;
     }
 
-    public void setClimb_category(Integer climb_category) {
+    public void setClimb_category(int climb_category) {
         this.climb_category = climb_category;
     }
 
@@ -156,11 +157,11 @@ public class Segment {
         this.state = state;
     }
 
-    public Boolean getPRIVATE() {
+    public boolean getPRIVATE() {
         return PRIVATE;
     }
 
-    public void setPRIVATE(Boolean PRIVATE) {
+    public void setPRIVATE(boolean PRIVATE) {
         this.PRIVATE = PRIVATE;
     }
 
@@ -180,11 +181,11 @@ public class Segment {
         this.updated_at = updated_at;
     }
 
-    public Float getTotal_elevation_gain() {
+    public float getTotal_elevation_gain() {
         return total_elevation_gain;
     }
 
-    public void setTotal_elevation_gain(Float total_elevation_gain) {
+    public void setTotal_elevation_gain(float total_elevation_gain) {
         this.total_elevation_gain = total_elevation_gain;
     }
 
@@ -196,51 +197,59 @@ public class Segment {
         this.map = map;
     }
 
-    public Integer getEffort_count() {
+    public int getEffort_count() {
         return effort_count;
     }
 
-    public void setEffort_count(Integer effort_count) {
+    public void setEffort_count(int effort_count) {
         this.effort_count = effort_count;
     }
 
-    public Integer getAthlete_count() {
+    public int getAthlete_count() {
         return athlete_count;
     }
 
-    public void setAthlete_count(Integer athlete_count) {
+    public void setAthlete_count(int athlete_count) {
         this.athlete_count = athlete_count;
     }
 
-    public Boolean getHazardous() {
+    public boolean getHazardous() {
         return hazardous;
     }
 
-    public void setHazardous(Boolean hazardous) {
+    public void setHazardous(boolean hazardous) {
         this.hazardous = hazardous;
     }
 
-    public Integer getPr_time() {
+    public int getPr_time() {
         return pr_time;
     }
 
-    public void setPr_time(Integer pr_time) {
+    public void setPr_time(int pr_time) {
         this.pr_time = pr_time;
     }
 
-    public Float getPr_distance() {
+    public float getPr_distance() {
         return pr_distance;
     }
 
-    public void setPr_distance(Float pr_distance) {
+    public void setPr_distance(float pr_distance) {
         this.pr_distance = pr_distance;
     }
 
-    public Boolean getStarred() {
+    public boolean getStarred() {
         return starred;
     }
 
-    public void setStarred(Boolean starred) {
+    public void setStarred(boolean starred) {
         this.starred = starred;
+    }
+
+    public String getClimb_category_desc() {
+        return climb_category_desc;
+    }
+
+    public void setClimb_category_desc(String climb_category_desc) {
+        this.climb_category_desc = climb_category_desc;
     }
 }

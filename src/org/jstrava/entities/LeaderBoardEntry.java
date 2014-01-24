@@ -6,18 +6,18 @@ package org.jstrava.entities;
 public class LeaderBoardEntry {
 
     private String athlete_name;
-    private Integer athlete_id;
+    private int athlete_id;
     private String athlete_gender;
-    private Float average_hr;
-    private Float average_watts;
-    private Float distance;
-    private Integer elapsed_time;
-    private Integer moving_time;
+    private float average_hr;
+    private float average_watts;
+    private float distance;
+    private int elapsed_time;
+    private int moving_time;
     private String start_date;
     private String start_date_local;
-    private Integer activity_id;
-    private Long effort_id;
-    private Integer rank;
+    private int activity_id;
+    private long effort_id;
+    private int rank;
     private String athlete_profile;
 
 
@@ -37,11 +37,11 @@ public class LeaderBoardEntry {
         this.athlete_name = athlete_name;
     }
 
-    public Integer getAthlete_id() {
+    public int getAthlete_id() {
         return athlete_id;
     }
 
-    public void setAthlete_id(Integer athlete_id) {
+    public void setAthlete_id(int athlete_id) {
         this.athlete_id = athlete_id;
     }
 
@@ -53,43 +53,43 @@ public class LeaderBoardEntry {
         this.athlete_gender = athlete_gender;
     }
 
-    public Float getAverage_hr() {
+    public float getAverage_hr() {
         return average_hr;
     }
 
-    public void setAverage_hr(Float average_hr) {
+    public void setAverage_hr(float average_hr) {
         this.average_hr = average_hr;
     }
 
-    public Float getAverage_watts() {
+    public float getAverage_watts() {
         return average_watts;
     }
 
-    public void setAverage_watts(Float average_watts) {
+    public void setAverage_watts(float average_watts) {
         this.average_watts = average_watts;
     }
 
-    public Float getDistance() {
+    public float getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
-    public Integer getElapsed_time() {
+    public int getElapsed_time() {
         return elapsed_time;
     }
 
-    public void setElapsed_time(Integer elapsed_time) {
+    public void setElapsed_time(int elapsed_time) {
         this.elapsed_time = elapsed_time;
     }
 
-    public Integer getMoving_time() {
+    public int getMoving_time() {
         return moving_time;
     }
 
-    public void setMoving_time(Integer moving_time) {
+    public void setMoving_time(int moving_time) {
         this.moving_time = moving_time;
     }
 
@@ -109,27 +109,27 @@ public class LeaderBoardEntry {
         this.start_date_local = start_date_local;
     }
 
-    public Integer getActivity_id() {
+    public int getActivity_id() {
         return activity_id;
     }
 
-    public void setActivity_id(Integer activity_id) {
+    public void setActivity_id(int activity_id) {
         this.activity_id = activity_id;
     }
 
-    public Long getEffort_id() {
+    public long getEffort_id() {
         return effort_id;
     }
 
-    public void setEffort_id(Long effort_id) {
+    public void setEffort_id(long effort_id) {
         this.effort_id = effort_id;
     }
 
-    public Integer getRank() {
+    public int getRank() {
         return rank;
     }
 
-    public void setRank(Integer rank) {
+    public void setRank(int rank) {
         this.rank = rank;
     }
 
