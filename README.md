@@ -11,13 +11,9 @@ The objective of the project is to provide a Java wrapper which mirrors as close
 Example Usage
 =======
 
-    /*Finds the currently authenticated athlete*/
-   JStravaV3 strava= new JStravaV3(accessToken);
-   Athlete athlete=strava.getCurrentAthlete();
-
-       /*Finds another athlete*/
-      JStravaV3 strava= new JStravaV3(accessToken);
-      Athlete athlete=strava.findAthlete(athleteId);
+    JStravaV3 strava= new JStravaV3(accessToken);
+    Athlete athlete=strava.getCurrentAthlete();
+    Athlete anotherAthlete=strava.findAthlete(athleteId);
 
 
 Status
