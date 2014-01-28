@@ -52,6 +52,7 @@ public interface JStrava {
     public Segment findSegment(long segmentId);
     public List<Segment> getCurrentStarredSegment();
     public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId);
+    public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId, int page, int per_page);
     public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId, HashMap optionalParameters);
     public List<Segment>findSegments(Bound bound);
     public List<Segment>findSegments(Bound bound,HashMap optionalParameters);

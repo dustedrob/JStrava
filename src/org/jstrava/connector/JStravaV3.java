@@ -485,6 +485,18 @@ public class JStravaV3 implements JStrava {
         return segmentLeaderBoard;
     }
 
+
+    @Override
+    public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, int page, int per_page) {
+        String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard?access_token="+ accessToken+"&page="+page+"&per_page="+per_page;
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
+        return segmentLeaderBoard;
+    }
+
+
+
     @Override
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard?access_token="+ accessToken;
