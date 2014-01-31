@@ -80,10 +80,6 @@ public class JStravaV3Test {
     }
 
 
-
-
-
-
     @Test
     public void testFindAthleteKOMs(){
 
@@ -653,6 +649,7 @@ public class JStravaV3Test {
         }
 
     }
+
 
 
 
