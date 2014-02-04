@@ -17,6 +17,7 @@ public class Activity {
     private int elapsed_time;
     private float total_elevation_gain;
     private String type;
+    private String start_date;
     private String start_date_local;
     private String time_zone;
     private String[] start_latlng;
@@ -142,6 +143,38 @@ public class Activity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public boolean isTrainer() {
+        return trainer;
+    }
+
+    public boolean isCommute() {
+        return commute;
+    }
+
+    public boolean isManual() {
+        return manual;
+    }
+
+    public boolean isPRIVATE() {
+        return PRIVATE;
+    }
+
+    public boolean isFlagged() {
+        return flagged;
+    }
+
+    public boolean isHas_kudoed() {
+        return has_kudoed;
     }
 
     public String getStart_date_local() {

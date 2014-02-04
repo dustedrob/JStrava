@@ -5,11 +5,10 @@ import java.util.List;
 /**
  * Created by roberto on 1/27/14.
  */
-public class Stream<T> {
-
+public class Stream {
 
     private String type;
-    private List<T> data;
+    private List<Object> data;
     private String series_type;
     private int original_size;
     private String resolution;
@@ -21,6 +20,14 @@ public class Stream<T> {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<Object> getData() {
+        return data;
+    }
+
+    public void setData(List<Object> data) {
+        this.data = data;
     }
 
     public String getSeries_type() {

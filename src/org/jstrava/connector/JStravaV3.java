@@ -20,6 +20,10 @@ public class JStravaV3 implements JStrava {
     private Athlete currentAthlete;
 
 
+    public String getAccessToken() {
+        return accessToken;
+    }
+
     @Override
     public Athlete getCurrentAthlete() {
         return currentAthlete;
@@ -513,6 +517,7 @@ public class JStravaV3 implements JStrava {
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard";
         String result=getResult(URL,optionalParameters);
+        System.out.println("RESULTADO"+result);
         Gson gson= new Gson();
         SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
         return segmentLeaderBoard;
@@ -575,9 +580,49 @@ public class JStravaV3 implements JStrava {
         return segmentEffort;
     }
 
+    @Override
+    public List<Stream> findStreams(int activityId, String[] types) {
 
+        StringBuilder builder= new StringBuilder();
 
+        for (int i=0;i<types.length;i++)
+        {
+            if (i!=0)
+            {
+                builder.append(",");
+            }
+            builder.append(types[i]);
+        }
 
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/streams/"+builder.toString();
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        Stream[] streamsArray=gson.fromJson(result,Stream[].class);
+        List<Stream> streams=Arrays.asList(streamsArray);
+        return streams;
+
+    }
+
+    @Override
+    public List<Stream> findStreams(int activityId, String[] types, String resolution) {
+        StringBuilder builder= new StringBuilder();
+
+        for (int i=0;i<types.length;i++)
+        {
+            if (i!=0)
+            {
+                builder.append(",");
+            }
+            builder.append(types[i]);
+        }
+
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/streams/"+builder.toString()+"?resolution="+resolution;
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        Stream[] streamsArray=gson.fromJson(result,Stream[].class);
+        List<Stream> streams=Arrays.asList(streamsArray);
+        return streams;
+    }
 
 
     public JStravaV3(String access_token){
@@ -629,9 +674,6 @@ public class JStravaV3 implements JStrava {
 
 
 
-    public String getAccessToken() {
-        return accessToken;
-    }
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
@@ -646,13 +688,14 @@ public class JStravaV3 implements JStrava {
 
             while(iterator.hasNext())
             {
-                sb.append("&");
+                sb.append("?&");
                 String key=(String)iterator.next();
                 sb.append(key);
                 sb.append("=");
                 sb.append(optionalParameters.get(key));
             }
 
+            System.out.println("RESULTADO URL"+sb.toString());
             URL url = new URL(sb.toString());
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

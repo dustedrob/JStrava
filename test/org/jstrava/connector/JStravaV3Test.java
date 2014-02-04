@@ -5,10 +5,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,18 +22,18 @@ public class JStravaV3Test {
     int clubId;
     String gearId;
     long segmentId;
-    SimpleDateFormat dateFormat= new SimpleDateFormat("YYYY-MM-DD'T'hh:mm:ss'Z'");
+
     @Before
     public void setUp() throws Exception {
 
         /*REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!*/
 
-        accessToken ="";
-        athleteId=0;
-        activityId=0;
-        clubId=0;
-        gearId="";
-        segmentId=0L;
+        accessToken ="f1680106c792fac952c650441ed80ff697a7b24d";
+        athleteId=5455;
+        activityId=100349929;
+        clubId=26951;
+        gearId="b1069668";
+        segmentId=229781L;
     }
 
     @After
@@ -310,62 +306,6 @@ public class JStravaV3Test {
     }
 
 
-    @Test
-    public void testGetCurrentAthleteActivitiesBeforeDate()
-    {
-
-        Calendar cal= Calendar.getInstance();
-        cal.set(2014,00,01);
-        JStravaV3 strava= new JStravaV3(accessToken);
-        Date beforeDate=cal.getTime();
-        List<Activity> activities= strava.getCurrentAthleteActivitiesBeforeDate(beforeDate.getTime()/1000);
-        assertFalse(activities.isEmpty());
-        System.out.println("BEFORE DATE"+beforeDate);
-        for (Activity activity:activities)
-        {
-            try{
-            Date activityDate=dateFormat.parse(activity.getStart_date_local());
-                System.out.println("Activity Date "+activityDate+" Activity "+activity.toString());
-                assertTrue(activityDate.before(beforeDate));
-            }
-            catch(ParseException ex)
-            {
-                System.out.println("PARSING EXCEPTION"+ex);
-            }
-
-        }
-
-    }
-
-
-    @Test
-    public void testGetCurrentAthleteActivitiesAfterDate()
-    {
-
-        Calendar cal= Calendar.getInstance();
-        cal.set(2014,00,10);
-        Date afterDate=cal.getTime();
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<Activity> activities= strava.getCurrentAthleteActivitiesAfterDate(afterDate.getTime()/1000);
-        assertFalse(activities.isEmpty());
-        System.out.println("AFTER DATE"+afterDate);
-        for (Activity activity:activities)
-        {
-            try{
-                Date activityDate=dateFormat.parse(activity.getStart_date_local());
-                System.out.println("Activity Date "+activityDate+" Activity "+activity.toString());
-
-                assertTrue(activityDate.after(afterDate));
-            }
-            catch(ParseException ex)
-            {
-                System.out.println("PARSING EXCEPTION"+ex);
-            }
-
-        }
-
-    }
-
 
     @Test
     public void testGetCurrentFriendsActivities()
@@ -587,7 +527,7 @@ public class JStravaV3Test {
         assertNotNull(segment);
 
         System.out.println("SEGMENT "+segment.toString());
-        System.out.println("climb category "+segment.getClimb_category_desc());
+
     }
 
     @Test
@@ -622,13 +562,18 @@ public class JStravaV3Test {
 
         JStravaV3 strava= new JStravaV3(accessToken);
         HashMap optionalParameters= new HashMap();
+        optionalParameters.put("gender","F");
+        optionalParameters.put("page",1);
         optionalParameters.put("per_page",3);
         SegmentLeaderBoard board= strava.findSegmentLeaderBoard(segmentId,optionalParameters);
         assertNotNull(board);
 
+
+        assertTrue(board.getEntries().size()==3);
         for (LeaderBoardEntry entry:board.getEntries())
         {
-            System.out.println("Segment LeaderBoard "+entry.toString());
+            assertEquals("F", entry.getAthlete_gender());
+            System.out.println("Segment LeaderBoard with Parameters "+entry.toString());
         }
 
     }
@@ -650,6 +595,45 @@ public class JStravaV3Test {
 
     }
 
+    @Test
+    public void testFindStreams() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Stream> streams= strava.findStreams(activityId,new String[]{"latlng","time","distance"});
+        assertNotNull(streams);
+
+        for (Stream stream:streams)
+        {
+            System.out.println("STREAM TYPE "+stream.getType());
+             for (int i=0;i<stream.getData().size();i++)
+             {
+                 System.out.println("STREAM "+stream.getData().get(i));
+             }
+        }
+
+
+    }
+
+
+    @Test
+    public void testFindStreamsWithResolution() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Stream> streams= strava.findStreams(activityId,new String[]{"latlng","time","distance"},"low");
+        assertNotNull(streams);
+
+        for (Stream stream:streams)
+        {
+            System.out.println("STREAM TYPE "+stream.getType());
+            for (int i=0;i<stream.getData().size();i++)
+            {
+                assertEquals("low",stream.getResolution());
+                System.out.println("STREAM " + stream.getData().get(i));
+            }
+        }
+
+
+    }
 
 
 
