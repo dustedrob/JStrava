@@ -57,7 +57,11 @@ public interface JStrava {
     public List<Segment>findSegments(Bound bound);
     public List<Segment>findSegments(Bound bound,HashMap optionalParameters);
     public SegmentEffort findSegmentEffort(int id);
-    public List<Stream>findStreams(int activityId,String[]types);
-    public List<Stream>findStreams(int activityId,String[]types,String resolution);
+    public List<Stream>findActivityStreams(int activityId,String[]types);
+    public List<Stream>findActivityStreams(int activityId,String[]types,String resolution, String series_type);
+    public List<Stream>findEffortStreams(int id,String[]types);
+    public List<Stream>findEffortStreams(int activityId,String[]types,String resolution,String series_type);
+    public List<Stream>findSegmentStreams(int activityId,String[]types);
+    public List<Stream>findSegmentStreams(int activityId,String[]types,String resolution,String series_type);
 
 }

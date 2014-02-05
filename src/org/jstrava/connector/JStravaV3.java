@@ -580,8 +580,9 @@ public class JStravaV3 implements JStrava {
         return segmentEffort;
     }
 
+
     @Override
-    public List<Stream> findStreams(int activityId, String[] types) {
+    public List<Stream> findActivityStreams(int activityId, String[] types) {
 
         StringBuilder builder= new StringBuilder();
 
@@ -604,7 +605,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Stream> findStreams(int activityId, String[] types, String resolution) {
+    public List<Stream> findActivityStreams(int activityId, String[] types, String resolution, String series_type) {
         StringBuilder builder= new StringBuilder();
 
         for (int i=0;i<types.length;i++)
@@ -617,12 +618,117 @@ public class JStravaV3 implements JStrava {
         }
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/streams/"+builder.toString()+"?resolution="+resolution;
+
+        if (series_type!=null && !series_type.isEmpty())
+        {
+            URL+="&series_type="+series_type;
+        }
+
         String result= getResult(URL);
         Gson gson= new Gson();
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
     }
+
+
+    @Override
+    public List<Stream> findEffortStreams(int id, String[] types) {
+        StringBuilder builder= new StringBuilder();
+
+        for (int i=0;i<types.length;i++)
+        {
+            if (i!=0)
+            {
+                builder.append(",");
+            }
+            builder.append(types[i]);
+        }
+
+        String URL="https://www.strava.com/api/v3/segment_efforts/"+id+"/streams/"+builder.toString();
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        Stream[] streamsArray=gson.fromJson(result,Stream[].class);
+        List<Stream> streams=Arrays.asList(streamsArray);
+        return streams;
+    }
+
+    @Override
+    public List<Stream> findEffortStreams(int id, String[] types, String resolution, String series_type) {
+        StringBuilder builder= new StringBuilder();
+
+        for (int i=0;i<types.length;i++)
+        {
+            if (i!=0)
+            {
+                builder.append(",");
+            }
+            builder.append(types[i]);
+        }
+
+        String URL="https://www.strava.com/api/v3/segment_efforts/"+id+"/streams/"+builder.toString()+"?resolution="+resolution;
+
+        if (series_type!=null && !series_type.isEmpty())
+        {
+            URL+="&series_type="+series_type;
+        }
+
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        Stream[] streamsArray=gson.fromJson(result,Stream[].class);
+        List<Stream> streams=Arrays.asList(streamsArray);
+        return streams;
+    }
+
+    @Override
+    public List<Stream> findSegmentStreams(int id, String[] types) {
+        StringBuilder builder= new StringBuilder();
+
+        for (int i=0;i<types.length;i++)
+        {
+            if (i!=0)
+            {
+                builder.append(",");
+            }
+            builder.append(types[i]);
+        }
+
+        String URL="https://www.strava.com/api/v3/segments/"+id+"/streams/"+builder.toString();
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        Stream[] streamsArray=gson.fromJson(result,Stream[].class);
+        List<Stream> streams=Arrays.asList(streamsArray);
+        return streams;
+    }
+
+    @Override
+    public List<Stream> findSegmentStreams(int id, String[] types, String resolution, String series_type) {
+        StringBuilder builder= new StringBuilder();
+
+        for (int i=0;i<types.length;i++)
+        {
+            if (i!=0)
+            {
+                builder.append(",");
+            }
+            builder.append(types[i]);
+        }
+
+        String URL="https://www.strava.com/api/v3/segments/"+id+"/streams/"+builder.toString()+"?resolution="+resolution;
+
+        if (series_type!=null && !series_type.isEmpty())
+        {
+            URL+="&series_type="+series_type;
+        }
+
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        Stream[] streamsArray=gson.fromJson(result,Stream[].class);
+        List<Stream> streams=Arrays.asList(streamsArray);
+        return streams;
+    }
+
+
 
 
     public JStravaV3(String access_token){

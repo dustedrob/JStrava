@@ -28,12 +28,12 @@ public class JStravaV3Test {
 
         /*REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!*/
 
-        accessToken ="f1680106c792fac952c650441ed80ff697a7b24d";
-        athleteId=5455;
-        activityId=100349929;
-        clubId=26951;
-        gearId="b1069668";
-        segmentId=229781L;
+        accessToken ="";
+        athleteId=0;
+        activityId=0;
+        clubId=0;
+        gearId="";
+        segmentId=0L;
     }
 
     @After
@@ -596,10 +596,10 @@ public class JStravaV3Test {
     }
 
     @Test
-    public void testFindStreams() throws Exception{
+    public void testFindActivityStreams() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
-        List<Stream> streams= strava.findStreams(activityId,new String[]{"latlng","time","distance"});
+        List<Stream> streams= strava.findActivityStreams(activityId,new String[]{"latlng","time","distance"});
         assertNotNull(streams);
 
         for (Stream stream:streams)
@@ -616,10 +616,10 @@ public class JStravaV3Test {
 
 
     @Test
-    public void testFindStreamsWithResolution() throws Exception{
+    public void testFindActivityStreamsWithResolution() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
-        List<Stream> streams= strava.findStreams(activityId,new String[]{"latlng","time","distance"},"low");
+        List<Stream> streams= strava.findActivityStreams(activityId,new String[]{"latlng","time","distance"},"low",null);
         assertNotNull(streams);
 
         for (Stream stream:streams)
@@ -636,7 +636,86 @@ public class JStravaV3Test {
     }
 
 
+    @Test
+    public void testFindEffortStreams() throws Exception{
 
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Stream> streams= strava.findEffortStreams(activityId,new String[]{"latlng","time","distance"});
+        assertNotNull(streams);
+
+        for (Stream stream:streams)
+        {
+            System.out.println("STREAM TYPE "+stream.getType());
+            for (int i=0;i<stream.getData().size();i++)
+            {
+                System.out.println("STREAM "+stream.getData().get(i));
+            }
+        }
+
+
+    }
+
+
+    @Test
+    public void testFindEffortStreamsWithResolution() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Stream> streams= strava.findEffortStreams(activityId,new String[]{"latlng","time","distance"},"low",null);
+        assertNotNull(streams);
+
+        for (Stream stream:streams)
+        {
+            System.out.println("STREAM TYPE "+stream.getType());
+            for (int i=0;i<stream.getData().size();i++)
+            {
+                assertEquals("low",stream.getResolution());
+                System.out.println("STREAM " + stream.getData().get(i));
+            }
+        }
+
+
+    }
+
+
+    @Test
+    public void testFindSegmentStreams() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Stream> streams= strava.findActivityStreams(activityId,new String[]{"latlng","time","distance"});
+        assertNotNull(streams);
+
+        for (Stream stream:streams)
+        {
+            System.out.println("STREAM TYPE "+stream.getType());
+            for (int i=0;i<stream.getData().size();i++)
+            {
+                System.out.println("STREAM "+stream.getData().get(i));
+            }
+        }
+
+
+    }
+
+
+    @Test
+    public void testFindSegmentStreamsWithResolution() throws Exception{
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+        List<Stream> streams= strava.findActivityStreams(activityId,new String[]{"latlng","time","distance"},"low",null);
+        assertNotNull(streams);
+
+        for (Stream stream:streams)
+        {
+            System.out.println("STREAM TYPE "+stream.getType());
+            for (int i=0;i<stream.getData().size();i++)
+            {
+                assertEquals("low",stream.getResolution());
+                System.out.println("STREAM " + stream.getData().get(i));
+            }
+        }
+
+
+    }
 
 
 
