@@ -1,4 +1,6 @@
-package org.jstrava.entities;
+package org.jstrava.entities.activity;
+
+import org.jstrava.entities.athlete.Athlete;
 
 /**
  * Created by roberto on 12/27/13.

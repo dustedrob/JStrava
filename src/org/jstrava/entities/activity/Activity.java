@@ -1,4 +1,7 @@
-package org.jstrava.entities;
+package org.jstrava.entities.activity;
+
+import org.jstrava.entities.segment.SegmentEffort;
+import org.jstrava.entities.athlete.Athlete;
 
 import java.util.List;
 /**

@@ -1,4 +1,4 @@
-package org.jstrava.entities;
+package org.jstrava.entities.stream;
 
 import java.util.List;
 

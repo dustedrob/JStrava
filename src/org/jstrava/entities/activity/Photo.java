@@ -1,4 +1,4 @@
-package org.jstrava.entities;
+package org.jstrava.entities.activity;
 
 /**
  * Created by roberto on 12/28/13.

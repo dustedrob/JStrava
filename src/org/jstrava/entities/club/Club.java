@@ -1,4 +1,4 @@
-package org.jstrava.entities;
+package org.jstrava.entities.club;
 
 /**
  * Created by roberto on 12/26/13.

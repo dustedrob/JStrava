@@ -1,6 +1,14 @@
 package org.jstrava.connector;
 
-import org.jstrava.entities.*;
+import org.jstrava.entities.activity.Activity;
+import org.jstrava.entities.activity.Comment;
+import org.jstrava.entities.activity.LapEffort;
+import org.jstrava.entities.activity.Photo;
+import org.jstrava.entities.athlete.Athlete;
+import org.jstrava.entities.club.Club;
+import org.jstrava.entities.gear.Gear;
+import org.jstrava.entities.segment.*;
+import org.jstrava.entities.stream.Stream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

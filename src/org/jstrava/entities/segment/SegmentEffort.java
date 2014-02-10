@@ -1,16 +1,21 @@
-package org.jstrava.entities;
+package org.jstrava.entities.segment;
+
+import org.jstrava.entities.activity.Activity;
+import org.jstrava.entities.athlete.Athlete;
 
 /**
- * Created by roberto on 1/14/14.
+ * Created by roberto on 12/27/13.
  */
-public class LapEffort {
-
+public class SegmentEffort {
 
     private long id;
     private int resource_state;
     private String name;
+    private Segment segment;
     private Activity activity;
     private Athlete athlete;
+    private int kom_rank;
+    private int pr_rank;
     private int elapsed_time;
     private int moving_time;
     private String start_date;
@@ -18,20 +23,13 @@ public class LapEffort {
     private float distance;
     private int start_index;
     private int end_index;
-    private float total_elevation_gain;
-    private float average_speed;
-    private float max_speed;
-    private float average_cadence;
-    private float average_watts;
-    private float average_heartrate;
-    private float max_heartrate;
-    private int lap_index;
 
-    public LapEffort(long id) {
+
+    public SegmentEffort(long id) {
         this.id = id;
     }
 
-    public LapEffort() {
+    public SegmentEffort() {
     }
 
     @Override
@@ -63,6 +61,14 @@ public class LapEffort {
         this.name = name;
     }
 
+    public Segment getSegment() {
+        return segment;
+    }
+
+    public void setSegment(Segment segment) {
+        this.segment = segment;
+    }
+
     public Activity getActivity() {
         return activity;
     }
@@ -77,6 +83,22 @@ public class LapEffort {
 
     public void setAthlete(Athlete athlete) {
         this.athlete = athlete;
+    }
+
+    public int getKom_rank() {
+        return kom_rank;
+    }
+
+    public void setKom_rank(int kom_rank) {
+        this.kom_rank = kom_rank;
+    }
+
+    public int getPr_rank() {
+        return pr_rank;
+    }
+
+    public void setPr_rank(int pr_rank) {
+        this.pr_rank = pr_rank;
     }
 
     public int getMoving_time() {
@@ -133,69 +155,5 @@ public class LapEffort {
 
     public void setEnd_index(int end_index) {
         this.end_index = end_index;
-    }
-
-    public float getTotal_elevation_gain() {
-        return total_elevation_gain;
-    }
-
-    public void setTotal_elevation_gain(float total_elevation_gain) {
-        this.total_elevation_gain = total_elevation_gain;
-    }
-
-    public float getAverage_speed() {
-        return average_speed;
-    }
-
-    public void setAverage_speed(float average_speed) {
-        this.average_speed = average_speed;
-    }
-
-    public float getMax_speed() {
-        return max_speed;
-    }
-
-    public void setMax_speed(float max_speed) {
-        this.max_speed = max_speed;
-    }
-
-    public float getAverage_cadence() {
-        return average_cadence;
-    }
-
-    public void setAverage_cadence(float average_cadence) {
-        this.average_cadence = average_cadence;
-    }
-
-    public float getAverage_watts() {
-        return average_watts;
-    }
-
-    public void setAverage_watts(float average_watts) {
-        this.average_watts = average_watts;
-    }
-
-    public float getAverage_heartrate() {
-        return average_heartrate;
-    }
-
-    public void setAverage_heartrate(float average_heartrate) {
-        this.average_heartrate = average_heartrate;
-    }
-
-    public float getMax_heartrate() {
-        return max_heartrate;
-    }
-
-    public void setMax_heartrate(float max_heartrate) {
-        this.max_heartrate = max_heartrate;
-    }
-
-    public int getLap_index() {
-        return lap_index;
-    }
-
-    public void setLap_index(int lap_index) {
-        this.lap_index = lap_index;
     }
 }

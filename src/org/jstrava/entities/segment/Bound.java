@@ -1,4 +1,4 @@
-package org.jstrava.entities;
+package org.jstrava.entities.segment;
 
 /**
  * Created by roberto on 1/14/14.

@@ -1,4 +1,4 @@
-package org.jstrava.entities;
+package org.jstrava.entities.segment;
 
 import java.util.List;
 

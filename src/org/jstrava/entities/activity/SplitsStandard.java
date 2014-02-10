@@ -1,9 +1,9 @@
-package org.jstrava.entities;
+package org.jstrava.entities.activity;
 
 /**
  * Created by roberto on 12/27/13.
  */
-public class SplitsMetric {
+public class SplitsStandard {
 
     private float distance;
     private int elapsed_time;
@@ -11,7 +11,7 @@ public class SplitsMetric {
     private int moving_time;
     private int split;
 
-    public SplitsMetric() {
+    public SplitsStandard() {
 
 
     }

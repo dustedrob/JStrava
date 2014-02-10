@@ -2,7 +2,18 @@ package org.jstrava.connector;
 
 
 import com.google.gson.Gson;
-import org.jstrava.entities.*;
+import org.jstrava.entities.activity.Activity;
+import org.jstrava.entities.activity.Comment;
+import org.jstrava.entities.activity.LapEffort;
+import org.jstrava.entities.activity.Photo;
+import org.jstrava.entities.athlete.Athlete;
+import org.jstrava.entities.club.Club;
+import org.jstrava.entities.gear.Gear;
+import org.jstrava.entities.segment.Bound;
+import org.jstrava.entities.segment.Segment;
+import org.jstrava.entities.segment.SegmentEffort;
+import org.jstrava.entities.segment.SegmentLeaderBoard;
+import org.jstrava.entities.stream.Stream;
 
 import java.io.BufferedReader;
 import java.io.IOException;

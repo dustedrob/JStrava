@@ -1,4 +1,6 @@
-package org.jstrava.entities;
+package org.jstrava.entities.segment;
+
+import org.jstrava.entities.activity.Polyline;
 
 /**
  * Created by roberto on 12/26/13.

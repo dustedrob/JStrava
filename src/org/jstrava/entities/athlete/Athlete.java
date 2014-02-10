@@ -1,4 +1,7 @@
-package org.jstrava.entities;
+package org.jstrava.entities.athlete;
+
+import org.jstrava.entities.club.Club;
+import org.jstrava.entities.gear.Gear;
 
 import java.util.List;
 
