@@ -2,10 +2,7 @@ package org.jstrava.connector;
 
 
 import com.google.gson.Gson;
-import org.jstrava.entities.activity.Activity;
-import org.jstrava.entities.activity.Comment;
-import org.jstrava.entities.activity.LapEffort;
-import org.jstrava.entities.activity.Photo;
+import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
@@ -53,16 +50,6 @@ public class JStravaV3 implements JStrava {
 
     }
 
-    public Athlete findAthleteWithBearer(int id) {
-
-        String URL="https://www.strava.com/api/v3/athletes/"+id;
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Athlete athlete= gson.fromJson(result,Athlete.class);
-
-        return athlete;
-
-    }
 
 
     @Override
@@ -307,10 +294,20 @@ public class JStravaV3 implements JStrava {
         return currentFriendsActivities;
     }
 
+    @Override
+    public List<Zone> getActivityZones(int activityId) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/zones";
+        String result=getResult(URL);
+        Gson gson= new Gson();
+        Zone[] zonesArray=gson.fromJson(result,Zone[].class);
+        List<Zone> zones=Arrays.asList(zonesArray);
+        return zones;
+    }
+
 
     @Override
     public List<LapEffort> findActivityLaps(int activityId) {
-        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/laps"+"";
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/laps";
         String result=getResult(URL);
         Gson gson= new Gson();
         LapEffort[] lapEffortsArray =gson.fromJson(result,LapEffort[].class);
@@ -410,7 +407,7 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public List<Activity> findClubActivities(int clubId) {
-        String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/activities"+"";
+        String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/activities";
         String result=getResult(URL);
         Gson gson= new Gson();
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
@@ -467,7 +464,7 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public Segment findSegment(long segmentId) {
-        String URL="https://www.strava.com/api/v3/segments/"+segmentId+"";
+        String URL="https://www.strava.com/api/v3/segments/"+segmentId;
         String result=getResult(URL);
         Gson gson= new Gson();
         Segment segment= gson.fromJson(result,Segment.class);
@@ -584,7 +581,7 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public SegmentEffort findSegmentEffort(int id) {
-        String URL="https://www.strava.com/api/v3/segment_efforts/"+id+"";
+        String URL="https://www.strava.com/api/v3/segment_efforts/"+id;
         String result=getResult(URL);
         Gson gson= new Gson();
         SegmentEffort segmentEffort= gson.fromJson(result,SegmentEffort.class);

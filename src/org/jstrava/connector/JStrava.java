@@ -1,9 +1,6 @@
 package org.jstrava.connector;
 
-import org.jstrava.entities.activity.Activity;
-import org.jstrava.entities.activity.Comment;
-import org.jstrava.entities.activity.LapEffort;
-import org.jstrava.entities.activity.Photo;
+import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
@@ -20,6 +17,7 @@ import java.util.List;
  * Created by roberto on 12/26/13.
  */
 public interface JStrava {
+
 
 
 
@@ -46,7 +44,7 @@ public interface JStrava {
     public List<Activity> getCurrentAthleteActivitiesAfterDate( long after);
     public List<Activity> getCurrentFriendsActivities();
     public List<Activity> getCurrentFriendsActivities( int page, int per_page);
-    /*Retrieve Activity Zones Missing*/
+    public List<Zone> getActivityZones (int activityId);
     public List<LapEffort> findActivityLaps(int activityId);
     public List<Comment> findActivityComments(int activityId);
     public List<Comment> findActivityComments(int activityId,boolean markdown, int page, int per_page);
