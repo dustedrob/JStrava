@@ -22,8 +22,8 @@ public interface JStrava {
 
 
     public Athlete getCurrentAthlete();
+    public Athlete updateAthlete(HashMap optionalParameters);
     public Athlete findAthlete(int id);
-    /*Update Current Athlete Missing*/
     public List<SegmentEffort> findAthleteKOMs(int athleteId);
     public List<SegmentEffort> findAthleteKOMs(int athleteId,int page, int per_page);
     public List<Athlete> getCurrentAthleteFriends();

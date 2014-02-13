@@ -36,12 +36,12 @@ public class JStravaV3Test {
 
         /*REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!*/
 
-        accessToken ="";
-        athleteId=0;
-        activityId=0;
-        clubId=0;
-        gearId="";
-        segmentId=0L;
+        accessToken ="a50fb016a56defaf92415fcd5761e486402c900a";
+        athleteId=5455;
+        activityId=100349929;
+        clubId=26951;
+        gearId="b1069668";
+        segmentId=229781L;
     }
 
     @After
@@ -725,6 +725,16 @@ public class JStravaV3Test {
 
     }
 
+    @Test
+    public void testUpdateAthlete() throws Exception {
 
+        JStravaV3 strava= new JStravaV3(accessToken);
 
+        HashMap optionalParameters= new HashMap();
+
+        double weight=71;
+        optionalParameters.put("weight",weight);
+        Athlete athlete=strava.updateAthlete(optionalParameters);
+        assertNotNull(athlete);
+    }
 }

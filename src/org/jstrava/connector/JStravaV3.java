@@ -37,6 +37,16 @@ public class JStravaV3 implements JStrava {
         return currentAthlete;
     }
 
+    @Override
+    public Athlete updateAthlete(HashMap optionalParameters) {
+        String URL="https://www.strava.com/api/v3/athlete";
+        String result=putResult(URL,optionalParameters);
+        Gson gson= new Gson();
+        Athlete athlete= gson.fromJson(result,Athlete.class);
+
+        return athlete;
+    }
+
 
     @Override
     public Athlete findAthlete(int id) {
@@ -788,10 +798,11 @@ public class JStravaV3 implements JStrava {
 
 
 
-
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
+
+
 
     private String getResult(String URL, HashMap optionalParameters){
         StringBuilder sb= new StringBuilder();
@@ -842,6 +853,58 @@ public class JStravaV3 implements JStrava {
         return sb.toString();
 
     }
+
+
+    private String putResult(String URL, HashMap optionalParameters){
+        StringBuilder sb= new StringBuilder();
+        sb.append(URL);
+        try {
+
+            Iterator iterator= optionalParameters.keySet().iterator();
+
+            while(iterator.hasNext())
+            {
+                sb.append("?&");
+                String key=(String)iterator.next();
+                sb.append(key);
+                sb.append("=");
+                sb.append(optionalParameters.get(key));
+            }
+
+            System.out.println("RESULTADO URL"+sb.toString());
+            URL url = new URL(sb.toString());
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            sb=new StringBuilder();
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+
+            conn.disconnect();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+        return sb.toString();
+
+    }
+
 
 
 
