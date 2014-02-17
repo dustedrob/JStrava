@@ -27,6 +27,7 @@ public class JStravaV3Test {
     String accessToken;
     int athleteId;
     int activityId;
+    int updateActivityId;
     int clubId;
     String gearId;
     long segmentId;
@@ -81,6 +82,20 @@ public class JStravaV3Test {
         assertFalse(athlete.getBikes().isEmpty());
         assertFalse(athlete.getShoes().isEmpty());
         assertTrue(athlete.getClubs().isEmpty());
+    }
+
+
+    @Test
+    public void testUpdateAthlete() throws Exception {
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+
+        HashMap optionalParameters= new HashMap();
+
+        double weight=71;
+        optionalParameters.put("weight",weight);
+        Athlete athlete=strava.updateAthlete(optionalParameters);
+        assertNotNull(athlete);
     }
 
 
@@ -281,6 +296,22 @@ public class JStravaV3Test {
             System.out.println("        Matching Segment "+segmentEffort.getSegment().toString());
         }
 
+    }
+
+    @Test
+    public void testUpdateActivity() throws Exception {
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+
+        HashMap optionalParameters= new HashMap();
+
+        double weight=71;
+        String description="Autodromo relajado";
+        String name="Autodromo en la tarde";
+        optionalParameters.put("description",description);
+        optionalParameters.put("name",name);
+        Activity activity=strava.updateActivity(updateActivityId,optionalParameters);
+        assertNotNull(activity);
     }
 
 
@@ -725,16 +756,5 @@ public class JStravaV3Test {
 
     }
 
-    @Test
-    public void testUpdateAthlete() throws Exception {
 
-        JStravaV3 strava= new JStravaV3(accessToken);
-
-        HashMap optionalParameters= new HashMap();
-
-        double weight=71;
-        optionalParameters.put("weight",weight);
-        Athlete athlete=strava.updateAthlete(optionalParameters);
-        assertNotNull(athlete);
-    }
 }

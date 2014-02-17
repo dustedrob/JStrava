@@ -38,6 +38,7 @@ public interface JStrava {
     public List<Athlete> findAthleteBothFollowing(int id, int page, int per_page);
     public Activity findActivity(int id);
     public Activity findActivity(int id,boolean include_all_efforts);
+    public Activity updateActivity(int activityId, HashMap optionalParameters);
     public List<Activity> getCurrentAthleteActivities();
     public List<Activity> getCurrentAthleteActivities( int page, int per_page);
     public List<Activity> getCurrentAthleteActivitiesBeforeDate( long before);

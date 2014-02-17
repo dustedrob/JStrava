@@ -15,8 +15,7 @@ import org.jstrava.entities.stream.Stream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -239,6 +238,16 @@ public class JStravaV3 implements JStrava {
     public Activity findActivity(int id,boolean include_all_efforts) {
         String URL="https://www.strava.com/api/v3/activities/"+id+"?include_all_efforts="+include_all_efforts;
         String result=getResult(URL);
+        Gson gson= new Gson();
+        Activity activity= gson.fromJson(result,Activity.class);
+
+        return activity;
+    }
+
+    @Override
+    public Activity updateActivity(int activityId, HashMap optionalParameters) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId;
+        String result=putResult(URL,optionalParameters);
         Gson gson= new Gson();
         Activity activity= gson.fromJson(result,Activity.class);
 
@@ -535,7 +544,6 @@ public class JStravaV3 implements JStrava {
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard";
         String result=getResult(URL,optionalParameters);
-        System.out.println("RESULTADO"+result);
         Gson gson= new Gson();
         SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
         return segmentLeaderBoard;
@@ -820,7 +828,6 @@ public class JStravaV3 implements JStrava {
                 sb.append(optionalParameters.get(key));
             }
 
-            System.out.println("RESULTADO URL"+sb.toString());
             URL url = new URL(sb.toString());
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -868,13 +875,22 @@ public class JStravaV3 implements JStrava {
                 String key=(String)iterator.next();
                 sb.append(key);
                 sb.append("=");
-                sb.append(optionalParameters.get(key));
+                sb.append(URLEncoder.encode(optionalParameters.get(key).toString(),"UTF-8"));
             }
 
-            System.out.println("RESULTADO URL"+sb.toString());
-            URL url = new URL(sb.toString());
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            URI uri= null;
+            URL url= null;
+            try {
+                uri = new URI(String.format(sb.toString()));
+                url= uri.toURL();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("RESULTADO URL"+url.toString());
+
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 
             conn.setRequestMethod("PUT");
             conn.setRequestProperty("Accept", "application/json");
