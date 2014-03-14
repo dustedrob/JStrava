@@ -36,6 +36,9 @@ public interface JStrava {
     public List<Athlete> findAthleteFollowers(int id, int page, int per_page);
     public List<Athlete> findAthleteBothFollowing(int id);
     public List<Athlete> findAthleteBothFollowing(int id, int page, int per_page);
+    public Activity createActivity(String name, String type, String start_date_local, int elapsed_time);
+    public Activity createActivity(String name, String type, String start_date_local, int elapsed_time, String description, float distance );
+    public void deleteActivity(int activityId);
     public Activity findActivity(int id);
     public Activity findActivity(int id,boolean include_all_efforts);
     public Activity updateActivity(int activityId, HashMap optionalParameters);

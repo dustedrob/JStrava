@@ -41,8 +41,9 @@ public class JStravaV3Test {
         athleteId=0;
         activityId=0;
         clubId=0;
-        gearId="0";
+        gearId="";
         segmentId=0L;
+        updateActivityId=0;
     }
 
     @After
@@ -274,6 +275,26 @@ public class JStravaV3Test {
 
     }
 
+    @Test
+    public void testCreateAndDeleteActivity() throws Exception {
+
+        JStravaV3 strava= new JStravaV3(accessToken);
+
+        Activity activity= strava.createActivity("Test Manual Activity", "ride", "2014-03-14T09:00:00Z", 10);
+        assertNotNull(activity);
+        System.out.println("Activity Name "+activity.toString());
+        Activity activityExtra= strava.createActivity("Test Manual Activity","ride","2014-03-14T09:00:00Z",10,"Testing manual creation",100);
+        assertNotNull(activityExtra);
+        System.out.println("Activity Name "+activityExtra.toString());
+        strava.deleteActivity(activity.getId());
+        strava.deleteActivity(activityExtra.getId());
+
+
+    }
+
+
+
+
 
     @Test
     public void testFindActivity() throws Exception {
@@ -306,8 +327,8 @@ public class JStravaV3Test {
         HashMap optionalParameters= new HashMap();
 
         double weight=71;
-        String description="Autodromo relajado";
-        String name="Autodromo en la tarde";
+        String description="Autodromo mañanero";
+        String name="Autodromo en la mañana";
         optionalParameters.put("description",description);
         optionalParameters.put("name",name);
         Activity activity=strava.updateActivity(updateActivityId,optionalParameters);

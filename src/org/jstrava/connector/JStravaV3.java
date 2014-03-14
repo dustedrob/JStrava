@@ -11,8 +11,8 @@ import org.jstrava.entities.segment.Segment;
 import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.segment.SegmentLeaderBoard;
 import org.jstrava.entities.stream.Stream;
-
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
@@ -222,6 +222,35 @@ public class JStravaV3 implements JStrava {
 
 
         return athletes;
+    }
+
+    @Override
+    public Activity createActivity(String name, String type, String start_date_local, int elapsed_time) {
+        String URL="https://www.strava.com/api/v3/activities?name="+name+"&type="+type+"&start_date_local="+start_date_local+"&elapsed_time="+elapsed_time;
+        String result=postResult(URL);
+        Gson gson= new Gson();
+        System.out.println("RESULTADO"+result);
+        Activity activity=gson.fromJson(result,Activity.class);
+        return activity;
+    }
+
+    @Override
+    public Activity createActivity(String name, String type, String start_date_local, int elapsed_time, String description, float distance) {
+        String URL="https://www.strava.com/api/v3/activities?name="+name+"&type="+type+"&start_date_local="+start_date_local+"&elapsed_time="+elapsed_time+"&description="+description+"&distance="+distance;
+        String result=postResult(URL);
+        Gson gson= new Gson();
+        Activity activity=gson.fromJson(result,Activity.class);
+        return activity;
+    }
+
+    @Override
+    public void deleteActivity(int activityId) {
+        String URL="https://www.strava.com/api/v3/activities/"+activityId;
+        String result=deleteResult(URL);
+        Gson gson= new Gson();
+        gson.fromJson(result,String.class);
+
+
     }
 
     @Override
@@ -798,6 +827,7 @@ public class JStravaV3 implements JStrava {
             e.printStackTrace();
             return null;
         }
+
         return sb.toString();
 
     }
@@ -819,16 +849,29 @@ public class JStravaV3 implements JStrava {
 
             Iterator iterator= optionalParameters.keySet().iterator();
 
+            int index=0;
             while(iterator.hasNext())
             {
-                sb.append("?&");
+                if (index==0)
+                {
+                    sb.append("?");
+                }
+                else
+                {
+                    sb.append("&");
+                }
                 String key=(String)iterator.next();
                 sb.append(key);
                 sb.append("=");
-                sb.append(optionalParameters.get(key));
+                sb.append(URLEncoder.encode(optionalParameters.get(key).toString(), "UTF-8"));
+                index++;
             }
 
-            URL url = new URL(sb.toString());
+
+
+                URI uri = new URI(String.format(sb.toString()));
+                URL url= uri.toURL();
+
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -857,9 +900,138 @@ public class JStravaV3 implements JStrava {
             e.printStackTrace();
             return null;
         }
+        catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
         return sb.toString();
 
     }
+
+
+    private String postResult(String URL){
+        StringBuffer sb= new StringBuffer();
+        try {
+
+            String finalUrl="";
+
+                String[] parsedUrl=URL.split("\\?");
+                String params=URLEncoder.encode(parsedUrl[1], "UTF-8").replace("%3D","=").replace("%26","&");
+
+            URL url= new URL(parsedUrl[0]+"?"+params);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
+
+           conn.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+            wr.writeBytes(params);
+            wr.flush();
+            wr.close();
+
+
+
+            boolean redirect = false;
+            // normally, 3xx is redirect
+            int status = conn.getResponseCode();
+            if (status != HttpURLConnection.HTTP_OK) {
+                if (status == HttpURLConnection.HTTP_MOVED_TEMP
+                        || status == HttpURLConnection.HTTP_MOVED_PERM
+                        || status == HttpURLConnection.HTTP_SEE_OTHER)
+                    redirect = true;
+            }
+
+
+            if (redirect) {
+
+                // get redirect url from "location" header field
+                String newUrl = conn.getHeaderField("Location");
+
+
+                // open the new connnection again
+                conn = (HttpURLConnection) new URL(newUrl).openConnection();
+                conn.setRequestProperty("Accept", "application/json");
+                conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
+
+
+
+            }
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+
+
+            while ((inputLine = in.readLine()) != null) {
+                sb.append(inputLine);
+            }
+            in.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return sb.toString();
+    }
+
+
+
+
+
+
+
+    private String putResult(String URL){
+        StringBuilder sb= new StringBuilder();
+
+        try {
+            String finalUrl="";
+            if (URL.contains("?"))
+            {
+                String[] parsedUrl=URL.split("\\?");
+                String params=URLEncoder.encode(parsedUrl[1], "UTF-8");
+                finalUrl=parsedUrl[0]+"?"+params;
+            }
+            else
+            {
+                finalUrl=URL;
+            }
+
+            URL url= new URL(finalUrl);
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
+            if (conn.getResponseCode() != 200 | conn.getResponseCode() != 201 ) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            sb=new StringBuilder();
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+
+            conn.disconnect();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+
+        return sb.toString();
+
+    }
+
+
 
 
     private String putResult(String URL, HashMap optionalParameters){
@@ -869,26 +1041,28 @@ public class JStravaV3 implements JStrava {
 
             Iterator iterator= optionalParameters.keySet().iterator();
 
+            int index=0;
             while(iterator.hasNext())
             {
-                sb.append("?&");
+                if (index==0)
+                {
+                    sb.append("?");
+                }
+                else
+                {
+                    sb.append("&");
+                }
                 String key=(String)iterator.next();
                 sb.append(key);
                 sb.append("=");
-                sb.append(URLEncoder.encode(optionalParameters.get(key).toString(),"UTF-8"));
+                sb.append(URLEncoder.encode(optionalParameters.get(key).toString(), "UTF-8"));
+                index++;
             }
 
+            URI uri = new URI(sb.toString());
+            URL url= uri.toURL();
 
-            URI uri= null;
-            URL url= null;
-            try {
-                uri = new URI(String.format(sb.toString()));
-                url= uri.toURL();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
 
-            System.out.println("RESULTADO URL"+url.toString());
 
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 
@@ -914,6 +1088,57 @@ public class JStravaV3 implements JStrava {
 
         } catch (IOException e) {
 
+            e.printStackTrace();
+            return null;
+        }
+        catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return sb.toString();
+
+    }
+
+
+    private String deleteResult(String URL){
+        StringBuilder sb= new StringBuilder();
+        sb.append(URL);
+        try {
+
+
+            URI uri = new URI(String.format(sb.toString()));
+            URL url= uri.toURL();
+
+
+
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+
+            conn.setRequestMethod("DELETE");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
+            if (conn.getResponseCode() != 204) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+
+            String output;
+            sb=new StringBuilder();
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+
+            conn.disconnect();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+        catch (URISyntaxException e) {
             e.printStackTrace();
             return null;
         }
