@@ -11,10 +11,8 @@ import org.jstrava.entities.segment.Segment;
 import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.segment.SegmentLeaderBoard;
 import org.jstrava.entities.stream.Stream;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.net.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -783,7 +781,26 @@ public class JStravaV3 implements JStrava {
         return streams;
     }
 
+    @Override
+    public UploadStatus uploadActivity(String data_type, File file) {
+        return null;
+    }
 
+    @Override
+    public UploadStatus uploadActivity(String activity_type, String name, String description, int is_private, int trainer, String data_type, String external_id, File file) {
+        return null;
+    }
+
+    @Override
+    public UploadStatus checkUploadStatus(int uploadId) {
+
+        String URL="https://www.strava.com/api/v3/uploads/"+uploadId;
+        String result= getResult(URL);
+        Gson gson= new Gson();
+        UploadStatus status=gson.fromJson(result,UploadStatus.class);
+
+        return status;
+    }
 
 
     public JStravaV3(String access_token){

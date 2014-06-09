@@ -10,6 +10,7 @@ import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.segment.SegmentLeaderBoard;
 import org.jstrava.entities.stream.Stream;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -76,5 +77,8 @@ public interface JStrava {
     public List<Stream>findEffortStreams(int activityId,String[]types,String resolution,String series_type);
     public List<Stream>findSegmentStreams(int activityId,String[]types);
     public List<Stream>findSegmentStreams(int activityId,String[]types,String resolution,String series_type);
+    public UploadStatus uploadActivity(String data_type,File file);
+    public UploadStatus uploadActivity(String activity_type,String name,String description,int is_private,int trainer,String data_type,String external_id,File file);
+    public UploadStatus checkUploadStatus(int uploadId);
 
 }
