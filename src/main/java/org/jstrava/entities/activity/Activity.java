@@ -4,6 +4,9 @@ import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.athlete.Athlete;
 
 import java.util.List;
+
+import javax.measure.Quantity;
+import javax.measure.quantity.Energy;
 /**
  * Created by roberto on 12/26/13.
  */
@@ -44,7 +47,7 @@ public class Activity {
     private float average_cadence;
     private int average_temp;
     private float average_watts;
-    private float kilojoules;
+    private Quantity<Energy> kilojoules;
     private float average_heartrate;
     private float max_heartrate;
     private float calories;
@@ -364,11 +367,11 @@ public class Activity {
         this.average_watts = average_watts;
     }
 
-    public float getKilojoules() {
+    public Quantity<Energy> getKilojoules() {
         return kilojoules;
     }
 
-    public void setKilojoules(float kilojoules) {
+    public void setKilojoules(Quantity<Energy> kilojoules) {
         this.kilojoules = kilojoules;
     }
 

@@ -16,10 +16,16 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import tec.units.ri.quantity.QuantityFactory;
+import tec.units.ri.util.SI;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import javax.measure.Quantity;
+import javax.measure.quantity.Mass;
 
 import static org.junit.Assert.*;
 
@@ -110,8 +116,8 @@ public class JStravaV3Test {
 
 		final Map optionalParameters = new HashMap();
 
-		double weight = 71;
-		optionalParameters.put("weight", weight);
+		final Mass weight = QuantityFactory.getInstance(Mass.class).create(71, SI.KILOGRAM);
+		optionalParameters.put("weight", weight.getValue());
 		Athlete athlete = strava.updateAthlete(optionalParameters);
 		assertNotNull(athlete);
 	}
@@ -322,9 +328,9 @@ public class JStravaV3Test {
 
 		JStravaV3 strava = new JStravaV3(accessToken);
 
-		HashMap optionalParameters = new HashMap();
+		Map optionalParameters = new HashMap();
 
-		double weight = 71;
+//		double weight = 71;
 		String description = "Autodromo mañanero";
 		String name = "Autodromo en la mañana";
 		optionalParameters.put("description", description);
@@ -600,7 +606,7 @@ public class JStravaV3Test {
 	public void testFindSegmentLeaderBoardWithParameters() throws Exception {
 		if (hasSegment()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
-			HashMap optionalParameters = new HashMap();
+			final HashMap optionalParameters = new HashMap();
 			optionalParameters.put("gender", "F");
 			optionalParameters.put("page", 1);
 			optionalParameters.put("per_page", 3);

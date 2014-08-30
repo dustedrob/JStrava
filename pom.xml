@@ -23,15 +23,27 @@
 			<version>2.1</version>
 		</dependency>
 		<dependency>
+		  <groupId>javax.measure</groupId>
+		  <artifactId>unit-api</artifactId>
+		  <version>0.7-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		  <groupId>tec.units</groupId>
+		  <artifactId>unit-ri</artifactId>
+		  <version>0.5-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>2.0.2</version>
+			<scope>test</scope>
 		</dependency>
-		  <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.0.2</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.0.2</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
