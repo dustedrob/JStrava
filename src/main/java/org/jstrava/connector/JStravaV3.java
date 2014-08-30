@@ -2,6 +2,7 @@ package org.jstrava.connector;
 
 
 import com.google.gson.Gson;
+
 import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class JStravaV3 implements JStrava {
 
@@ -35,7 +37,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public Athlete updateAthlete(HashMap optionalParameters) {
+    public Athlete updateAthlete(Map optionalParameters) {
         String URL="https://www.strava.com/api/v3/athlete";
         String result=putResult(URL,optionalParameters);
         Gson gson= new Gson();
@@ -272,7 +274,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public Activity updateActivity(int activityId, HashMap optionalParameters) {
+    public Activity updateActivity(int activityId, Map optionalParameters) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId;
         String result=putResult(URL,optionalParameters);
         Gson gson= new Gson();
@@ -490,11 +492,10 @@ public class JStravaV3 implements JStrava {
         Gson gson= new Gson();
         Club[] clubsArray= gson.fromJson(result,Club[].class);
 
-
-        List<Club>clubs= Arrays.asList(clubsArray);
-
-
-        return clubs;
+        if (clubsArray != null) {
+	        final List<Club>clubs= Arrays.asList(clubsArray);
+	        return clubs;
+        } else return null;
     }
 
 
@@ -859,7 +860,7 @@ public class JStravaV3 implements JStrava {
 
 
 
-    private String getResult(String URL, HashMap optionalParameters){
+    private String getResult(String URL, Map optionalParameters){
         StringBuilder sb= new StringBuilder();
         sb.append(URL);
         try {
@@ -1051,7 +1052,7 @@ public class JStravaV3 implements JStrava {
 
 
 
-    private String putResult(String URL, HashMap optionalParameters){
+    private String putResult(String URL, Map optionalParameters){
         StringBuilder sb= new StringBuilder();
         sb.append(URL);
         try {
@@ -1162,8 +1163,5 @@ public class JStravaV3 implements JStrava {
         return sb.toString();
 
     }
-
-
-
 
 }

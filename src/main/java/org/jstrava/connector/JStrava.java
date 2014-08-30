@@ -13,6 +13,7 @@ import org.jstrava.entities.stream.Stream;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by roberto on 12/26/13.
@@ -23,7 +24,7 @@ public interface JStrava {
 
 
     public Athlete getCurrentAthlete();
-    public Athlete updateAthlete(HashMap optionalParameters);
+    public Athlete updateAthlete(Map optionalParameters);
     public Athlete findAthlete(int id);
     public List<SegmentEffort> findAthleteKOMs(int athleteId);
     public List<SegmentEffort> findAthleteKOMs(int athleteId,int page, int per_page);
@@ -42,7 +43,7 @@ public interface JStrava {
     public void deleteActivity(int activityId);
     public Activity findActivity(int id);
     public Activity findActivity(int id,boolean include_all_efforts);
-    public Activity updateActivity(int activityId, HashMap optionalParameters);
+    public Activity updateActivity(int activityId, Map optionalParameters);
     public List<Activity> getCurrentAthleteActivities();
     public List<Activity> getCurrentAthleteActivities( int page, int per_page);
     public List<Activity> getCurrentAthleteActivitiesBeforeDate( long before);

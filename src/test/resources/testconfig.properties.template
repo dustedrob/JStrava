@@ -1,0 +1,9 @@
+# REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!
+#
+accessToken=<yourAccessToken>
+athleteId=<yourAthleteId>
+activityId=0
+clubId=0
+gearId=
+segmentId=0
+updateActivityId=0
