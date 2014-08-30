@@ -11,17 +11,14 @@ import org.jstrava.entities.segment.SegmentLeaderBoard;
 import org.jstrava.entities.stream.Stream;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by roberto on 12/26/13.
+ * Updated by keilw on 08/30/14.
  */
 public interface JStrava {
-
-
-
 
     public Athlete getCurrentAthlete();
     public Athlete updateAthlete(Map optionalParameters);
@@ -68,9 +65,9 @@ public interface JStrava {
     public List<Segment> getCurrentStarredSegment();
     public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId);
     public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId, int page, int per_page);
-    public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId, HashMap optionalParameters);
+    public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId, Map optionalParameters);
     public List<Segment>findSegments(Bound bound);
-    public List<Segment>findSegments(Bound bound,HashMap optionalParameters);
+    public List<Segment>findSegments(Bound bound, Map optionalParameters);
     public SegmentEffort findSegmentEffort(int id);
     public List<Stream>findActivityStreams(int activityId,String[]types);
     public List<Stream>findActivityStreams(int activityId,String[]types,String resolution, String series_type);

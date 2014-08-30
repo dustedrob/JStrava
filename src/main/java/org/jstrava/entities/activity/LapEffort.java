@@ -1,13 +1,16 @@
 package org.jstrava.entities.activity;
 
+import javax.measure.Quantity;
+import javax.measure.quantity.Length;
+
 import org.jstrava.entities.activity.Activity;
 import org.jstrava.entities.athlete.Athlete;
 
 /**
  * Created by roberto on 1/14/14.
+ * Updated by keilw on 08/30/14.
  */
 public class LapEffort {
-
 
     private long id;
     private int resource_state;
@@ -18,7 +21,7 @@ public class LapEffort {
     private int moving_time;
     private String start_date;
     private String start_date_local;
-    private float distance;
+    private Quantity<Length> distance;
     private int start_index;
     private int end_index;
     private float total_elevation_gain;
@@ -114,11 +117,11 @@ public class LapEffort {
         this.start_date_local = start_date_local;
     }
 
-    public float getDistance() {
+    public Quantity<Length> getDistance() {
         return distance;
     }
 
-    public void setDistance(float distance) {
+    public void setDistance(Quantity<Length> distance) {
         this.distance = distance;
     }
 

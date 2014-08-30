@@ -569,7 +569,7 @@ public class JStravaV3 implements JStrava {
 
 
     @Override
-    public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, HashMap optionalParameters) {
+    public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, Map optionalParameters) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard";
         String result=getResult(URL,optionalParameters);
         Gson gson= new Gson();
@@ -601,7 +601,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Segment> findSegments(Bound bound, HashMap optionalParameters) {
+    public List<Segment> findSegments(Bound bound, Map optionalParameters) {
         String URL="https://www.strava.com/api/v3/segments/explore?bounds="+bound.toString();
         String result=getResult(URL,optionalParameters);
 
@@ -688,7 +688,7 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public List<Stream> findEffortStreams(int id, String[] types) {
-        StringBuilder builder= new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
 
         for (int i=0;i<types.length;i++)
         {
@@ -709,7 +709,7 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public List<Stream> findEffortStreams(int id, String[] types, String resolution, String series_type) {
-        StringBuilder builder= new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
 
         for (int i=0;i<types.length;i++)
         {
@@ -736,7 +736,7 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public List<Stream> findSegmentStreams(int id, String[] types) {
-        StringBuilder builder= new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
 
         for (int i=0;i<types.length;i++)
         {

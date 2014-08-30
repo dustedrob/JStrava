@@ -1,15 +1,21 @@
 package org.jstrava.entities.gear;
 
+import javax.measure.Quantity;
+import javax.measure.function.Nameable;
+import javax.measure.quantity.Length;
+
+import tec.units.ri.function.DescriptionSupplier;
+
 /**
  * Created by roberto on 12/26/13.
+ * Updated by keilw on 08/30/14.
  */
-public class Gear {
-
+public class Gear implements Nameable, DescriptionSupplier {
 
     private String id;
     private boolean primary;
     private String name;
-    private float distance;
+    private Quantity<Length> distance;
     private String brand_name;
     private String model_name;
     private String frame_type;
@@ -53,11 +59,11 @@ public class Gear {
         this.name = name;
     }
 
-    public float getDistance() {
+    public Quantity<Length> getDistance() {
         return distance;
     }
 
-    public void setDistance(float distance) {
+    public void setDistance(Quantity<Length> distance) {
         this.distance = distance;
     }
 
