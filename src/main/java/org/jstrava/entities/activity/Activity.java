@@ -9,6 +9,7 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Energy;
 /**
  * Created by roberto on 12/26/13.
+ * Updated by keilw on 08/30/14.
  */
 public class Activity {
 
@@ -50,7 +51,7 @@ public class Activity {
     private Quantity<Energy> kilojoules;
     private float average_heartrate;
     private float max_heartrate;
-    private float calories;
+    private Quantity<Energy> calories;
     private int truncated;
     private boolean has_kudoed;
     private List<SegmentEffort> segment_efforts;
@@ -391,11 +392,11 @@ public class Activity {
         this.max_heartrate = max_heartrate;
     }
 
-    public float getCalories() {
+    public Quantity<Energy> getCalories() {
         return calories;
     }
 
-    public void setCalories(float calories) {
+    public void setCalories(Quantity<Energy> calories) {
         this.calories = calories;
     }
 
