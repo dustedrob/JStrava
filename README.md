@@ -16,6 +16,24 @@ Example Usage
     Athlete anotherAthlete=strava.findAthlete(athleteId);
 
 
+Setup
+=======
+Please copy or rename the file:
+
+    /src/test/resources/testconfig.properties.template
+to
+
+    /src/test/resources/testconfig.properties
+
+And adjust your application properties like 
+
+    accessToken=<yourAccessToken>
+    athleteId=<yourAthleteId>
+    [...]
+
+Before running the JUnit tests.
+
+
 Status
 =======
 Currently on a pre-release stage. Check out the Issues and Milestone pages to see what's missing.
