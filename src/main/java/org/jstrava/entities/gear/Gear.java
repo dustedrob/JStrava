@@ -1,10 +1,10 @@
 package org.jstrava.entities.gear;
 
 import javax.measure.Quantity;
-import javax.measure.function.Nameable;
 import javax.measure.quantity.Length;
 
 import tec.units.ri.function.DescriptionSupplier;
+import tec.units.ri.function.Nameable;
 
 /**
  * Created by roberto on 12/26/13.
