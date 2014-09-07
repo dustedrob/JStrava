@@ -3,6 +3,8 @@ package org.jstrava.entities.activity;
 import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.athlete.Athlete;
 
+import tec.units.ri.function.Nameable;
+
 import java.util.List;
 
 import javax.measure.Quantity;
@@ -10,9 +12,9 @@ import javax.measure.quantity.Energy;
 import javax.measure.quantity.Length;
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 08/30/14.
+ * Updated by keilw on 09/07/14.
  */
-public class Activity {
+public class Activity implements Nameable {
 
     private int id;
     private int resource_state;

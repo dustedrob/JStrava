@@ -13,19 +13,19 @@ public class DistributionBucket
     }
 
 
-    public int getMax() {
+    public int getMaximum() {
         return max;
     }
 
-    public void setMax(int max) {
+    public void setMaximum(int max) {
         this.max = max;
     }
 
-    public int getMin() {
+    public int getMinimum() {
         return min;
     }
 
-    public void setMin(int min) {
+    public void setMinimum(int min) {
         this.min = min;
     }
 
