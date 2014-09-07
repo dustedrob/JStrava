@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 08/30/14
+ * Updated by keilw on 09/08/14
  */
 public class JStravaV3Test {
 	private static final Logger logger = LogManager.getLogger();
@@ -144,7 +144,7 @@ public class JStravaV3Test {
 	
 			assertFalse(efforts.isEmpty());
 			for (SegmentEffort effort : efforts) {
-				System.out.println("Segment Effort KOM " + effort.toString());
+				logger.debug("Segment Effort KOM " + effort.toString());
 	
 			}
 		} else {
@@ -162,7 +162,7 @@ public class JStravaV3Test {
 			assertFalse(efforts.isEmpty());
 			assertTrue(efforts.size() == 1);
 			for (SegmentEffort effort : efforts) {
-				System.out.println("Segment Effort KOM " + effort.toString());
+				logger.debug("Segment Effort KOM " + effort.toString());
 	
 			}
 		} else {
@@ -178,7 +178,7 @@ public class JStravaV3Test {
 		List<Athlete> athletes = strava.getCurrentAthleteFriends();
 		assertFalse(athletes.isEmpty());
 		for (Athlete athlete : athletes) {
-			System.out.println("Current Athlete Friends " + athlete.toString());
+			logger.debug("Current Athlete Friends " + athlete.toString());
 		}
 
 	}
@@ -191,21 +191,23 @@ public class JStravaV3Test {
 		assertFalse(athletes.isEmpty());
 		assertTrue(athletes.size() == 1);
 		for (Athlete athlete : athletes) {
-			System.out.println("Current Athlete Friends " + athlete.toString());
+			logger.debug("Current Athlete Friends " + athlete.toString());
 		}
 
 	}
 
 	@Test
 	public void testFindAthleteFriends() throws Exception {
-
-		JStravaV3 strava = new JStravaV3(accessToken);
-		List<Athlete> athletes = strava.findAthleteFriends(athleteId);
-		assertFalse(athletes.isEmpty());
-		for (Athlete athlete : athletes) {
-			System.out.println("Athlete Friends " + athlete.toString());
+		if(hasAthlete()) {
+			JStravaV3 strava = new JStravaV3(accessToken);
+			List<Athlete> athletes = strava.findAthleteFriends(athleteId);
+			assertFalse(athletes.isEmpty());
+			for (Athlete athlete : athletes) {
+				logger.debug("Athlete Friends " + athlete.toString());
+			}
+		} else {
+			logger.warn("No athlete found.");
 		}
-
 	}
 
 	@Test
@@ -216,13 +218,12 @@ public class JStravaV3Test {
 			assertFalse(athletes.isEmpty());
 			assertTrue(athletes.size() == 1);
 			for (Athlete athlete : athletes) {
-				System.out.println("Athlete Friends with pagination "
+				logger.debug("Athlete Friends with pagination "
 						+ athlete.toString());
 			}
 		} else {
 			logger.warn("No athlete found.");
 		}
-
 	}
 
 	@Test
@@ -233,7 +234,7 @@ public class JStravaV3Test {
 			List<Athlete> athletes = strava.getCurrentAthleteFollowers();
 			assertFalse(athletes.isEmpty());
 			for (Athlete athlete : athletes) {
-				System.out.println("Athlete Followers " + athlete.toString());
+				logger.debug("Athlete Followers " + athlete.toString());
 			}
 		} else {
 			logger.warn("No athlete found.");
@@ -266,7 +267,7 @@ public class JStravaV3Test {
 		List<Athlete> athletes = strava.findAthleteFollowers(athleteId);
 		assertFalse(athletes.isEmpty());
 		for (Athlete athlete : athletes) {
-			System.out.println("Athlete Followers " + athlete.toString());
+			logger.debug("Athlete Followers " + athlete.toString());
 		}
 
 	}
@@ -279,7 +280,7 @@ public class JStravaV3Test {
 			assertTrue(athletes.size() == 1);
 			assertFalse(athletes.isEmpty());
 			for (Athlete athlete : athletes) {
-				System.out.println("Athlete Followers " + athlete.toString());
+				logger.debug("Athlete Followers " + athlete.toString());
 			}
 		} else {
 			logger.warn("No athlete found.");
@@ -295,7 +296,7 @@ public class JStravaV3Test {
 			List<Athlete> athletes = strava.findAthleteBothFollowing(athleteId);
 			assertFalse(athletes.isEmpty());
 			for (Athlete athlete : athletes) {
-				System.out.println("Athletes Both Following " + athlete.toString());
+				logger.debug("Athletes Both Following " + athlete.toString());
 			}
 		} else {
 			logger.warn("No athlete found.");
@@ -312,7 +313,7 @@ public class JStravaV3Test {
 			assertTrue(athletes.size() == 1);
 			assertFalse(athletes.isEmpty());
 			for (Athlete athlete : athletes) {
-				System.out.println("Athletes Both Following " + athlete.toString());
+				logger.debug("Athletes Both Following " + athlete.toString());
 			}
 		} else {
 			logger.warn("No athlete found.");
@@ -321,45 +322,43 @@ public class JStravaV3Test {
 	}
 
 	@Test
+	@Ignore
 	public void testCreateAndDeleteActivity() throws Exception {
-		if (hasActivity()) {
-			JStravaV3 strava = new JStravaV3(accessToken);
-	
-			Activity activity = strava.createActivity("Test Manual Activity",
-					"ride", "2014-03-14T09:00:00Z", 10);
-			assertNotNull(activity);
-			System.out.println("Activity Name " + activity.toString());
-			Activity activityExtra = strava.createActivity("Test Manual Activity",
-					"ride", "2014-03-14T09:00:00Z", 10, "Testing manual creation",
-					100);
-			assertNotNull(activityExtra);
-			System.out.println("Activity Name " + activityExtra.toString());
-			strava.deleteActivity(activity.getId());
-			strava.deleteActivity(activityExtra.getId());
-		} else {
-			logger.warn("No activity found.");
-		}
+		JStravaV3 strava = new JStravaV3(accessToken);
+
+		Activity activity = strava.createActivity("Test Manual Activity",
+				"ride", "2014-09-14T09:00:00Z", 10);
+		assertNotNull(activity);
+		logger.debug("Activity Name " + activity.toString());
+		Activity activityExtra = strava.createActivity("Test Manual Activity",
+				"ride", "2014-09-14T09:00:00Z", 10, "Testing manual creation",
+				100);
+		assertNotNull(activityExtra);
+		logger.debug("Activity Name " + activityExtra.toString());
+		strava.deleteActivity(activity.getId());
+		strava.deleteActivity(activityExtra.getId());
 	}
 
 	@Test
+	@Ignore
 	public void testFindActivity() throws Exception {
 		if (hasActivity()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
 	
 			Activity activity = strava.findActivity(activityId);
 			assertNotNull(activity);
-			System.out.println("Activity Name " + activity.toString());
+			logger.info("Activity Name " + activity.toString());
 			assertNotNull(activity.getAthlete());
-			System.out.println("Athlete " + activity.getAthlete().getId());
-			System.out.println("MAP" + activity.getMap().toString());
+			logger.info("Athlete " + activity.getAthlete().getId());
+			logger.info("MAP" + activity.getMap().toString());
 	
 			assertFalse(activity.getSegment_efforts().isEmpty());
 			for (SegmentEffort segmentEffort : activity.getSegment_efforts()) {
-				System.out.println("Segment Effort " + segmentEffort.toString());
-				System.out.println("  Segment Effort Athlete"
+				logger.debug("Segment Effort " + segmentEffort.toString());
+				logger.debug("  Segment Effort Athlete"
 						+ segmentEffort.getAthlete().getId());
 				assertNotNull(segmentEffort.getSegment());
-				System.out.println("        Matching Segment "
+				logger.debug("        Matching Segment "
 						+ segmentEffort.getSegment().toString());
 			}
 		} else {
@@ -392,7 +391,7 @@ public class JStravaV3Test {
 		List<Activity> activities = strava.getCurrentAthleteActivities();
 		assertFalse(activities.isEmpty());
 		for (Activity activity : activities) {
-			System.out.println("Current Athlete Activity "
+			logger.debug("Current Athlete Activity "
 					+ activity.toString());
 		}
 
@@ -406,7 +405,7 @@ public class JStravaV3Test {
 		assertTrue(activities.size() == 1);
 		assertFalse(activities.isEmpty());
 		for (Activity activity : activities) {
-			System.out.println("Current Athlete Activity With Pagination "
+			logger.debug("Current Athlete Activity With Pagination "
 					+ activity.toString());
 		}
 
@@ -419,12 +418,13 @@ public class JStravaV3Test {
 		List<Activity> activities = strava.getCurrentFriendsActivities();
 		assertFalse(activities.isEmpty());
 		for (Activity activity : activities) {
-			System.out.println("Friend Activity " + activity.toString());
+			logger.debug("Friend Activity " + activity.toString());
 		}
 
 	}
 
 	@Test
+	@Ignore
 	public void testGetCurrentFriendsActivitiesWithPagination() {
 		if (hasActivity()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
@@ -432,7 +432,7 @@ public class JStravaV3Test {
 			assertTrue(activities.size() == 1);
 			assertFalse(activities.isEmpty());
 			for (Activity activity : activities) {
-				System.out.println("Friend Activity " + activity.toString());
+				logger.debug("Friend Activity " + activity.toString());
 			}
 		} else {
 			logger.warn("No activity found.");
@@ -440,6 +440,7 @@ public class JStravaV3Test {
 	}
 
 	@Test
+	@Ignore
 	public void testFindActivityLaps() throws Exception {
 		if (hasActivity()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
@@ -448,7 +449,7 @@ public class JStravaV3Test {
 			assertFalse(laps.isEmpty());
 	
 			for (LapEffort lap : laps) {
-				System.out.println("Lap " + lap.toString());
+				logger.debug("Lap " + lap.toString());
 			}
 		} else {
 			logger.warn("No activity found.");
@@ -462,7 +463,7 @@ public class JStravaV3Test {
 			List<Comment> comments = strava.findActivityComments(activityId);
 			assertFalse(comments.isEmpty());
 			for (Comment comment : comments) {
-				System.out.println(comment.getText());
+				logger.debug(comment.getText());
 			}
 		} else {
 			logger.warn("No activity found.");
@@ -475,10 +476,14 @@ public class JStravaV3Test {
 			JStravaV3 strava = new JStravaV3(accessToken);
 			List<Comment> comments = strava.findActivityComments(activityId, false,
 					2, 1);
-			assertTrue(comments.size() == 1);
-			assertFalse(comments.isEmpty());
-			for (Comment comment : comments) {
-				System.out.println(comment.getText());
+			if (!comments.isEmpty()) {
+				assertEquals(1, comments.size());
+				assertFalse(comments.isEmpty());
+				for (Comment comment : comments) {
+					logger.debug(comment.getText());
+				}
+			} else {
+				logger.warn("No comments found.");
 			}
 		} else {
 			logger.warn("No activity found.");
@@ -490,9 +495,13 @@ public class JStravaV3Test {
 		if (hasActivity()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
 			List<Athlete> athletes = strava.findActivityKudos(activityId);
-			assertFalse(athletes.isEmpty());
-			for (Athlete athlete : athletes) {
-				System.out.println(athlete.toString());
+			if (!athletes.isEmpty()) {
+				assertFalse(athletes.isEmpty());
+				for (Athlete athlete : athletes) {
+					logger.debug(athlete.toString());
+				}
+			} else {
+				logger.warn("No athletes found.");
 			}
 		}
 	}
@@ -502,10 +511,14 @@ public class JStravaV3Test {
 		if (hasActivity()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
 			List<Athlete> athletes = strava.findActivityKudos(activityId, 2, 1);
-			assertTrue(athletes.size() == 1);
-			assertFalse(athletes.isEmpty());
-			for (Athlete athlete : athletes) {
-				System.out.println(athlete.toString());
+			if (!athletes.isEmpty()) {
+				assertEquals(1, athletes.size());
+				assertFalse(athletes.isEmpty());
+				for (Athlete athlete : athletes) {
+					logger.debug(athlete.toString());
+				}
+			} else {
+				logger.warn("No athletes found.");
 			}
 		} else {
 			logger.warn("No activity found.");
@@ -515,6 +528,7 @@ public class JStravaV3Test {
 	/* Expect exception if you dont have an activity with photos */
 //	@Test(expected = RuntimeException.class)
 	@Test
+	@Ignore
 	public void testFindActivityPhotos() {
 		if (hasActivity()) {
 			JStravaV3 strava = new JStravaV3(accessToken);
@@ -522,7 +536,7 @@ public class JStravaV3Test {
 	
 			assertFalse(photos.isEmpty());
 			for (Photo photo : photos) {
-				System.out.println("Photo " + photo.toString());
+				logger.debug("Photo " + photo.toString());
 	
 			}
 		} else {
@@ -538,7 +552,7 @@ public class JStravaV3Test {
 			List<Athlete> athletes = strava.findClubMembers(clubId);
 			assertFalse(athletes.isEmpty());
 			for (Athlete athlete : athletes) {
-				System.out.println("Club Member " + athlete.toString());
+				logger.debug("Club Member " + athlete.toString());
 			}
 		} else {
 			logger.warn("No club found.");
@@ -553,7 +567,7 @@ public class JStravaV3Test {
 			assertTrue(athletes.size() == 1);
 			assertFalse(athletes.isEmpty());
 			for (Athlete athlete : athletes) {
-				System.out.println("Club Member " + athlete.toString());
+				logger.debug("Club Member " + athlete.toString());
 			}
 		}
 	}
@@ -568,7 +582,7 @@ public class JStravaV3Test {
 			List<Activity> activities = strava.findClubActivities(clubId);
 			assertFalse(activities.isEmpty());
 			for (Activity activity : activities) {
-				System.out.println("Club Activity Name " + activity.toString());
+				logger.debug("Club Activity Name " + activity.toString());
 			}
 		} else {
 			logger.warn("No club found.");
@@ -585,7 +599,7 @@ public class JStravaV3Test {
 		assertTrue(activities.size() == 1);
 		assertFalse(activities.isEmpty());
 		for (Activity activity : activities) {
-			System.out.println("Club Activity Name " + activity.toString());
+			logger.debug("Club Activity Name " + activity.toString());
 		}
 
 	}
@@ -597,7 +611,7 @@ public class JStravaV3Test {
 	
 			Club club = strava.findClub(clubId);
 			assertNotNull(club);
-			System.out.println("Club Name " + club.toString());
+			logger.debug("Club Name " + club.toString());
 		} else {
 			logger.warn("No club found.");
 		}
@@ -613,7 +627,7 @@ public class JStravaV3Test {
 			assertNotNull(clubs);
 			assertTrue(clubs.isEmpty());
 			for (Club club : clubs) {
-				System.out.println("Club Name " + club.toString());
+				logger.debug("Club Name " + club.toString());
 			}
 		} else {
 			logger.warn("No athlete found.");
@@ -627,7 +641,7 @@ public class JStravaV3Test {
 	
 			Gear gear = strava.findGear(gearId);
 			assertNotNull(gear);
-			System.out.println("Gear Name " + gear.toString());
+			logger.debug("Gear Name " + gear.toString());
 		} else {
 			logger.warn("No gear found.");
 		}
@@ -640,7 +654,7 @@ public class JStravaV3Test {
 			Segment segment = strava.findSegment(segmentId);
 			assertNotNull(segment);
 	
-			System.out.println("SEGMENT " + segment.toString());
+			logger.debug("SEGMENT " + segment.toString());
 		}
 	}
 
@@ -653,7 +667,7 @@ public class JStravaV3Test {
 			assertFalse(segments.isEmpty());
 	
 			for (Segment segment : segments) {
-				System.out.println("Starred Segment " + segment);
+				logger.debug("Starred Segment " + segment);
 			}
 		} else {
 			logger.warn("No segment found.");
@@ -667,7 +681,7 @@ public class JStravaV3Test {
 			SegmentLeaderBoard board = strava.findSegmentLeaderBoard(segmentId);
 			assertNotNull(board);
 			for (LeaderBoardEntry entry : board.getEntries()) {
-				System.out.println("Segment LeaderBoard " + entry.toString());
+				logger.debug("Segment LeaderBoard " + entry.toString());
 			}
 		} else {
 			logger.warn("No segment found.");
@@ -689,7 +703,7 @@ public class JStravaV3Test {
 			assertTrue(board.getEntries().size() == 3);
 			for (LeaderBoardEntry entry : board.getEntries()) {
 				assertEquals("F", entry.getAthlete_gender());
-				System.out.println("Segment LeaderBoard with Parameters "
+				logger.debug("Segment LeaderBoard with Parameters "
 						+ entry.toString());
 			}
 		} else {
@@ -707,8 +721,8 @@ public class JStravaV3Test {
 			assertNotNull(segments);
 	
 			for (Segment segment : segments) {
-				System.out.println("Segment Explorer " + segment.toString());
-				System.out.println("CLIMB CATEGORY DESCRIPTION"
+				logger.debug("Segment Explorer " + segment.toString());
+				logger.debug("CLIMB CATEGORY DESCRIPTION"
 						+ segment.getClimb_category_desc());
 			}
 		} else {
@@ -726,9 +740,9 @@ public class JStravaV3Test {
 			assertNotNull(streams);
 	
 			for (Stream stream : streams) {
-				System.out.println("STREAM TYPE " + stream.getType());
+				logger.debug("STREAM TYPE " + stream.getType());
 				for (int i = 0; i < stream.getData().size(); i++) {
-					System.out.println("STREAM " + stream.getData().get(i));
+					logger.debug("STREAM " + stream.getData().get(i));
 				}
 			}
 		} else {
@@ -745,10 +759,10 @@ public class JStravaV3Test {
 			assertNotNull(streams);
 	
 			for (Stream stream : streams) {
-				System.out.println("STREAM TYPE " + stream.getType());
+				logger.debug("STREAM TYPE " + stream.getType());
 				for (int i = 0; i < stream.getData().size(); i++) {
 					assertEquals("low", stream.getResolution());
-					System.out.println("STREAM " + stream.getData().get(i));
+					logger.debug("STREAM " + stream.getData().get(i));
 				}
 			}
 		} else {
@@ -765,9 +779,9 @@ public class JStravaV3Test {
 			assertNotNull(streams);
 	
 			for (Stream stream : streams) {
-				System.out.println("STREAM TYPE " + stream.getType());
+				logger.debug("STREAM TYPE " + stream.getType());
 				for (int i = 0; i < stream.getData().size(); i++) {
-					System.out.println("STREAM " + stream.getData().get(i));
+					logger.debug("STREAM " + stream.getData().get(i));
 				}
 			}
 		} else {
@@ -784,10 +798,10 @@ public class JStravaV3Test {
 			assertNotNull(streams);
 	
 			for (Stream stream : streams) {
-				System.out.println("STREAM TYPE " + stream.getType());
+				logger.debug("STREAM TYPE " + stream.getType());
 				for (int i = 0; i < stream.getData().size(); i++) {
 					assertEquals("low", stream.getResolution());
-					System.out.println("STREAM " + stream.getData().get(i));
+					logger.debug("STREAM " + stream.getData().get(i));
 				}
 			}
 		}
@@ -802,9 +816,9 @@ public class JStravaV3Test {
 			assertNotNull(streams);
 	
 			for (Stream stream : streams) {
-				System.out.println("STREAM TYPE " + stream.getType());
+				logger.debug("STREAM TYPE " + stream.getType());
 				for (int i = 0; i < stream.getData().size(); i++) {
-					System.out.println("STREAM " + stream.getData().get(i));
+					logger.debug("STREAM " + stream.getData().get(i));
 				}
 			}
 		} else {
@@ -821,10 +835,10 @@ public class JStravaV3Test {
 			assertNotNull(streams);
 	
 			for (Stream stream : streams) {
-				System.out.println("STREAM TYPE " + stream.getType());
+				logger.debug("STREAM TYPE " + stream.getType());
 				for (int i = 0; i < stream.getData().size(); i++) {
 					assertEquals("low", stream.getResolution());
-					System.out.println("STREAM " + stream.getData().get(i));
+					logger.debug("STREAM " + stream.getData().get(i));
 				}
 			}
 		} else {
