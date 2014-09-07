@@ -5,12 +5,13 @@ import javax.measure.quantity.Length;
 
 import tec.units.ri.function.DescriptionSupplier;
 import tec.units.ri.function.Nameable;
+import tec.uom.lib.common.function.Identifiable;
 
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 08/30/14.
+ * Updated by keilw on 09/07/14.
  */
-public class Gear implements Nameable, DescriptionSupplier {
+public class Gear implements Nameable, Identifiable<String>, DescriptionSupplier {
 
     private String id;
     private boolean primary;

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jstrava</groupId>
 	<artifactId>jstrava</artifactId>
-	<version>0.2</version>
+	<version>0.3-SNAPSHOT</version>
 	<name>JStrava</name>
 
 	<!-- ======================================================= -->
@@ -32,6 +32,11 @@
 		  <artifactId>unit-ri</artifactId>
 		  <version>0.5-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+          <groupId>tec.uom.lib</groupId>
+          <artifactId>uom-lib-common</artifactId>
+          <version>0.4-SNAPSHOT</version>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>

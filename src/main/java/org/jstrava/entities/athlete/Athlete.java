@@ -3,12 +3,15 @@ package org.jstrava.entities.athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
 
+import tec.uom.lib.common.function.IntIdentifiable;
+
 import java.util.List;
 
 /**
  * Created by roberto on 12/26/13.
+ * Updated by keilw on 09/07/14.
  */
-public class Athlete {
+public class Athlete implements IntIdentifiable {
 
 
     private int id;
