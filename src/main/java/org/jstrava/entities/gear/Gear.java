@@ -16,7 +16,8 @@ public class Gear implements Nameable, Identifiable<String>, DescriptionSupplier
     private String id;
     private boolean primary;
     private String name;
-    private Quantity<Length> distance;
+//    private Quantity<Length> distance;
+    private double distance;
     private String brand_name;
     private String model_name;
     private String frame_type;
@@ -60,11 +61,11 @@ public class Gear implements Nameable, Identifiable<String>, DescriptionSupplier
         this.name = name;
     }
 
-    public Quantity<Length> getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(Quantity<Length> distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 
