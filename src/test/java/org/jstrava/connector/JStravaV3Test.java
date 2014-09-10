@@ -191,7 +191,7 @@ public class JStravaV3Test {
 		assertFalse(athletes.isEmpty());
 		assertTrue(athletes.size() == 1);
 		for (Athlete athlete : athletes) {
-			logger.debug("Current Athlete Friends " + athlete.toString());
+			logger.info("Current Athlete Friends (Pagination) " + athlete.toString());
 		}
 
 	}
@@ -267,7 +267,7 @@ public class JStravaV3Test {
 		List<Athlete> athletes = strava.findAthleteFollowers(athleteId);
 		assertFalse(athletes.isEmpty());
 		for (Athlete athlete : athletes) {
-			logger.debug("Athlete Followers " + athlete.toString());
+			logger.info("Athlete Followers " + athlete.toString());
 		}
 
 	}
@@ -463,7 +463,7 @@ public class JStravaV3Test {
 			List<Comment> comments = strava.findActivityComments(activityId);
 			assertFalse(comments.isEmpty());
 			for (Comment comment : comments) {
-				logger.debug(comment.getText());
+				logger.info(comment.getText());
 			}
 		} else {
 			logger.warn("No activity found.");
@@ -640,7 +640,7 @@ public class JStravaV3Test {
 			assertNotNull(clubs);
 			assertFalse(clubs.isEmpty());
 			for (Club club : clubs) {
-				logger.debug("Club Name " + club.toString());
+				logger.info("Club Name " + club.toString());
 			}
 		} else {
 			logger.warn("No club found.");
