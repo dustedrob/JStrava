@@ -6,6 +6,7 @@
     </Console>
   </Appenders>
   <Loggers>
+    <!-- Root level is "info", if you want to see more detailed output like data streams, please change to "debug" -->
     <Root level="info">
       <AppenderRef ref="Console"/>
     </Root>
