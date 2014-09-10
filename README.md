@@ -18,4 +18,7 @@ Example Usage
 
 Status
 =======
-Currently on a pre-release stage. Check out the Issues and Milestone pages to see what's missing.
+Currently on a pre-release stage. Check out the Issues and Milestone pages to see what's missing. For now, I'm not able to dedicate full time to the project. If you want to chip in please let me know!
+
+Thanks
+@dustedrob
