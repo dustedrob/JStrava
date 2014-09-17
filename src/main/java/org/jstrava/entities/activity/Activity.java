@@ -3,18 +3,15 @@ package org.jstrava.entities.activity;
 import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.athlete.Athlete;
 
-import tec.units.ri.function.Nameable;
+import tec.uom.lib.common.function.IntIdentifiable;
 
 import java.util.List;
 
-import javax.measure.Quantity;
-import javax.measure.quantity.Energy;
-import javax.measure.quantity.Length;
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 09/07/14.
+ * Updated by keilw on 09/17/14.
  */
-public class Activity implements Nameable {
+public class Activity implements IntIdentifiable { // implements Nameable {
 
     private int id;
     private int resource_state;
@@ -22,7 +19,7 @@ public class Activity implements Nameable {
     private int upload_id;
     private Athlete athlete;/*Simple Athlete representation with just id*/
     private String name;
-    private Quantity<Length> distance;
+    private double distance;
     private int moving_time;
     private int elapsed_time;
     private float total_elevation_gain;
@@ -51,10 +48,10 @@ public class Activity implements Nameable {
     private float average_cadence;
     private int average_temp;
     private float average_watts;
-    private Quantity<Energy> kilojoules;
+    private double kilojoules;
     private float average_heartrate;
     private float max_heartrate;
-    private Quantity<Energy> calories;
+    private double calories;
     private int truncated;
     private boolean has_kudoed;
     private List<SegmentEffort> segment_efforts;
@@ -115,11 +112,11 @@ public class Activity implements Nameable {
         this.name = name;
     }
 
-    public Quantity<Length> getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(Quantity<Length> distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 
@@ -371,11 +368,11 @@ public class Activity implements Nameable {
         this.average_watts = average_watts;
     }
 
-    public Quantity<Energy> getKilojoules() {
+    public double getKilojoules() {
         return kilojoules;
     }
 
-    public void setKilojoules(Quantity<Energy> kilojoules) {
+    public void setKilojoules(double kilojoules) {
         this.kilojoules = kilojoules;
     }
 
@@ -395,11 +392,11 @@ public class Activity implements Nameable {
         this.max_heartrate = max_heartrate;
     }
 
-    public Quantity<Energy> getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(Quantity<Energy> calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 

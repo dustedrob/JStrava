@@ -1,16 +1,15 @@
 package org.jstrava.entities.activity;
 
-import javax.measure.Quantity;
-import javax.measure.quantity.Length;
-
 import org.jstrava.entities.activity.Activity;
 import org.jstrava.entities.athlete.Athlete;
 
+import tec.uom.lib.common.function.LongIdentifiable;
+
 /**
  * Created by roberto on 1/14/14.
- * Updated by keilw on 08/30/14.
+ * Updated by keilw on 09/17/14.
  */
-public class LapEffort {
+public class LapEffort implements LongIdentifiable {
 
     private long id;
     private int resource_state;
@@ -21,7 +20,7 @@ public class LapEffort {
     private int moving_time;
     private String start_date;
     private String start_date_local;
-    private Quantity<Length> distance;
+    private double distance;
     private int start_index;
     private int end_index;
     private float total_elevation_gain;
@@ -117,11 +116,11 @@ public class LapEffort {
         this.start_date_local = start_date_local;
     }
 
-    public Quantity<Length> getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(Quantity<Length> distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 

@@ -23,6 +23,11 @@
 			<version>2.1</version>
 		</dependency>
 		<dependency>
+          <groupId>tec.uom.lib</groupId>
+          <artifactId>uom-lib-common</artifactId>
+          <version>0.4-SNAPSHOT</version>
+        </dependency>
+		<dependency>
 		  <groupId>javax.measure</groupId>
 		  <artifactId>unit-api</artifactId>
 		  <version>0.7-SNAPSHOT</version>
@@ -34,12 +39,6 @@
 		  <version>0.5-SNAPSHOT</version>
 		   <scope>test</scope>
 		</dependency>
-		<dependency>
-          <groupId>tec.uom.lib</groupId>
-          <artifactId>uom-lib-common</artifactId>
-          <version>0.4-SNAPSHOT</version>
-           <scope>test</scope>
-        </dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
