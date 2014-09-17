@@ -26,16 +26,19 @@
 		  <groupId>javax.measure</groupId>
 		  <artifactId>unit-api</artifactId>
 		  <version>0.7-SNAPSHOT</version>
+		  <scope>test</scope>
 		</dependency>
 		<dependency>
 		  <groupId>tec.units</groupId>
 		  <artifactId>unit-ri</artifactId>
 		  <version>0.5-SNAPSHOT</version>
+		   <scope>test</scope>
 		</dependency>
 		<dependency>
           <groupId>tec.uom.lib</groupId>
           <artifactId>uom-lib-common</artifactId>
           <version>0.4-SNAPSHOT</version>
+           <scope>test</scope>
         </dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>

@@ -2,8 +2,6 @@ package org.jstrava.connector;
 
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
@@ -17,12 +15,9 @@ import org.jstrava.entities.stream.Stream;
 import java.io.*;
 import java.net.*;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.measure.Quantity;
 
 public class JStravaV3 implements JStrava {
 
