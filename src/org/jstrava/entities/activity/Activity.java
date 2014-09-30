@@ -4,6 +4,8 @@ import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.athlete.Athlete;
 
 import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
 /**
  * Created by roberto on 12/26/13.
  */
@@ -36,6 +38,7 @@ public class Activity {
     private boolean trainer;
     private boolean commute;
     private boolean manual;
+    @SerializedName("private")
     private boolean PRIVATE;
     private boolean flagged;
     private String gear_id;
