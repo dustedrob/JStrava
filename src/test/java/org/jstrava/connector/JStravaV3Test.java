@@ -16,22 +16,16 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tec.units.ri.quantity.BaseQuantity;
-import tec.units.ri.util.SI;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.measure.Quantity;
-import javax.measure.quantity.Mass;
-
 import static org.junit.Assert.*;
 
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 09/18/14
+ * Updated by keilw on 12/04/14
  */
 public class JStravaV3Test {
 	private static final Logger logger = LogManager.getLogger();
@@ -129,8 +123,7 @@ public class JStravaV3Test {
 		@SuppressWarnings("rawtypes")
 		final Map optionalParameters = new HashMap();
 
-		final Quantity<Mass> weight = BaseQuantity.of(71, SI.KILOGRAM);
-		optionalParameters.put("weight", weight.getValue());
+		optionalParameters.put("weight", 71);
 		Athlete athlete = strava.updateAthlete(optionalParameters);
 		assertNotNull(athlete);
 	}
