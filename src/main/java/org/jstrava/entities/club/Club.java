@@ -1,12 +1,10 @@
 package org.jstrava.entities.club;
 
-import tec.uom.lib.common.function.IntIdentifiable;
-
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 09/17/14.
+ * Updated by keilw on 12/07/14.
  */
-public class Club implements IntIdentifiable { //, Nameable {
+public class Club {
 
     private int id;
     private int resource_state;

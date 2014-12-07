@@ -3,14 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jstrava</groupId>
 	<artifactId>jstrava</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<name>JStrava</name>
 
-	<!-- ======================================================= -->
-	<!-- Build Settings -->
-	<!-- ======================================================= -->
 	<properties>
-		<jdkVersion>1.6</jdkVersion>
+		<jdkVersion>1.7</jdkVersion>
 		<project.build.javaVersion>${jdkVersion}</project.build.javaVersion>
 		<maven.compile.targetLevel>${jdkVersion}</maven.compile.targetLevel>
 		<maven.compile.sourceLevel>${jdkVersion}</maven.compile.sourceLevel>
@@ -21,23 +18,6 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.1</version>
-		</dependency>
-		<dependency>
-          <groupId>tec.uom.lib</groupId>
-          <artifactId>uom-lib-common</artifactId>
-          <version>0.4-SNAPSHOT</version>
-        </dependency>
-		<dependency>
-		  <groupId>javax.measure</groupId>
-		  <artifactId>unit-api</artifactId>
-		  <version>0.7-SNAPSHOT</version>
-		  <scope>test</scope>
-		</dependency>
-		<dependency>
-		  <groupId>tec.units</groupId>
-		  <artifactId>unit-ri</artifactId>
-		  <version>0.5-SNAPSHOT</version>
-		   <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -64,7 +44,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.2</version>
 				<configuration>
 					<debug>true</debug>
 					<optimize>true</optimize>

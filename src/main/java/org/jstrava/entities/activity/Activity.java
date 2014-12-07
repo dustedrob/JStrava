@@ -3,15 +3,13 @@ package org.jstrava.entities.activity;
 import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.athlete.Athlete;
 
-import tec.uom.lib.common.function.IntIdentifiable;
-
 import java.util.List;
 
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 09/17/14.
+ * Updated by keilw on 12/07/14.
  */
-public class Activity implements IntIdentifiable { // implements Nameable {
+public class Activity {
 
     private int id;
     private int resource_state;

@@ -1,18 +1,14 @@
 package org.jstrava.entities.gear;
 
-import tec.uom.lib.common.function.DescriptionSupplier;
-import tec.uom.lib.common.function.Identifiable;
-
 /**
  * Created by roberto on 12/26/13.
  * Updated by keilw on 09/17/14.
  */
-public class Gear implements Identifiable<String>, DescriptionSupplier { // Nameable
+public class Gear {
 
     private String id;
     private boolean primary;
     private String name;
-//    private Quantity<Length> distance;
     private double distance;
     private String brand_name;
     private String model_name;

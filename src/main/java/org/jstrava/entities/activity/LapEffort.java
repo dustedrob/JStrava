@@ -3,13 +3,11 @@ package org.jstrava.entities.activity;
 import org.jstrava.entities.activity.Activity;
 import org.jstrava.entities.athlete.Athlete;
 
-import tec.uom.lib.common.function.LongIdentifiable;
-
 /**
  * Created by roberto on 1/14/14.
- * Updated by keilw on 09/17/14.
+ * Updated by keilw on 12/07/14.
  */
-public class LapEffort implements LongIdentifiable {
+public class LapEffort {
 
     private long id;
     private int resource_state;
