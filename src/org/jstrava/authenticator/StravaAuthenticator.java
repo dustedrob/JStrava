@@ -31,33 +31,33 @@ public class StravaAuthenticator {
     }
 
 
-    public String getRequestAccessUrl(String approvalPrompt, boolean viewPrivate, boolean write , String state)
+    public String getRequestAccessUrl(String approvalPrompt, boolean viewPrivate, boolean write, String state)
     {
-        String url="https://www.strava.com/oauth/authorize?client_id="+clientId+"&response_type=code&redirect_uri="+redirectUri;
+        String url = "https://www.strava.com/oauth/authorize?client_id=" + clientId + "&response_type=code&redirect_uri=" + redirectUri;
 
-        StringBuilder sb= new StringBuilder();
+        StringBuilder sb = new StringBuilder(url);
 
-        if (viewPrivate!=false && write !=false)
+        if (viewPrivate || write)
         {
             sb.append("&scope=");
 
-            if (viewPrivate!=false)
-            {
-                sb.append(viewPrivate);
+            if (viewPrivate) {
+                sb.append("view_private");
             }
-
-            if (write!=false)
-            {
-                sb.append(" ");
-                sb.append(write);
+            if (viewPrivate && write) {
+                sb.append(",");
             }
-
+            if (write) {
+                sb.append("write");
+            }
         }
-        sb.append("&state="+state);
-        sb.append("&approval_prompt=force");
+        sb.append("&state=" + state);
+        if (!approvalPrompt.equals("force") && !approvalPrompt.equals("auto")) {
+            throw new IllegalArgumentException("approvalPrompt should be 'force' or 'auto'");
+        }
+        sb.append("&approval_prompt=" + approvalPrompt);
 
-        url+=sb.toString();
-        return url;
+        return sb.toString();
     }
 
 
