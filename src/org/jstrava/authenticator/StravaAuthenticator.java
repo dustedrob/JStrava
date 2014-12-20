@@ -1,11 +1,24 @@
 package org.jstrava.authenticator;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+
 /**
  * Created by roberto on 2/10/14.
  */
 public class StravaAuthenticator {
 
+    private static final String TOKEN_URL = "https://www.strava.com/oauth/token";
+
     private int clientId;
+    private String secrete;
     private String redirectUri;
 
 
@@ -25,9 +38,19 @@ public class StravaAuthenticator {
         this.redirectUri = redirectUri;
     }
 
+    public String getSecrete() { return secrete; }
+
+    public void setSecrete(String secrete) { this.secrete = secrete; }
+
     public StravaAuthenticator(int clientId, String redirectUri) {
         this.clientId = clientId;
         this.redirectUri = redirectUri;
+    }
+
+    public StravaAuthenticator(int clientId, String redirectUri, String secrete) {
+        this.clientId = clientId;
+        this.redirectUri = redirectUri;
+        this.secrete = secrete;
     }
 
 
@@ -58,6 +81,47 @@ public class StravaAuthenticator {
         sb.append("&approval_prompt=" + approvalPrompt);
 
         return sb.toString();
+    }
+
+    public AuthResponse getToken(String code) {
+        if (secrete == null) {
+            throw new IllegalStateException("Application secrete is not set");
+        }
+
+        try {
+
+            URI uri = new URI(TOKEN_URL);
+            URL url = uri.toURL();
+
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+
+            try {
+                StringBuilder sb = new StringBuilder();
+                sb.append("client_id=" + clientId);
+                sb.append("&client_secret=" + secrete);
+                sb.append("&code=" + code);
+
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Accept", "application/json");
+                OutputStream os = conn.getOutputStream();
+                os.write(sb.toString().getBytes("UTF-8"));
+
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + conn.getResponseCode());
+                }
+
+                Reader br = new InputStreamReader((conn.getInputStream()));
+                Gson gson = new Gson();
+                return gson.fromJson(br, AuthResponse.class);
+
+            } finally {
+                conn.disconnect();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
