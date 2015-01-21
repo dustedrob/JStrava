@@ -103,6 +103,7 @@ public class StravaAuthenticator {
 
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Accept", "application/json");
+                conn.setDoOutput(true);
                 OutputStream os = conn.getOutputStream();
                 os.write(sb.toString().getBytes("UTF-8"));
 
