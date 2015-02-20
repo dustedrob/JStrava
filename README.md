@@ -3,6 +3,8 @@ JStrava
 
 Java Libraries for the Strava API
 
+[![Build Status](https://drone.io/github.com/keilw/JStrava/status.png)](https://drone.io/github.com/keilw/JStrava/latest)
+
 Objective
 =======
 The objective of the project is to provide a Java wrapper which mirrors as closely as possible the Strava API in it's latest version.
