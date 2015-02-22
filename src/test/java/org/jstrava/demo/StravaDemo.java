@@ -11,11 +11,13 @@ import java.util.Properties;
 
 
 
+
 import org.jstrava.connector.JStravaV3;
 import org.jstrava.entities.activity.Activity;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 import org.jstrava.entities.athlete.Athlete;
+import org.jstrava.entities.club.Club;
 
 /**
  * Created by keilw on 12/04/14.
@@ -44,6 +46,10 @@ public class StravaDemo {
 		
 		Activity activity = strava.findActivity(activityId);
 		System.out.println("City: " + activity.getLocation_city());
+		
+		clubId = Integer.parseInt(config.getProperty("clubId", "0"));
+		Club club = strava.findClub(clubId);
+		System.out.println("Club: " + club);
 	}
 
 }

@@ -638,7 +638,7 @@ public class JStravaV3Test {
 			assertNotNull(clubs);
 			assertFalse(clubs.isEmpty());
 			for (Club club : clubs) {
-				logger.info("Club Name " + club.toString());
+				logger.info("Club Name " + club.toString() + " (" + club.getId() + ")");
 			}
 		} else {
 			logger.warn("No club found.");
