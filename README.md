@@ -3,7 +3,8 @@ JStrava
 
 Java Libraries for the Strava API
 
-[![Build Status](https://drone.io/github.com/keilw/JStrava/status.png)](https://drone.io/github.com/keilw/JStrava/latest)
+[![Build Status](https://drone.io/github.com/keilw/JStrava/status.png)](https://drone.io/github.com/keilw/JStrava/latest) [![License](http://img.shields.io/badge/license-MIT-yellow.svg)](http://opensource.org/licenses/MIT)
+
 
 Objective
 =======
