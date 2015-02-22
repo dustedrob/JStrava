@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2014, 2015 Roberto Betancourt, Werner Keil
+ * 
+ * See LICENSE for details.
+ */
 package org.jstrava.connector;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +30,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by roberto on 12/26/13.
- * Updated by keilw on 12/04/14
+ * Updated by keilw on 22/02/15.
  */
 public class JStravaV3Test {
 	private static final Logger logger = LogManager.getLogger();
