@@ -10,6 +10,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+/**
+ * @deprecated should be removed, as full JSON binding to custom types doesn't work well, See uom-strava for more...
+ */
 public class QuantityDeserializer implements JsonDeserializer<Number> {
 
 
