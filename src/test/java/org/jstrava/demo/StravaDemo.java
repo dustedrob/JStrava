@@ -21,10 +21,9 @@ import org.jstrava.entities.club.Club;
 
 /**
  * Created by keilw on 12/04/14.
- * Updated by keilw on 22/02/15.
+ * Updated by keilw on 24/02/15.
  */
 public class StravaDemo {
-//	private static final Logger logger = LogManager.getLogger();
 	private static String accessToken;
 	private static int athleteId;
 	private static int activityId;
