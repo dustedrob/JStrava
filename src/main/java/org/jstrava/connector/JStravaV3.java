@@ -829,7 +829,7 @@ public class JStravaV3 implements JStrava {
 
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode() + " - " + conn.getResponseMessage());
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -900,7 +900,7 @@ public class JStravaV3 implements JStrava {
             conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode() + " - " + conn.getResponseMessage());
             }
 
 
@@ -1026,7 +1026,7 @@ public class JStravaV3 implements JStrava {
             conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
             if (conn.getResponseCode() != 200 | conn.getResponseCode() != 201 ) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode() + " - " + conn.getResponseMessage());
             }
 
 
@@ -1091,7 +1091,7 @@ public class JStravaV3 implements JStrava {
             conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode() + " - " + conn.getResponseMessage());
             }
 
 
@@ -1138,7 +1138,7 @@ public class JStravaV3 implements JStrava {
             conn.setRequestProperty("Authorization","Bearer "+getAccessToken());
             if (conn.getResponseCode() != 204) {
                 throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+                        + conn.getResponseCode() + " - " + conn.getResponseMessage());
             }
 
 
