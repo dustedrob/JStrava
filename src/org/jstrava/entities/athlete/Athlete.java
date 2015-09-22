@@ -33,6 +33,7 @@ public class Athlete {
     private String measurement_preference;
     private String email;
     private int ftp;
+    private float weight;
     private List<Club> clubs;
     private List<Gear> bikes;
     private List<Gear> shoes;
@@ -223,6 +224,14 @@ public class Athlete {
 
     public void setFtp(int ftp) {
         this.ftp = ftp;
+    }
+    
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 
     public List<Club> getClubs() {
