@@ -24,7 +24,7 @@ public class Activity {
     private String type;
     private String start_date;
     private String start_date_local;
-    private String time_zone;
+    private String timezone;
     private String[] start_latlng;
     private String[] end_latlng;
     private String location_city;
@@ -192,11 +192,11 @@ public class Activity {
     }
 
     public String getTime_zone() {
-        return time_zone;
+        return timezone;
     }
 
-    public void setTime_zone(String time_zone) {
-        this.time_zone = time_zone;
+    public void setTime_zone(String timezone) {
+        this.timezone = timezone;
     }
 
     public String[] getStart_latlng() {
