@@ -280,7 +280,21 @@ public class JStravaV3 implements JStrava {
 
         return activity;
     }
+    
+    @Override
+    public List<Activity> getAllCurrentAthleteActivities() {
+	    int resultsPerPage = 30;
+	    int page = 1;
+	    List<Activity> currentActivities = new ArrayList<Activity>();
+	    List<Activity> activitiesPerPage;
 
+	    while ((activitiesPerPage = this.getCurrentAthleteActivities(page, resultsPerPage)).size() > 0) {
+            currentActivities.addAll(activitiesPerPage);
+	        page++;
+	    }
+	    return currentActivities;
+    }
+    
     @Override
     public List<Activity> getCurrentAthleteActivities() {
         String URL="https://www.strava.com/api/v3/athlete/activities";
