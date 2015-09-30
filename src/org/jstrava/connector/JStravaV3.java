@@ -283,12 +283,16 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public List<Activity> getCurrentAthleteActivities() {
-        String URL="https://www.strava.com/api/v3/athlete/activities";
-        String result=getResult(URL);
-        Gson gson= new Gson();
-        Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
-        List<Activity>currentActivities= Arrays.asList(activitiesArray);
-        return currentActivities;
+	    int resultsPerPage = 30;
+	    int page = 1;
+	    List<Activity> currentActivities = new ArrayList<Activity>();
+	    List<Activity> activitiesPerPage;
+
+    	while ((activitiesPerPage = this.getCurrentAthleteActivities(page, resultsPerPage)).size() > 0) {
+            currentActivities.addAll(activitiesPerPage);
+            page++;
+	    }
+	    return currentActivities;
     }
 
     @Override
