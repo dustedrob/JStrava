@@ -797,7 +797,12 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public UploadStatus uploadActivity(String data_type, File file) {
-        return null;
+        String URL = "https://www.strava.com/api/v3/uploads";
+	String result = getResultUploadActivity(URL, file, data_type);
+	Gson gson = new Gson();
+	UploadStatus status = gson.fromJson(result, UploadStatus.class);
+
+	return status;
     }
 
     @Override
@@ -826,6 +831,101 @@ public class JStravaV3 implements JStrava {
 
     }
 
+   private static String readFile(File file, Charset encoding) throws IOException {
+	byte[] encoded = Files.readAllBytes(file.toPath());
+	return new String(encoded, encoding);
+    }
+    
+    private String getExtension(String fileName) {
+	String extension = "";
+
+	int i = fileName.lastIndexOf('.');
+	int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
+
+	if (i > p) {
+	    extension = fileName.substring(i + 1);
+	}
+	return extension;
+    }
+    private String getResultUploadActivity(String URL, File activityFile, String type) {
+	StringBuilder sb = new StringBuilder();
+	String ext = getExtension(activityFile.getName());
+	String boundary = "===" + System.currentTimeMillis() + "===";// UNIQUE
+	String LINE_FEED = "\r\n";
+
+	try {
+	    URL url = new URL(URL);
+	    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	    conn.setRequestMethod("POST");
+	    conn.setRequestProperty("Connection", "Keep-Alive");
+	    conn.setRequestProperty("Cache-Control", "no-cache");
+	    conn.setRequestProperty("Authorization", "Bearer " + getAccessToken());
+	    conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+	    conn.setDoOutput(true);
+	    conn.setDoInput(true);
+	    OutputStream out = conn.getOutputStream();
+	    DataOutputStream request = new DataOutputStream(out);
+
+	    addField(type, "activity_type", boundary, LINE_FEED, request);
+
+	    addField(ext, "data_type", boundary, LINE_FEED, request);
+
+	    addFilePart("file", activityFile, boundary, LINE_FEED, request);
+
+	    request.writeBytes(LINE_FEED);
+	    request.writeBytes("--" + boundary + "--" + LINE_FEED);
+	    request.flush();
+	    request.close();
+
+	    if (conn.getResponseCode() != 201) {
+		throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode() + " - " + conn.getErrorStream());
+	    }
+
+	    BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+
+	    String output;
+	    while ((output = br.readLine()) != null) {
+		sb.append(output);
+	    }
+
+	    conn.disconnect();
+
+	}
+	catch (IOException e) {
+
+	    e.printStackTrace();
+	    return null;
+	}
+
+	return sb.toString();
+    }
+
+    private void addField(String value, String name, String boundary, String LINE_FEED, DataOutputStream request) throws IOException {
+	request.writeBytes("--" + boundary + LINE_FEED);
+	request.writeBytes("Content-Disposition: form-data; name=\"" + name + "\"" + LINE_FEED);
+	request.writeBytes(LINE_FEED);
+	request.writeBytes(value + LINE_FEED);
+	request.flush();
+    }
+
+    public void addFilePart(String fieldName, File uploadFile, String boundary, String LINE_FEED, DataOutputStream request) throws IOException {
+	String fileName = uploadFile.getName();
+	request.writeBytes("--" + boundary + LINE_FEED);
+	request.writeBytes("Content-Disposition: form-data; name=\"" + fieldName + "\"; filename=\"" + fileName + "\"" + LINE_FEED);
+	request.writeBytes(LINE_FEED);
+	request.flush();
+
+	FileInputStream inputStream = new FileInputStream(uploadFile);
+	byte[] buffer = new byte[4096];
+	int bytesRead = -1;
+	while ((bytesRead = inputStream.read(buffer)) != -1) {
+	    request.write(buffer, 0, bytesRead);
+	}
+	inputStream.close();
+	request.writeBytes(readFile(uploadFile, StandardCharsets.UTF_8));
+	request.writeBytes(LINE_FEED);
+	request.flush();
+    }
 
 
     private String getResult(String URL){
