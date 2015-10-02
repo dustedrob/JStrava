@@ -922,7 +922,6 @@ public class JStravaV3 implements JStrava {
 	    request.write(buffer, 0, bytesRead);
 	}
 	inputStream.close();
-	request.writeBytes(readFile(uploadFile, StandardCharsets.UTF_8));
 	request.writeBytes(LINE_FEED);
 	request.flush();
     }
