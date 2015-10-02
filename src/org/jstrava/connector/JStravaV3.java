@@ -831,11 +831,6 @@ public class JStravaV3 implements JStrava {
 
     }
 
-   private static String readFile(File file, Charset encoding) throws IOException {
-	byte[] encoded = Files.readAllBytes(file.toPath());
-	return new String(encoded, encoding);
-    }
-    
     private String getExtension(String fileName) {
 	String extension = "";
 
