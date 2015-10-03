@@ -2,4 +2,7 @@
 out/
 *.directory
 *.iml
-
+target/
+.classpath
+.project
+.settings/
