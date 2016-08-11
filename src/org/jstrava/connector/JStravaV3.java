@@ -14,6 +14,7 @@ import org.jstrava.entities.stream.Stream;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -552,7 +553,7 @@ public class JStravaV3 implements JStrava {
     @Override
     public List<Photo> findActivityPhotos(int activityId) {
 
-        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/photos";
+        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/photos?photo_sources=true";
         String result=getResult(URL);
         Gson gson= new Gson();
         Photo[] photosArray =gson.fromJson(result,Photo[].class);
