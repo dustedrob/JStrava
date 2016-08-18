@@ -3,6 +3,7 @@ package org.jstrava.entities.activity;
 import org.jstrava.entities.segment.SegmentEffort;
 import org.jstrava.entities.athlete.Athlete;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
@@ -53,10 +54,10 @@ public class Activity {
     private float calories;
     private int truncated;
     private boolean has_kudoed;
-    private List<SegmentEffort> segment_efforts;
-    private List<SplitsMetric> splits_metric;
-    private List<SplitsStandard> splits_standard;
-    private List<SegmentEffort> best_efforts;
+    private List<SegmentEffort> segment_efforts=new ArrayList<>();
+    private List<SplitsMetric> splits_metric=new ArrayList<>();
+    private List<SplitsStandard> splits_standard=new ArrayList<>();
+    private List<SegmentEffort> best_efforts=new ArrayList<>();
 
 
     @Override

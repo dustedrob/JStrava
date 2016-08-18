@@ -3,6 +3,7 @@ package org.jstrava.entities.athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,9 +35,9 @@ public class Athlete {
     private String email;
     private int ftp;
     private float weight;
-    private List<Club> clubs;
-    private List<Gear> bikes;
-    private List<Gear> shoes;
+    private List<Club> clubs=new ArrayList<>();
+    private List<Gear> bikes=new ArrayList<>();
+    private List<Gear> shoes=new ArrayList<>();
 
     @Override
     public String toString() {

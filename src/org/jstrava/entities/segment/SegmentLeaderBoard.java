@@ -1,5 +1,6 @@
 package org.jstrava.entities.segment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ public class SegmentLeaderBoard {
 
     private int effort_count;
     private int entry_count;
-    private List<LeaderBoardEntry> entries;
+    private List<LeaderBoardEntry> entries=new ArrayList<>();
 
     public SegmentLeaderBoard() {
     }

@@ -24,6 +24,8 @@ public class JStravaV3 implements JStrava {
 
     private String accessToken;
     private Athlete currentAthlete;
+    private Gson gson = new Gson();
+    
 
 
     public String getAccessToken() {
@@ -39,7 +41,7 @@ public class JStravaV3 implements JStrava {
     public Athlete updateAthlete(HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/athlete";
         String result=putResult(URL,optionalParameters);
-        Gson gson= new Gson();
+        
         Athlete athlete= gson.fromJson(result,Athlete.class);
 
         return athlete;
@@ -51,7 +53,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/athletes/"+id;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete athlete= gson.fromJson(result,Athlete.class);
 
         return athlete;
@@ -64,7 +66,7 @@ public class JStravaV3 implements JStrava {
     public List<SegmentEffort> findAthleteKOMs(int athleteId) {
         String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/koms";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         SegmentEffort[] segmentEffortArray=gson.fromJson(result,SegmentEffort[].class);
         List<SegmentEffort>segmentEfforts= Arrays.asList(segmentEffortArray);
         return segmentEfforts;
@@ -74,7 +76,7 @@ public class JStravaV3 implements JStrava {
     public List<SegmentEffort> findAthleteKOMs(int athleteId,int page,int per_page) {
         String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/koms?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         SegmentEffort[] segmentEffortArray=gson.fromJson(result,SegmentEffort[].class);
         List<SegmentEffort>segmentEfforts= Arrays.asList(segmentEffortArray);
         return segmentEfforts;
@@ -84,7 +86,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> getCurrentAthleteFriends() {
         String URL="https://www.strava.com/api/v3/athlete/friends";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -98,7 +100,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> getCurrentAthleteFriends(int page, int per_page) {
         String URL="https://www.strava.com/api/v3/athlete/friends?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -113,7 +115,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findAthleteFriends(int id) {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -127,7 +129,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findAthleteFriends(int id,int page, int per_page) {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/friends?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -141,7 +143,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> getCurrentAthleteFollowers() {
         String URL="https://www.strava.com/api/v3/athlete/followers";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -155,7 +157,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> getCurrentAthleteFollowers(int page, int per_page) {
         String URL="https://www.strava.com/api/v3/athlete/followers?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -170,7 +172,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findAthleteFollowers(int id) {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -184,7 +186,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findAthleteFollowers(int id,int page, int per_page) {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/followers?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -199,7 +201,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findAthleteBothFollowing(int id) {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -213,7 +215,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findAthleteBothFollowing(int id,int page, int per_page) {
         String URL="https://www.strava.com/api/v3/athletes/"+id+"/both-following?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -227,7 +229,7 @@ public class JStravaV3 implements JStrava {
     public Activity createActivity(String name, String type, String start_date_local, int elapsed_time) {
         String URL="https://www.strava.com/api/v3/activities?name="+name+"&type="+type+"&start_date_local="+start_date_local+"&elapsed_time="+elapsed_time;
         String result=postResult(URL);
-        Gson gson= new Gson();
+        
         System.out.println("RESULTADO"+result);
         Activity activity=gson.fromJson(result,Activity.class);
         return activity;
@@ -237,7 +239,7 @@ public class JStravaV3 implements JStrava {
     public Activity createActivity(String name, String type, String start_date_local, int elapsed_time, String description, float distance) {
         String URL="https://www.strava.com/api/v3/activities?name="+name+"&type="+type+"&start_date_local="+start_date_local+"&elapsed_time="+elapsed_time+"&description="+description+"&distance="+distance;
         String result=postResult(URL);
-        Gson gson= new Gson();
+        
         Activity activity=gson.fromJson(result,Activity.class);
         return activity;
     }
@@ -246,7 +248,7 @@ public class JStravaV3 implements JStrava {
     public void deleteActivity(int activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId;
         String result=deleteResult(URL);
-        Gson gson= new Gson();
+        
         gson.fromJson(result,String.class);
 
 
@@ -256,7 +258,7 @@ public class JStravaV3 implements JStrava {
     public Activity findActivity(int id) {
         String URL="https://www.strava.com/api/v3/activities/"+id;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity activity= gson.fromJson(result,Activity.class);
 
         return activity;
@@ -266,7 +268,7 @@ public class JStravaV3 implements JStrava {
     public Activity findActivity(int id,boolean include_all_efforts) {
         String URL="https://www.strava.com/api/v3/activities/"+id+"?include_all_efforts="+include_all_efforts;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity activity= gson.fromJson(result,Activity.class);
 
         return activity;
@@ -276,7 +278,7 @@ public class JStravaV3 implements JStrava {
     public Activity updateActivity(int activityId, HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId;
         String result=putResult(URL,optionalParameters);
-        Gson gson= new Gson();
+        
         Activity activity= gson.fromJson(result,Activity.class);
 
         return activity;
@@ -300,7 +302,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> getCurrentAthleteActivities() {
         String URL="https://www.strava.com/api/v3/athlete/activities";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>currentActivities= Arrays.asList(activitiesArray);
         return currentActivities;
@@ -310,7 +312,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> getCurrentAthleteActivities(int page,int per_page) {
         String URL="https://www.strava.com/api/v3/athlete/activities?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>currentActivities= Arrays.asList(activitiesArray);
         return currentActivities;
@@ -320,7 +322,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> getCurrentAthleteActivitiesBeforeDate(long before) {
         String URL="https://www.strava.com/api/v3/athlete/activities?before="+before;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>currentActivities= Arrays.asList(activitiesArray);
         return currentActivities;
@@ -330,7 +332,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> getCurrentAthleteActivitiesAfterDate(long after) {
         String URL="https://www.strava.com/api/v3/athlete/activities?after="+after;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>currentActivities= Arrays.asList(activitiesArray);
         return currentActivities;
@@ -340,7 +342,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> getCurrentFriendsActivities() {
         String URL="https://www.strava.com/api/v3/activities/following";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>currentFriendsActivities= Arrays.asList(activitiesArray);
         return currentFriendsActivities;
@@ -349,7 +351,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> getCurrentFriendsActivities(int page, int per_page) {
         String URL="https://www.strava.com/api/v3/activities/following?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>currentFriendsActivities= Arrays.asList(activitiesArray);
         return currentFriendsActivities;
@@ -359,7 +361,7 @@ public class JStravaV3 implements JStrava {
     public List<Zone> getActivityZones(int activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/zones";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Zone[] zonesArray=gson.fromJson(result,Zone[].class);
         List<Zone> zones=Arrays.asList(zonesArray);
         return zones;
@@ -370,7 +372,7 @@ public class JStravaV3 implements JStrava {
     public List<LapEffort> findActivityLaps(int activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/laps";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         LapEffort[] lapEffortsArray =gson.fromJson(result,LapEffort[].class);
         List<LapEffort>lapEfforts= Arrays.asList(lapEffortsArray);
         return lapEfforts;
@@ -382,7 +384,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/comments";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Comment[] commentsArray= gson.fromJson(result,Comment[].class);
 
 
@@ -397,7 +399,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/comments?markdown="+markdown+"&page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Comment[] commentsArray= gson.fromJson(result,Comment[].class);
 
 
@@ -412,7 +414,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findActivityKudos(int activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -426,7 +428,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findActivityKudos(int activityId, int page, int per_page) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -441,7 +443,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findClubMembers(int clubId) {
         String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/members";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -455,7 +457,7 @@ public class JStravaV3 implements JStrava {
     public List<Athlete> findClubMembers(int clubId,int page, int per_page) {
         String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/members?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Athlete[] athletesArray= gson.fromJson(result,Athlete[].class);
 
 
@@ -470,7 +472,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> findClubActivities(int clubId) {
         String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/activities";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>clubActivities= Arrays.asList(activitiesArray);
         return clubActivities;
@@ -481,7 +483,7 @@ public class JStravaV3 implements JStrava {
     public List<Activity> findClubActivities(int clubId,int page, int per_page) {
         String URL="https://www.strava.com/api/v3/clubs/"+clubId+"/activities"+"?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Activity[] activitiesArray =gson.fromJson(result,Activity[].class);
         List<Activity>clubActivities= Arrays.asList(activitiesArray);
         return clubActivities;
@@ -491,7 +493,7 @@ public class JStravaV3 implements JStrava {
     public Club findClub(int id) {
         String URL="https://www.strava.com/api/v3/clubs/"+id;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Club club= gson.fromJson(result,Club.class);
 
         return club;
@@ -502,7 +504,7 @@ public class JStravaV3 implements JStrava {
     public List<Club> getCurrentAthleteClubs() {
         String URL="https://www.strava.com/api/v3/athlete/clubs";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Club[] clubsArray= gson.fromJson(result,Club[].class);
 
 
@@ -517,7 +519,7 @@ public class JStravaV3 implements JStrava {
     public Gear findGear(String id) {
         String URL="https://www.strava.com/api/v3/gear/"+id;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Gear gear= gson.fromJson(result,Gear.class);
 
         return gear;
@@ -527,7 +529,7 @@ public class JStravaV3 implements JStrava {
     public Segment findSegment(long segmentId) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Segment segment= gson.fromJson(result,Segment.class);
         return segment;
     }
@@ -536,7 +538,7 @@ public class JStravaV3 implements JStrava {
     public List<Segment> getCurrentStarredSegment() {
         String URL="https://www.strava.com/api/v3/segments/starred";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Segment[] segmentsArray= gson.fromJson(result,Segment[].class);
 
 
@@ -555,7 +557,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/photos?photo_sources=true";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         Photo[] photosArray =gson.fromJson(result,Photo[].class);
         List<Photo>photos= Arrays.asList(photosArray);
         return photos;
@@ -565,7 +567,7 @@ public class JStravaV3 implements JStrava {
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
         return segmentLeaderBoard;
     }
@@ -575,7 +577,7 @@ public class JStravaV3 implements JStrava {
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, int page, int per_page) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
         return segmentLeaderBoard;
     }
@@ -586,7 +588,7 @@ public class JStravaV3 implements JStrava {
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId, HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard";
         String result=getResult(URL,optionalParameters);
-        Gson gson= new Gson();
+        
         SegmentLeaderBoard segmentLeaderBoard= gson.fromJson(result,SegmentLeaderBoard.class);
         return segmentLeaderBoard;
     }
@@ -608,7 +610,7 @@ public class JStravaV3 implements JStrava {
             result=result.replaceFirst(segmentString, "");
             result=result.substring(0,result.lastIndexOf("}"));
 
-        Gson gson= new Gson();
+        
         Segment[]segmentsArray= gson.fromJson(result,Segment[].class);
         List<Segment> segments=Arrays.asList(segmentsArray);
         return segments;
@@ -630,7 +632,7 @@ public class JStravaV3 implements JStrava {
         }
 
 
-        Gson gson= new Gson();
+        
         Segment[]segmentsArray= gson.fromJson(result,Segment[].class);
         List<Segment> segments=Arrays.asList(segmentsArray);
         return segments;
@@ -643,7 +645,7 @@ public class JStravaV3 implements JStrava {
     public SegmentEffort findSegmentEffort(int id) {
         String URL="https://www.strava.com/api/v3/segment_efforts/"+id;
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         SegmentEffort segmentEffort= gson.fromJson(result,SegmentEffort.class);
         return segmentEffort;
     }
@@ -665,7 +667,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/streams/"+builder.toString();
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
@@ -693,7 +695,7 @@ public class JStravaV3 implements JStrava {
         }
 
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
@@ -715,7 +717,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/segment_efforts/"+id+"/streams/"+builder.toString();
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
@@ -742,7 +744,7 @@ public class JStravaV3 implements JStrava {
         }
 
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
@@ -763,7 +765,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/segments/"+id+"/streams/"+builder.toString();
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
@@ -790,7 +792,7 @@ public class JStravaV3 implements JStrava {
         }
 
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         Stream[] streamsArray=gson.fromJson(result,Stream[].class);
         List<Stream> streams=Arrays.asList(streamsArray);
         return streams;
@@ -816,7 +818,7 @@ public class JStravaV3 implements JStrava {
 
         String URL="https://www.strava.com/api/v3/uploads/"+uploadId;
         String result= getResult(URL);
-        Gson gson= new Gson();
+        
         UploadStatus status=gson.fromJson(result,UploadStatus.class);
 
         return status;
@@ -827,7 +829,7 @@ public class JStravaV3 implements JStrava {
         this.accessToken = access_token;
         String URL="https://www.strava.com/api/v3/athlete";
         String result=getResult(URL);
-        Gson gson= new Gson();
+        
         currentAthlete =gson.fromJson(result,Athlete.class);
 
     }
