@@ -34,6 +34,11 @@ public class JStravaV3 implements JStrava {
 
     @Override
     public Athlete getCurrentAthlete() {
+        if (currentAthlete == null) {
+            String URL = "https://www.strava.com/api/v3/athlete";
+            String result= getResult(URL);
+            currentAthlete = gson.fromJson(result, Athlete.class);
+        }
         return currentAthlete;
     }
 
@@ -827,11 +832,6 @@ public class JStravaV3 implements JStrava {
 
     public JStravaV3(String access_token){
         this.accessToken = access_token;
-        String URL="https://www.strava.com/api/v3/athlete";
-        String result=getResult(URL);
-        
-        currentAthlete =gson.fromJson(result,Athlete.class);
-
     }
 
     private String getExtension(String fileName) {
