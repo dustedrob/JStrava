@@ -6,6 +6,7 @@ import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
+import org.jstrava.entities.route.Route;
 import org.jstrava.entities.segment.Bound;
 import org.jstrava.entities.segment.Segment;
 import org.jstrava.entities.segment.SegmentEffort;
@@ -523,6 +524,28 @@ public class JStravaV3 implements JStrava {
         Gear gear= gson.fromJson(result,Gear.class);
 
         return gear;
+    }
+
+    @Override
+    public Route findRoute(int routeId) {
+
+        String URL="https://www.strava.com/api/v3/route/"+routeId;
+        String result=getResult(URL);
+
+        Route route= gson.fromJson(result,Route.class);
+
+        return route;
+        
+    }
+
+    @Override
+    public List<Route> findAthleteRoutes(int athleteId) {
+        String URL="https://www.strava.com/api/v3/athletes/"+athleteId+"/routes";
+        String result=getResult(URL);
+
+        Route[] routesArray=gson.fromJson(result,Route[].class);
+        List<Route>athleteRoutes= Arrays.asList(routesArray);
+        return athleteRoutes;
     }
 
     @Override

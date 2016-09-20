@@ -4,6 +4,7 @@ import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
+import org.jstrava.entities.route.Route;
 import org.jstrava.entities.segment.Bound;
 import org.jstrava.entities.segment.Segment;
 import org.jstrava.entities.segment.SegmentEffort;
@@ -64,6 +65,11 @@ public interface JStrava {
     public Club findClub(int id);
     public List<Club> getCurrentAthleteClubs();
     public Gear findGear(String id);
+
+    public Route findRoute(int routeId);
+
+    public List<Route> findAthleteRoutes(int athleteId);
+
     public Segment findSegment(long segmentId);
     public List<Segment> getCurrentStarredSegment();
     public SegmentLeaderBoard findSegmentLeaderBoard (long segmentId);

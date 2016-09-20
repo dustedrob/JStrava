@@ -7,6 +7,7 @@ import org.jstrava.entities.activity.Photo;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
+import org.jstrava.entities.route.Route;
 import org.jstrava.entities.segment.*;
 import org.jstrava.entities.stream.Stream;
 import org.junit.After;
@@ -35,7 +36,7 @@ public class JStravaV3Test {
     @Before
     public void setUp() throws Exception {
 
-        /*REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE!!!*/
+        /*todo: REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE TO RUN THE TESTS!!!*/
 
         accessToken ="";
         athleteId=0;
