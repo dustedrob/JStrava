@@ -1,4 +1,4 @@
-package org.jstrava.connector;
+package org.jstrava.api;
 
 
 import com.google.gson.Gson;

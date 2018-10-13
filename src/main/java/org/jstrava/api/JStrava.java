@@ -1,4 +1,4 @@
-package org.jstrava.connector;
+package org.jstrava.api;
 
 import org.jstrava.entities.activity.*;
 import org.jstrava.entities.athlete.Athlete;
