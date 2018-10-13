@@ -1,4 +1,4 @@
-JStrava
+JStrava 1.0
 =======
 
 Java Libraries for the Strava API
