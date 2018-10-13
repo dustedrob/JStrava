@@ -1,6 +1,7 @@
 package org.jstrava.authenticator;
 
-import org.jstrava.entities.athlete.Athlete;
+
+import org.jstrava.entities.Athlete;
 
 public class AuthResponse {
     String access_token;

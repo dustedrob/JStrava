@@ -2,24 +2,11 @@ package org.jstrava.api;
 
 
 import com.google.gson.Gson;
-import org.jstrava.entities.activity.*;
-import org.jstrava.entities.athlete.Athlete;
-import org.jstrava.entities.club.Club;
-import org.jstrava.entities.gear.Gear;
-import org.jstrava.entities.route.Route;
-import org.jstrava.entities.segment.Bound;
-import org.jstrava.entities.segment.Segment;
-import org.jstrava.entities.segment.SegmentEffort;
-import org.jstrava.entities.segment.SegmentLeaderBoard;
-import org.jstrava.entities.stream.Stream;
+import org.jstrava.entities.*;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class JStravaV3 implements JStrava {
 
@@ -364,24 +351,24 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Zone> getActivityZones(int activityId) {
+    public List<ActivityZone> getActivityZones(int activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/zones";
         String result=getResult(URL);
         
-        Zone[] zonesArray=gson.fromJson(result,Zone[].class);
-        List<Zone> zones=Arrays.asList(zonesArray);
+        ActivityZone[] zonesArray=gson.fromJson(result,ActivityZone[].class);
+        List<ActivityZone> zones=Arrays.asList(zonesArray);
         return zones;
     }
 
 
     @Override
-    public List<LapEffort> findActivityLaps(int activityId) {
+    public List<LapsItem> findActivityLaps(int activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/laps";
         String result=getResult(URL);
         
-        LapEffort[] lapEffortsArray =gson.fromJson(result,LapEffort[].class);
-        List<LapEffort>lapEfforts= Arrays.asList(lapEffortsArray);
-        return lapEfforts;
+        LapsItem[] LapsItemsArray =gson.fromJson(result,LapsItem[].class);
+        List<LapsItem>LapsItems= Arrays.asList(LapsItemsArray);
+        return LapsItems;
     }
 
 
@@ -578,19 +565,6 @@ public class JStravaV3 implements JStrava {
 
 
 
-
-
-    @Override
-    public List<Photo> findActivityPhotos(int activityId) {
-
-        String URL="https://www.strava.com/api/v3/activities/"+activityId+"/photos?photo_sources=true";
-        String result=getResult(URL);
-        
-        Photo[] photosArray =gson.fromJson(result,Photo[].class);
-        List<Photo>photos= Arrays.asList(photosArray);
-        return photos;
-    }
-
     @Override
     public SegmentLeaderBoard findSegmentLeaderBoard(long segmentId) {
         String URL="https://www.strava.com/api/v3/segments/"+segmentId+"/leaderboard";
@@ -626,7 +600,7 @@ public class JStravaV3 implements JStrava {
 
 
     @Override
-    public List<Segment> findSegments(Bound bound) {
+    public List<Segment> findSegments(double[] bound) {
         String URL="https://www.strava.com/api/v3/segments/explore?bounds="+bound.toString();
         String result=getResult(URL);
 
@@ -645,8 +619,8 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Segment> findSegments(Bound bound, HashMap optionalParameters) {
-        String URL="https://www.strava.com/api/v3/segments/explore?bounds="+bound.toString();
+    public List<Segment> findSegments(double[] bounds, HashMap optionalParameters) {
+        String URL="https://www.strava.com/api/v3/segments/explore?bounds="+bounds.toString();
         String result=getResult(URL,optionalParameters);
 
 

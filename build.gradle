@@ -16,4 +16,5 @@ dependencies {
     testImplementation(
             'org.junit.jupiter:junit-jupiter-api:5.1.0'
     )
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
 }

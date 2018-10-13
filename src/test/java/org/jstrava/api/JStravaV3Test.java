@@ -1,14 +1,7 @@
 package org.jstrava.api;
 
-import org.jstrava.entities.activity.Activity;
-import org.jstrava.entities.activity.Comment;
-import org.jstrava.entities.activity.LapEffort;
-import org.jstrava.entities.activity.Photo;
-import org.jstrava.entities.athlete.Athlete;
-import org.jstrava.entities.club.Club;
-import org.jstrava.entities.gear.Gear;
-import org.jstrava.entities.segment.*;
-import org.jstrava.entities.stream.Stream;
+import org.jstrava.entities.*;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -24,7 +17,7 @@ public class JStravaV3Test {
 
 
     //todo:setup your ids before testing
-    String accessToken="f1680106c792fac952c650441ed80ff697a7b24d";
+    String accessToken;
     int athleteId;
     int activityId;
     int updateActivityId;
@@ -290,8 +283,8 @@ public class JStravaV3Test {
         System.out.println("Athlete "+activity.getAthlete().getId());
         System.out.println("MAP"+activity.getMap().toString());
 
-        assertFalse(activity.getSegment_efforts().isEmpty());
-        for (SegmentEffort segmentEffort: activity.getSegment_efforts())
+        assertFalse(activity.getSegmentEfforts().isEmpty());
+        for (SegmentEffort segmentEffort: activity.getSegmentEfforts())
         {
             System.out.println("Segment Effort "+segmentEffort.toString());
             System.out.println("  Segment Effort Athlete"+segmentEffort.getAthlete().getId());
@@ -380,11 +373,11 @@ public class JStravaV3Test {
     public void testFindActivityLaps() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
-        List<LapEffort>laps=strava.findActivityLaps(activityId);
+        List<LapsItem>laps=strava.findActivityLaps(activityId);
 
         assertFalse(laps.isEmpty());
 
-        for (LapEffort lap:laps)
+        for (LapsItem lap:laps)
         {
             System.out.println("Lap "+ lap.toString());
         }
@@ -448,21 +441,7 @@ public class JStravaV3Test {
 
     }
 
-    /*Expect exception if you dont have an activity with photos*/
-    @Test
-    public void testFindActivityPhotos(){
 
-        JStravaV3 strava= new JStravaV3(accessToken);
-        List<Photo> photos= strava.findActivityPhotos(activityId);
-
-        assertFalse(photos.isEmpty());
-        for (Photo photo: photos)
-        {
-            System.out.println("Photo " + photo.toString());
-
-        }
-
-    }
 
 
     @Test
@@ -592,7 +571,7 @@ public class JStravaV3Test {
         JStravaV3 strava= new JStravaV3(accessToken);
         SegmentLeaderBoard board= strava.findSegmentLeaderBoard(segmentId);
         assertNotNull(board);
-        for (LeaderBoardEntry entry:board.getEntries())
+        for (EntriesItem entry:board.getEntries())
         {
             System.out.println("Segment LeaderBoard "+entry.toString());
         }
@@ -612,11 +591,6 @@ public class JStravaV3Test {
 
 
         assertTrue(board.getEntries().size()==3);
-        for (LeaderBoardEntry entry:board.getEntries())
-        {
-            assertEquals("F", entry.getAthlete_gender());
-            System.out.println("Segment LeaderBoard with Parameters "+entry.toString());
-        }
 
     }
 
@@ -625,14 +599,14 @@ public class JStravaV3Test {
     public void testFindSegmentExplorer() throws Exception{
 
         JStravaV3 strava= new JStravaV3(accessToken);
-        Bound bound= new Bound(37.821362,-122.505373,37.842038,-122.465977);
-        List<Segment> segments= strava.findSegments(bound);
+        double[] bounds= new double[]{37.821362,-122.505373,37.842038,-122.465977};
+        List<Segment> segments= strava.findSegments(bounds);
         assertNotNull(segments);
 
         for (Segment segment:segments)
         {
             System.out.println("Segment Explorer "+segment.toString());
-            System.out.println("CLIMB CATEGORY DESCRIPTION"+segment.getClimb_category_desc());
+            System.out.println("CLIMB CATEGORY DESCRIPTION"+segment.getClimbCategory());
         }
 
     }
