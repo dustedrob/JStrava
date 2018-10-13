@@ -7,17 +7,14 @@ import org.jstrava.entities.activity.Photo;
 import org.jstrava.entities.athlete.Athlete;
 import org.jstrava.entities.club.Club;
 import org.jstrava.entities.gear.Gear;
-import org.jstrava.entities.route.Route;
 import org.jstrava.entities.segment.*;
 import org.jstrava.entities.stream.Stream;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
 
-import static junit.framework.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -25,7 +22,9 @@ import static junit.framework.Assert.*;
  */
 public class JStravaV3Test {
 
-    String accessToken;
+
+    //todo:setup your ids before testing
+    String accessToken="f1680106c792fac952c650441ed80ff697a7b24d";
     int athleteId;
     int activityId;
     int updateActivityId;
@@ -33,27 +32,9 @@ public class JStravaV3Test {
     String gearId;
     long segmentId;
 
-    @Before
-    public void setUp() throws Exception {
-
-        /*todo: REMEMBER TO SETUP YOUR API ACCESS CODE AND OTHER PARAMETERS HERE TO RUN THE TESTS!!!*/
-
-        accessToken ="";
-        athleteId=0;
-        activityId=0;
-        clubId=0;
-        gearId="";
-        segmentId=0L;
-        updateActivityId=0;
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
 
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testFailedConnection()
     {
 
@@ -66,8 +47,8 @@ public class JStravaV3Test {
     public void testJStravaV3() throws Exception {
 
         JStravaV3 strava= new JStravaV3(accessToken);
-
         Athlete athlete=strava.getCurrentAthlete();
+        System.out.println(athlete.getFirstname());
         assertNotNull(athlete);
 
     }
@@ -468,7 +449,7 @@ public class JStravaV3Test {
     }
 
     /*Expect exception if you dont have an activity with photos*/
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testFindActivityPhotos(){
 
         JStravaV3 strava= new JStravaV3(accessToken);
@@ -512,7 +493,7 @@ public class JStravaV3Test {
     }
 
     ////////Remove EXPECTED annotation if you point to a club you are member of.
-    @Test(expected=RuntimeException.class)
+    @Test
     public void testFindClubActivities(){
 
         JStravaV3 strava= new JStravaV3(accessToken);
@@ -526,7 +507,7 @@ public class JStravaV3Test {
     }
 
     ////////Remove EXPECTED annotation if you point to a club you are member of.
-    @Test(expected=RuntimeException.class)
+    @Test
     public void testFindClubActivitiesWithPagination(){
 
         JStravaV3 strava= new JStravaV3(accessToken);
