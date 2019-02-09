@@ -638,7 +638,7 @@ public class Activity{
 		this.totalElevationGain = totalElevationGain;
 	}
 
-	public int getTotalElevationGain(){
+	public double getTotalElevationGain(){
 		return totalElevationGain;
 	}
 
