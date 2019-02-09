@@ -170,7 +170,7 @@ public class Activity{
 	private double calories;
 
 	@SerializedName("total_elevation_gain")
-	private int totalElevationGain;
+	private double totalElevationGain;
 
 	@SerializedName("average_watts")
 	private double averageWatts;
