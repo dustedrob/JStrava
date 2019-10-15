@@ -154,6 +154,12 @@ public class Activity{
 	@SerializedName("average_temp")
 	private int averageTemp;
 
+	@SerializedName("average_heartrate")
+	private double averageHeartrate;
+
+	@SerializedName("max_heartrate")
+	private int maxHeartrate;
+
 	@SerializedName("moving_time")
 	private int movingTime;
 
@@ -457,6 +463,26 @@ public class Activity{
 	public boolean isHasHeartrate(){
 		return hasHeartrate;
 	}
+
+    public double getAverageHeartrate()
+    {
+        return averageHeartrate;
+    }
+
+    public void setAverageHeartrate(double averageHeartrate)
+    {
+        this.averageHeartrate = averageHeartrate;
+    }
+
+    public int getMaxHeartrate()
+    {
+        return maxHeartrate;
+    }
+
+    public void setMaxHeartrate(int maxHeartrate)
+    {
+        this.maxHeartrate = maxHeartrate;
+    }
 
 	public void setDescription(String description){
 		this.description = description;
@@ -775,6 +801,8 @@ public class Activity{
 			",map = '" + map + '\'' + 
 			",average_speed = '" + averageSpeed + '\'' + 
 			",average_temp = '" + averageTemp + '\'' + 
+			",average_heart_rate = '" + averageHeartrate + '\'' + 
+			",max_heart_rate = '" + maxHeartrate + '\'' + 
 			",moving_time = '" + movingTime + '\'' + 
 			",start_date = '" + startDate + '\'' + 
 			",pr_count = '" + prCount + '\'' + 
