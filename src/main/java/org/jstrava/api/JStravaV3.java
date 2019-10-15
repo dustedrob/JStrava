@@ -238,7 +238,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public void deleteActivity(int activityId) {
+    public void deleteActivity(long activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId;
         String result=deleteResult(URL);
         
@@ -248,7 +248,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public Activity findActivity(int id) {
+    public Activity findActivity(long id) {
         String URL="https://www.strava.com/api/v3/activities/"+id;
         String result=getResult(URL);
         
@@ -258,7 +258,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public Activity findActivity(int id,boolean include_all_efforts) {
+    public Activity findActivity(long id,boolean include_all_efforts) {
         String URL="https://www.strava.com/api/v3/activities/"+id+"?include_all_efforts="+include_all_efforts;
         String result=getResult(URL);
         
@@ -268,7 +268,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public Activity updateActivity(int activityId, HashMap optionalParameters) {
+    public Activity updateActivity(long activityId, HashMap optionalParameters) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId;
         String result=putResult(URL,optionalParameters);
         
@@ -351,7 +351,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<ActivityZone> getActivityZones(int activityId) {
+    public List<ActivityZone> getActivityZones(long activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/zones";
         String result=getResult(URL);
         
@@ -362,7 +362,7 @@ public class JStravaV3 implements JStrava {
 
 
     @Override
-    public List<LapsItem> findActivityLaps(int activityId) {
+    public List<LapsItem> findActivityLaps(long activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/laps";
         String result=getResult(URL);
         
@@ -373,7 +373,7 @@ public class JStravaV3 implements JStrava {
 
 
     @Override
-    public List<Comment> findActivityComments(int activityId) {
+    public List<Comment> findActivityComments(long activityId) {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/comments";
         String result=getResult(URL);
@@ -388,7 +388,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Comment> findActivityComments(int activityId,boolean markdown, int page, int per_page) {
+    public List<Comment> findActivityComments(long activityId,boolean markdown, int page, int per_page) {
 
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/comments?markdown="+markdown+"&page="+page+"&per_page="+per_page;
         String result=getResult(URL);
@@ -404,7 +404,7 @@ public class JStravaV3 implements JStrava {
 
 
     @Override
-    public List<Athlete> findActivityKudos(int activityId) {
+    public List<Athlete> findActivityKudos(long activityId) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos";
         String result=getResult(URL);
         
@@ -418,7 +418,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Athlete> findActivityKudos(int activityId, int page, int per_page) {
+    public List<Athlete> findActivityKudos(long activityId, int page, int per_page) {
         String URL="https://www.strava.com/api/v3/activities/"+activityId+"/kudos?page="+page+"&per_page="+per_page;
         String result=getResult(URL);
         
@@ -654,7 +654,7 @@ public class JStravaV3 implements JStrava {
 
 
     @Override
-    public List<Stream> findActivityStreams(int activityId, String[] types) {
+    public List<Stream> findActivityStreams(long activityId, String[] types) {
 
         StringBuilder builder= new StringBuilder();
 
@@ -677,7 +677,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Stream> findActivityStreams(int activityId, String[] types, String resolution, String series_type) {
+    public List<Stream> findActivityStreams(long activityId, String[] types, String resolution, String series_type) {
         StringBuilder builder= new StringBuilder();
 
         for (int i=0;i<types.length;i++)
@@ -726,7 +726,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Stream> findEffortStreams(int id, String[] types, String resolution, String series_type) {
+    public List<Stream> findEffortStreams(long id, String[] types, String resolution, String series_type) {
         StringBuilder builder= new StringBuilder();
 
         for (int i=0;i<types.length;i++)
@@ -753,7 +753,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Stream> findSegmentStreams(int id, String[] types) {
+    public List<Stream> findSegmentStreams(long id, String[] types) {
         StringBuilder builder= new StringBuilder();
 
         for (int i=0;i<types.length;i++)
@@ -774,7 +774,7 @@ public class JStravaV3 implements JStrava {
     }
 
     @Override
-    public List<Stream> findSegmentStreams(int id, String[] types, String resolution, String series_type) {
+    public List<Stream> findSegmentStreams(long id, String[] types, String resolution, String series_type) {
         StringBuilder builder= new StringBuilder();
 
         for (int i=0;i<types.length;i++)
