@@ -125,5 +125,48 @@ public class StravaAuthenticator {
         }
     }
 
+    public AuthResponse refreshToken(String refreshToken) {
+        if (secrete == null) {
+            throw new IllegalStateException("Application secrete is not set");
+        }
+
+        try {
+
+            URI uri = new URI(TOKEN_URL);
+            URL url = uri.toURL();
+
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+
+            try {
+                StringBuilder sb = new StringBuilder();
+                sb.append("client_id=").append(clientId);
+                sb.append("&client_secret=").append(secrete);
+                sb.append("&grant_type=refresh_token");
+                sb.append("&refresh_token=").append(refreshToken);
+
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Accept", "application/json");
+                conn.setDoOutput(true);
+                OutputStream os = conn.getOutputStream();
+                os.write(sb.toString().getBytes("UTF-8"));
+
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + conn.getResponseCode());
+                }
+
+                Reader br = new InputStreamReader((conn.getInputStream()));
+                Gson gson = new Gson();
+                return gson.fromJson(br, AuthResponse.class);
+
+            } finally {
+                conn.disconnect();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 }
