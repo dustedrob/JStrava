@@ -92,7 +92,7 @@ public class Activity{
 	private boolean privateActivity;
 
 	@SerializedName("distance")
-	private int distance;
+	private double distance;
 
 	@SerializedName("timezone")
 	private String timezone;
@@ -426,11 +426,11 @@ public class Activity{
 		return privateActivity;
 	}
 
-	public void setDistance(int distance){
+	public void setDistance(double distance){
 		this.distance = distance;
 	}
 
-	public int getDistance(){
+	public double getDistance(){
 		return distance;
 	}
 
