@@ -38,7 +38,7 @@ public class Activity{
 	private List<SplitsMetricItem> splitsMetric;
 
 	@SerializedName("id")
-	private int id;
+	private long id;
 
 	@SerializedName("kudos_count")
 	private int kudosCount;
@@ -286,7 +286,7 @@ public class Activity{
 		this.id = id;
 	}
 
-	public int getId(){
+	public long getId(){
 		return id;
 	}
 
